@@ -146,7 +146,6 @@ public class PopulaBanco {
 		//
 		// }
 		String palavraBuscada = "java";
-		List<String> titulos = new ArrayList<String>();
 		List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosPalavras = new ArrayList<BuscaEmConteudo>();
 		List<String> arquivosNomes = new ArrayList<String>();
@@ -163,6 +162,8 @@ public class PopulaBanco {
 
 		for (int j = 0; j < arquivosNomes.size(); j++) {
 			encontrado = 0;
+			List<String> tituloAchado = new ArrayList<String>();
+			List<String> titulos = new ArrayList<String>();
 			try {
 				BufferedReader in = new BufferedReader(new FileReader("/Users/feliperodrigues/Documents/" + arquivosNomes.get(j) + ".html")); // declara
 																												// o
@@ -215,7 +216,7 @@ public class PopulaBanco {
 				// System.out.println(titulos.size());
 				Boolean inserirEmTitulos = false;
 				for (int i = 0; i < titulos.size(); i++) {
-					List<String> tituloAchado = new ArrayList<String>();
+					
 					if (titulos.get(i).toUpperCase().contains(palavraBuscada.toUpperCase())) {
 						inserirEmTitulos = true;
 						tituloAchado.add(titulos.get(i));
@@ -245,9 +246,9 @@ public class PopulaBanco {
 				System.out.println(listaFinal.get(i).getQtdParalavras());
 			}
 			}
-			System.out.println("opa");
 
 		}
+		System.out.println("oi");
 	}
 
 }

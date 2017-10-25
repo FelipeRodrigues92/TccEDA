@@ -7,19 +7,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import br.com.ucb.tcc.modelo.BuscaEmConteudo;
 import br.com.ucb.tcc.modelo.Conteudo;
 
 @ManagedBean
+@ViewScoped
 public class BuscaConteudoBean {
+	private String palavraBuscada = "";
+	
+	public String getPalavraBuscada() {
+		return palavraBuscada;
+	}
 
-	public List<BuscaEmConteudo> getConteudosComString(String palavraBuscada){
-		List<String> titulos = new ArrayList<String>();
+	public void setPalavraBuscada(String palavraBuscada) {
+		this.palavraBuscada = palavraBuscada;
+	}
+
+	public List<BuscaEmConteudo> getConteudosComString(){
+		//String palavraBuscada = "java";
 		List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosPalavras = new ArrayList<BuscaEmConteudo>();
-		List<String> arquivosNomes = new ArrayList<String>();
 		List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
+		List<String> arquivosNomes = new ArrayList<String>();
 		Integer palavras = 0;
 		String str;
 		int encontrado;
@@ -33,6 +44,8 @@ public class BuscaConteudoBean {
 
 		for (int j = 0; j < arquivosNomes.size(); j++) {
 			encontrado = 0;
+			List<String> tituloAchado = new ArrayList<String>();
+			List<String> titulos = new ArrayList<String>();
 			try {
 				BufferedReader in = new BufferedReader(new FileReader("/Users/feliperodrigues/Documents/" + arquivosNomes.get(j) + ".html")); // declara
 																												// o
@@ -85,10 +98,10 @@ public class BuscaConteudoBean {
 				// System.out.println(titulos.size());
 				Boolean inserirEmTitulos = false;
 				for (int i = 0; i < titulos.size(); i++) {
-					List<String> tituloAchado = new ArrayList<String>();
+					
 					if (titulos.get(i).toUpperCase().contains(palavraBuscada.toUpperCase())) {
 						inserirEmTitulos = true;
-						tituloAchado.add(titulos.get(i));
+						tituloAchado.add(titulos.get(i).toString());
 						conteudo.setTitulo(tituloAchado);
 					}
 				}
@@ -114,7 +127,6 @@ public class BuscaConteudoBean {
 				System.out.println(listaFinal.get(i).getQtdParalavras());
 			}
 			}
-			System.out.println("opa");
 
 		}
 		return listaFinal;

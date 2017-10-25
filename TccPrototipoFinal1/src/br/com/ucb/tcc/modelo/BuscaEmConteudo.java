@@ -5,7 +5,7 @@ import java.util.List;
 public class BuscaEmConteudo {
 	private String nomeArquivo;
 	private List<String> Titulo;
-	private Integer QtdParalavras;
+	private Integer qtdParalavras;
 	
 	public String getNomeArquivo() {
 		return nomeArquivo;
@@ -20,11 +20,11 @@ public class BuscaEmConteudo {
 		Titulo = titulo;
 	}
 	public Integer getQtdParalavras() {
-		return QtdParalavras;
+		return qtdParalavras;
 	}
 	public void setQtdParalavras(Integer qtdParalavras) {
-		QtdParalavras = qtdParalavras;
+		this.qtdParalavras = qtdParalavras;
 	}
-
+	
 	
 }
