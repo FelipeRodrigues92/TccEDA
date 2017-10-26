@@ -7,8 +7,10 @@
 	<h1>Busca por Conteudo</h1>
 	<h:form>
 		<h:outputLabel value="Busca por: " for="palavraBuscada" />
-		<h:inputText id="palavraBuscada" value="#{buscaConteudoBean.palavraBuscada}" />
-		<h:commandButton value="Gravar" action="#{buscaConteudoBean.getConteudosComString}" />
+		<h:inputText id="palavraBuscada"
+			value="#{buscaConteudoBean.palavraBuscada}" />
+		<h:commandButton value="Buscar"
+			action="#{buscaConteudoBean.getConteudosComString}" />
 	</h:form>
 	<h:dataTable id="tabelaConteudos"
 		value="#{buscaConteudoBean.conteudosComString}" var="buscaEmConteudo">

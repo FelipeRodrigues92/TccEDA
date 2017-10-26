@@ -30,7 +30,10 @@ public class CertificacaoBean {
 		certificacao = certificacao;
 	}
 
-
+	public String formHome() {
+		System.out.println("Chamando  o formulário do home");
+		return "CadastroHome?faces-redirect=true";
+	}
 
 	public void gravar(){
 		System.out.println("Gravando conteudista" + this.certificacao.getNome());

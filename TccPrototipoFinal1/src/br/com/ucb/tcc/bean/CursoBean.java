@@ -50,6 +50,11 @@ public class CursoBean {
 		return new DAO<NivelCurso>(NivelCurso.class).listaTodos();
 	}
 	
+	public String formCertificacao() {
+		System.out.println("Chamando  o formulário do certificação");
+		return "cadastroCertificao?faces-redirect=true";
+	}
+	
 	public void gravar(){
 		System.out.println("Gravando conteudista" + this.curso.getName());
 		

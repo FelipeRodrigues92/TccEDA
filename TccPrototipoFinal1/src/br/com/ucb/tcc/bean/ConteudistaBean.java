@@ -40,6 +40,10 @@ public class ConteudistaBean {
 	public Conteudista getConteudista() {
 		return conteudista;
 	}
+	public String formCurso() {
+		System.out.println("Chamando  o formulário do curso");
+		return "CadastroCurso?faces-redirect=true";
+	}
 	
 	public void gravar(){
 		System.out.println("Gravando conteudista" + this.conteudista.getNome());

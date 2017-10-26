@@ -2,25 +2,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
- xmlns:f="http://java.sun.com/jsf/core">
-	<h:body>
-		<h1>Nova Certificacao</h1>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+			Novo Certificacao
+		</ui:define>
+	<ui:define name="conteudo">
 		<h:form>
-		<h:messages/>
+			<h:messages />
 			<fieldset>
 				<legend>Dados da Certificacao</legend>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Nome: " for="nome" />
-					<h:inputText id="nome" value="#{certificacaoBean.certificacao.nome}" />
+					<h:inputText id="nome"
+						value="#{certificacaoBean.certificacao.nome}" />
 					<h:outputLabel value="Nível: " for="nivel" />
-					<h:inputText id="nivel" value="#{certificacaoBean.certificacao.nivel}" />
+					<h:inputText id="nivel"
+						value="#{certificacaoBean.certificacao.nivel}" />
 					<h:outputLabel value="Area: " for="area" />
-					<h:inputText id="area" value="#{certificacaoBean.certificacao.area}" />
+					<h:inputText id="area"
+						value="#{certificacaoBean.certificacao.area}" />
 					<h:commandButton value="Gravar" action="#{certificacaoBean.gravar}" />
 				</h:panelGrid>
 			</fieldset>
+			<h:commandLink value="Next >" action="#{certificacaoBean.formHome}"
+				immediate="true" />
 		</h:form>
-		<a href="http://localhost:8080/tcc/CadastroCurso.xhtml"> Back  </a>
-	</h:body>
-
+	</ui:define>
+</ui:composition>
 </html>

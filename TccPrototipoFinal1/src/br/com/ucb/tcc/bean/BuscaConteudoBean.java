@@ -28,12 +28,12 @@ public class BuscaConteudoBean {
 	public List<BuscaEmConteudo> getConteudosComString(){
 		String palavraBuscada = getPalavraBuscada();
 		if(palavraBuscada == null){
-			palavraBuscada="";
+			palavraBuscada="chamander";
 		}
+		List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosPalavras = new ArrayList<BuscaEmConteudo>();
 		List<String> arquivosNomes = new ArrayList<String>();
-		List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
 		Integer palavras = 0;
 		String str;
 		int encontrado;
@@ -50,7 +50,7 @@ public class BuscaConteudoBean {
 			List<String> tituloAchado = new ArrayList<String>();
 			List<String> titulos = new ArrayList<String>();
 			try {
-				BufferedReader in = new BufferedReader(new FileReader("C:/doc/" + arquivosNomes.get(j) + ".html")); // declara
+				BufferedReader in = new BufferedReader(new FileReader("/Users/feliperodrigues/Documents/" + arquivosNomes.get(j) + ".html")); // declara
 																												// o
 																												// nome
 																												// do

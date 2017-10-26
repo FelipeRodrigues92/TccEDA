@@ -2,36 +2,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
- xmlns:f="http://java.sun.com/jsf/core">
-	<h:body>
-		<h1>Novo Conteudo</h1>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+			Novo Certificacao
+		</ui:define>
+	<ui:define name="conteudo">
 		<h:form>
-		<h:messages/>
+			<h:messages />
 			<fieldset>
 				<legend>Dados do Conteudo</legend>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Titulo: " for="titulo" />
-					<h:inputText id="titulo" value="#{conteudoAptoBean.conteudoApto.titulo}" />
+					<h:inputText id="titulo"
+						value="#{conteudoAptoBean.conteudoApto.titulo}" />
 					<h:outputLabel value="Curso referente:" for="curso" />
 					<h:selectOneMenu value="#{conteudoAptoBean.cursoId}">
-						<f:selectItems value="#{conteudoAptoBean.cursos}" var="curso" itemLabel="#{curso.name}" itemValue="#{curso.id}"></f:selectItems>
+						<f:selectItems value="#{conteudoAptoBean.cursos}" var="curso"
+							itemLabel="#{curso.name}" itemValue="#{curso.id}"></f:selectItems>
 					</h:selectOneMenu>
 					<h:outputLabel value="Desdobramento: " for="desdobramento1" />
-					<h:inputText id="desdobramento1" value="#{conteudoAptoBean.desdobramento1.descricao}" />
+					<h:inputText id="desdobramento1"
+						value="#{conteudoAptoBean.desdobramento1.descricao}" />
 					<h:outputLabel value="Desdobramento: " for="desdobramento2" />
-					<h:inputText id="desdobramento2" value="#{conteudoAptoBean.desdobramento2.descricao}" />
+					<h:inputText id="desdobramento2"
+						value="#{conteudoAptoBean.desdobramento2.descricao}" />
 					<h:outputLabel value="Desdobramento: " for="desdobramento3" />
-					<h:inputText id="desdobramento3" value="#{conteudoAptoBean.desdobramento3.descricao}" />
+					<h:inputText id="desdobramento3"
+						value="#{conteudoAptoBean.desdobramento3.descricao}" />
 					<h:outputLabel value="Desdobramento: " for="desdobramento4" />
-					<h:inputText id="desdobramento4" value="#{conteudoAptoBean.desdobramento4.descricao}" />
+					<h:inputText id="desdobramento4"
+						value="#{conteudoAptoBean.desdobramento4.descricao}" />
 					<h:outputLabel value="Desdobramento: " for="desdobramento5" />
-					<h:inputText id="desdobramento5" value="#{conteudoAptoBean.desdobramento5.descricao}" />
-					<h:commandButton value="Gravar" action="#{conteudoAptoBean.gravarPorCurso}" />
+					<h:inputText id="desdobramento5"
+						value="#{conteudoAptoBean.desdobramento5.descricao}" />
+					<h:commandButton value="Gravar"
+						action="#{conteudoAptoBean.gravarPorCurso}" />
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
-		<a href="http://localhost:8080/tcc/CadastroConteudista.xhtml">Back ></a><br/>
-		<a href="http://localhost:8080/tcc/CadastroCertificacao.xhtml">Next ></a>
-	</h:body>
+		<a href="http://localhost:8080/tcc/CadastroConteudista.xhtml">Back
+			></a>
+		<br />
+		<a href="http://localhost:8080/tcc/CadastroCertificacao.xhtml">Next
+			></a>
+	</ui:define>
+</ui:composition>
 
 </html>
