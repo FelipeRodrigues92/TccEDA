@@ -16,6 +16,7 @@ public class BuscaEmConteudo {
 	public List<String> getTitulo() {
 		return Titulo;
 	}
+	//
 	public void setTitulo(List<String> titulo) {
 		Titulo = titulo;
 	}
