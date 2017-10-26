@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core">
+	<h:body>
+		<h1>Novo Curso</h1>
+		<h:form>
+		<h:messages/>
+			<fieldset>
+				<legend>Dados do Curso</legend>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome: " for="name" />
+					<h:inputText id="name" value="#{cursoBean.curso.name}" />
+					<h:outputLabel value="Instituição de ensino: " for="instituicao" />
+					<h:inputText id="instituicao" value="#{cursoBean.curso.instituicao}" />
+					<h:outputLabel value="Area: " for="area" />
+					<h:inputText id="area" value="#{cursoBean.curso.area}" />
+					<h:outputLabel value="Data de Inicio: " for="dataInicio" />
+					<h:inputText id="dataInicio" value="#{cursoBean.curso.dataInicio.time}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+					</h:inputText>
+					<h:outputLabel value="Data de conclusão" for="dataFim" />
+					<h:inputText id="dataFim" value="#{cursoBean.curso.dataInicio.time}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+					</h:inputText>
+					<h:outputLabel value="Nivel de formação" for="nivelCurso" />
+					<h:selectOneMenu value="#{cursoBean.nivelCursoId}">
+						<f:selectItems value="#{cursoBean.nivelCursos}" var="nivelCurso" itemLabel="#{nivelCurso.tipo}" itemValue="#{nivelCurso.id}"></f:selectItems>
+					</h:selectOneMenu>
+					<h:commandButton value="Gravar" action="#{cursoBean.gravar}" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+		<a href="http://localhost:8080/livraria/CadastroConteudista.xhtml">Back ></a><br/>
+		<a href="http://localhost:8080/livraria/CadastroCertificacao.xhtml">Next ></a>
+	</h:body>
+
+</html>
