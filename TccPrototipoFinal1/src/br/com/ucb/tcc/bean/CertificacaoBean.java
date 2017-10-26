@@ -11,6 +11,7 @@ import br.com.ucb.tcc.dao.DAO;
 import br.com.ucb.tcc.modelo.Certificacao;
 import br.com.ucb.tcc.modelo.Conteudista;
 import br.com.ucb.tcc.modelo.Curriculo;
+import br.com.ucb.tcc.modelo.Curso;
 import br.com.ucb.tcc.modelo.Certificacao;
 import br.com.ucb.tcc.modelo.Certificacao;
 
@@ -32,7 +33,7 @@ public class CertificacaoBean {
 
 	public String formHome() {
 		System.out.println("Chamando  o formulário do home");
-		return "CadastroHome?faces-redirect=true";
+		return "Home?faces-redirect=true";
 	}
 
 	public void gravar(){
@@ -52,6 +53,10 @@ public class CertificacaoBean {
 		
 		
 		new CertificacaoDAO().gravar(curriculo, certificacao);
+	}
+	public void remover(Certificacao certificacao) {
+		System.out.println("Removendo certificação");
+		new DAO<Certificacao>(Certificacao.class).remove(certificacao);
 	}
 	
 }

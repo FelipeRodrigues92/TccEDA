@@ -1,5 +1,8 @@
 package br.com.ucb.tcc.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 
 import br.com.ucb.tcc.dao.ConteudistaDAO;
@@ -43,6 +46,12 @@ public class ConteudistaBean {
 	public String formCurso() {
 		System.out.println("Chamando  o formulário do curso");
 		return "CadastroCurso?faces-redirect=true";
+	}
+	public List<Conteudista> getPerfil() {
+		Conteudista conteudista = new DAO<Conteudista>(Conteudista.class).buscaPorId(1);
+		List<Conteudista> lista = new ArrayList<Conteudista>();
+		lista.add(conteudista);
+		return lista;
 	}
 	
 	public void gravar(){

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+			Home
+		</ui:define>
+	<ui:define name="conteudo">
+		<fieldset>
+			<legend>Seus dados</legend>
+			<h:dataTable id="tabelaConteudos" value="#{conteudistaBean.perfil}"
+				var="conteudista">
+
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{conteudista.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">CPF:</f:facet>
+					<h:outputText value="#{conteudista.CPF}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Telefone:</f:facet>
+					<h:outputText value="#{conteudista.telefone}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email:</f:facet>
+					<h:outputText value="#{conteudista.email}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Sexo:</f:facet>
+					<h:outputText value="#{conteudista.sexo}" />
+				</h:column>
+
+			</h:dataTable>
+		</fieldset>
+		<h:form>
+			<fieldset>
+				<legend>Cursos Concluídos</legend>
+				<h:dataTable id="tabelaCursos" value="#{conteudoAptoBean.cursos}"
+					var="curso">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputText value="#{curso.name}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Instituição de ensino</f:facet>
+						<h:outputText value="#{curso.instituicao}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Data de inicio</f:facet>
+						<h:outputText value="#{curso.dataInicio.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy"
+								timeZone="America/Sao_Paulo" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Data de conclusão</f:facet>
+						<h:outputText value="#{curso.dataFim.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy"
+								timeZone="America/Sao_Paulo" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Alterar</f:facet>
+						<h:commandLink value="alterar"
+							action="#{cursoBean.carregar(curso)}"></h:commandLink>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Excluir</f:facet>
+							<h:commandLink value="remover"
+								action="#{cursoBean.remover(curso)}"></h:commandLink>
+					</h:column>
+				</h:dataTable>
+			</fieldset>
+			<fieldset>
+				<legend>Certificações</legend>
+				<h:dataTable id="tabelaCertificacoes"
+					value="#{conteudoAptoBean.certificacoes}" var="certificacao">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputText value="#{certificacao.nome}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Area</f:facet>
+						<h:outputText value="#{certificacao.area}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Alterar</f:facet>
+						<h:commandLink value="alterar"
+							action="#{certificacaoBean.carregar(certificacao)}">
+						</h:commandLink>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Excluir</f:facet>
+						<h:commandLink value="remover"
+							action="#{certificacaoBean.remover(certificacao)}">
+						</h:commandLink>
+					</h:column>
+				</h:dataTable>
+			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

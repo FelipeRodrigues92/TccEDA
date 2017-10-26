@@ -3,6 +3,7 @@ package br.com.ucb.tcc.bean;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import br.com.ucb.tcc.dao.ConteudistaDAO;
 import br.com.ucb.tcc.dao.DAO;
@@ -13,6 +14,7 @@ import br.com.ucb.tcc.modelo.Curso;
 import br.com.ucb.tcc.modelo.NivelCurso;
 
 @ManagedBean
+@ViewScoped
 public class CursoBean {
 	
 	private Curso curso = new Curso();
@@ -52,7 +54,7 @@ public class CursoBean {
 	
 	public String formCertificacao() {
 		System.out.println("Chamando  o formulário do certificação");
-		return "cadastroCertificao?faces-redirect=true";
+		return "CadastroCertificacao?faces-redirect=true";
 	}
 	
 	public void gravar(){
@@ -66,6 +68,15 @@ public class CursoBean {
 		this.curso.setCurriculo(curriculo);
 		this.curso.setNivelCurso(this.nivelCurso);
 		new DAO<Curso>(Curso.class).adiciona(this.curso); 
+		
 	}
-	
+	public void remover(Curso curso) {
+		System.out.println("Removendo livro");
+		new DAO<Curso>(Curso.class).remove(curso);
+	}
+	public String carregar(Curso curso) {
+		System.out.println("Chamando  o formulário do certificação");
+		this.curso = curso;
+		return "CadastroCurso?faces-redirect=true";
+	}
 }
