@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 import br.com.ucb.tcc.modelo.BuscaEmConteudo;
 import br.com.ucb.tcc.modelo.Conteudo;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class BuscaConteudoBean {
 	private String palavraBuscada;
 	
@@ -26,7 +27,10 @@ public class BuscaConteudoBean {
 	}
 
 	public List<BuscaEmConteudo> getConteudosComString(){
-		String palavraBuscada = "QL";
+		String palavraBuscada = getPalavraBuscada();
+		if(palavraBuscada == null){
+			palavraBuscada="";
+		}
 		List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosPalavras = new ArrayList<BuscaEmConteudo>();
 		List<String> arquivosNomes = new ArrayList<String>();
@@ -47,7 +51,7 @@ public class BuscaConteudoBean {
 			List<String> tituloAchado = new ArrayList<String>();
 			List<String> titulos = new ArrayList<String>();
 			try {
-				BufferedReader in = new BufferedReader(new FileReader("/Users/feliperodrigues/Documents/" + arquivosNomes.get(j) + ".html")); // declara
+				BufferedReader in = new BufferedReader(new FileReader("C:/doc/" + arquivosNomes.get(j) + ".html")); // declara
 																												// o
 																												// nome
 																												// do
