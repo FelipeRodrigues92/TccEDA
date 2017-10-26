@@ -10,6 +10,8 @@ import br.com.ucb.tcc.dao.DAO;
 import br.com.ucb.tcc.modelo.Conteudista;
 import br.com.ucb.tcc.modelo.Curriculo;
 import br.com.ucb.tcc.modelo.Endereco;
+import br.com.ucb.tcc.modelo.Login;
+import br.com.ucb.tcc.modelo.Usuario;
 
 @ManagedBean
 public class ConteudistaBean {
@@ -59,6 +61,10 @@ public class ConteudistaBean {
 		
 		this.conteudista.setEndereco(this.endereco);
 		this.curriculo.setConteudista(this.conteudista);
+		Login login = new Login();
+		login.setEmail(conteudista.getEmail());
+		login.setSenha(conteudista.getSenha());
+		new DAO<Login>(Login.class).adiciona(login);
 		new ConteudistaDAO().gravar(this.conteudista, this.endereco, this.curriculo); 
 	}
 }

@@ -36,7 +36,7 @@ public class CertificacaoBean {
 		return "Home?faces-redirect=true";
 	}
 
-	public void gravar(){
+	public String gravar(){
 		System.out.println("Gravando conteudista" + this.certificacao.getNome());
 		
 		//Buscar curriculo pelo id do usuario
@@ -53,6 +53,7 @@ public class CertificacaoBean {
 		
 		
 		new CertificacaoDAO().gravar(curriculo, certificacao);
+		return "CadastroCurso?faces-redirect=true";
 	}
 	public void remover(Certificacao certificacao) {
 		System.out.println("Removendo certificação");
