@@ -15,7 +15,7 @@ import br.com.ucb.tcc.modelo.Conteudo;
 @ManagedBean
 @ViewScoped
 public class BuscaConteudoBean {
-	private String palavraBuscada = "";
+	private String palavraBuscada;
 	
 	public String getPalavraBuscada() {
 		return palavraBuscada;
@@ -26,11 +26,11 @@ public class BuscaConteudoBean {
 	}
 
 	public List<BuscaEmConteudo> getConteudosComString(){
-		//String palavraBuscada = "java";
+		String palavraBuscada = "QL";
 		List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosPalavras = new ArrayList<BuscaEmConteudo>();
-		List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
 		List<String> arquivosNomes = new ArrayList<String>();
+		List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
 		Integer palavras = 0;
 		String str;
 		int encontrado;
@@ -101,7 +101,7 @@ public class BuscaConteudoBean {
 					
 					if (titulos.get(i).toUpperCase().contains(palavraBuscada.toUpperCase())) {
 						inserirEmTitulos = true;
-						tituloAchado.add(titulos.get(i).toString());
+						tituloAchado.add(titulos.get(i));
 						conteudo.setTitulo(tituloAchado);
 					}
 				}
