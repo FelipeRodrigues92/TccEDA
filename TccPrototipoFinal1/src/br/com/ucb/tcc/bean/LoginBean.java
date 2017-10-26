@@ -29,7 +29,14 @@ public class LoginBean {
 		if (existe) {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.getExternalContext().getSessionMap().put("usuarioLogado", this.login);
-			return "Home?faces-redirect=true";
+			Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
+			if(usuarioId == 1) {
+				return "HomeAdm?faces-redirect=true";
+			}else if(usuarioId == 2){
+				return "HomeSubAdm?faces-redirect=true";
+			}else {
+				return "Home?faces-redirect=true";
+			}
 		}
 		return null;
 	}

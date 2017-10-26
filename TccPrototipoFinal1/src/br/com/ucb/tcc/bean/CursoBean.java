@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.ucb.tcc.dao.ConteudistaDAO;
+import br.com.ucb.tcc.dao.CurriculoDAO;
 import br.com.ucb.tcc.dao.DAO;
 import br.com.ucb.tcc.modelo.Certificacao;
 import br.com.ucb.tcc.modelo.Conteudista;
@@ -59,8 +61,12 @@ public class CursoBean {
 	
 	public void gravar(){
 		System.out.println("Gravando conteudista" + this.curso.getName());
-		
-		Curriculo curriculo = new DAO<Curriculo>(Curriculo.class).buscaPorId(1);
+		FacesContext context = FacesContext.getCurrentInstance();
+		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
+
+		Curriculo curriculo = new CurriculoDAO().getCurriculoPorUserId(usuarioId);
+		System.out.println(usuarioId);
+		System.out.println(curriculo.getId());
 //		curriculo.;
 		
 		this.nivelCurso = new DAO<NivelCurso>(NivelCurso.class).buscaPorId(nivelCursoId);

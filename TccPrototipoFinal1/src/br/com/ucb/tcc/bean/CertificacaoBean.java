@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import br.com.ucb.tcc.dao.CertificacaoDAO;
 import br.com.ucb.tcc.dao.ConteudistaDAO;
@@ -40,7 +41,10 @@ public class CertificacaoBean {
 		System.out.println("Gravando conteudista" + this.certificacao.getNome());
 		
 		//Buscar curriculo pelo id do usuario
-		Curriculo curriculo = new DAO<Curriculo>(Curriculo.class).buscaPorId(1);
+		FacesContext context = FacesContext.getCurrentInstance();
+		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
+
+		Curriculo curriculo = new DAO<Curriculo>(Curriculo.class).buscaPorId(usuarioId);
 //		curriculo.;
 		List<Curriculo> listCurriculos = new ArrayList<Curriculo>();
 		listCurriculos.add(curriculo);
