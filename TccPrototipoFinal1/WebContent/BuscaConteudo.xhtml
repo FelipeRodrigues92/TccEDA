@@ -8,7 +8,7 @@
 	<h:form>
 		<h:outputLabel value="Busca por: " for="palavraBuscada" />
 		<h:inputText id="palavraBuscada" value="#{buscaConteudoBean.palavraBuscada}" />
-		<h:commandButton value="Gravar" action="#{certificacaoBean.getConteudosComString}" />
+		<h:commandButton value="Gravar" action="#{buscaConteudoBean.getConteudosComString}" />
 	</h:form>
 	<h:dataTable id="tabelaConteudos"
 		value="#{buscaConteudoBean.conteudosComString}" var="buscaEmConteudo">
