@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class Curso {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataFim = Calendar.getInstance();;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private NivelCurso nivelCurso;
 	
 	public NivelCurso getNivelCurso() {

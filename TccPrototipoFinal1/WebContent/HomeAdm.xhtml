@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+			Home
+		</ui:define>
+	<ui:define name="conteudo">
+		<fieldset>
+				<legend>Seus dados</legend>
+			<h:dataTable id="tabelaConteudos" value="#{GestorBean.perfil}"
+				var="Gestor">
+
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{Gestor.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">CPF:</f:facet>
+					<h:outputText value="#{Gestor.CPF}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Telefone:</f:facet>
+					<h:outputText value="#{Gestor.telefone}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email:</f:facet>
+					<h:outputText value="#{Gestor.email}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Sexo:</f:facet>
+					<h:outputText value="#{Gestor.sexo}" />
+				</h:column>
+
+			</h:dataTable>
+		</fieldset>
+	</ui:define>
+</ui:composition>
+</html>

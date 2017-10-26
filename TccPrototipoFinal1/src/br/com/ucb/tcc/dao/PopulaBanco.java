@@ -10,13 +10,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.com.ucb.tcc.modelo.Conteudista;
+import br.com.ucb.tcc.modelo.Conteudo;
 import br.com.ucb.tcc.modelo.Curriculo;
 import br.com.ucb.tcc.modelo.Curso;
+import br.com.ucb.tcc.modelo.Endereco;
+import br.com.ucb.tcc.modelo.Gestor;
 import br.com.ucb.tcc.modelo.NivelCurso;
+import br.com.ucb.tcc.modelo.Sexo;
+import br.com.ucb.tcc.modelo.SubGestor;
+import br.com.ucb.tcc.modelo.UnidadeFederacao;
 import br.com.ucb.tcc.modelo.Usuario;
 import br.com.ucb.tcc.bean.ConteudistaBean;
 import br.com.ucb.tcc.dao.JPAUtil;
@@ -52,51 +59,82 @@ public class PopulaBanco {
 		posdoutorado.setTipo("Pós-Doutorado");
 		posdoutorado.setDescricacao(" ");
 
-		Conteudista cont = new Conteudista();
-		cont.setCPF("1123213123");
-		cont.setNome("testando");
 
-		//
+		 Endereco endereco = new Endereco();
+		 endereco.setBairro("Leste");
+		 endereco.setCidade("Gama");
+		 endereco.setComplemento("33");
+		 endereco.setUF(UnidadeFederacao.DF);
+		 endereco.setCep("23345765");
+		 
+		 Conteudista conteudista = new Conteudista();
+		 conteudista.setCPF("11111111111");
+		 conteudista.setNome("Felipe");
+		 conteudista.setEmail("123@gmail.com");
+		 conteudista.setEndereco(endereco);
+		 conteudista.setSenha("123");
+		 conteudista.setSexo(Sexo.MASCULINO);
+		 conteudista.setTelefone("5434543234");
+		
+		
+		SubGestor subGestor = new SubGestor();
+		subGestor.setCPF("123123123444");
+		subGestor.setNome("ADM");
+		subGestor.setEmail("subadm@gmail.com");
+		subGestor.setSenha("123");
+		subGestor.setSexo(Sexo.MASCULINO);
+		subGestor.setTelefone("5434543234");
 
-		// Endereco endereco = new Endereco();
-		// endereco.setBairro("Leste");
-		// endereco.setCidade("Gama");
-		// endereco.setComplemento("33");
-		// endereco.setUF(UnidadeFederacao.DF);
-		// endereco.setCep("23345765");
-		//
-		// Conteudista conteudista = new Conteudista();
-		// conteudista.setCPF("12312312312");
-		// conteudista.setEmail("tabeco");
-		// conteudista.setEndereco(endereco);
-		//
-		//
-		Conteudista conteudista2 = new Conteudista();
-		conteudista2.setCPF("123123123444");
-		conteudista2.setEmail("tabedc");
+		Gestor gestor = new Gestor();
+		gestor.setCPF("123123123444");
+		gestor.setNome("ADM");
+		gestor.setEmail("adm@gmail.com");
+		gestor.setSenha("123");
+		gestor.setSexo(Sexo.MASCULINO);
+		gestor.setTelefone("5434543234");
+		
+		Conteudo conteudo = new Conteudo();
+		conteudo.setTitulo("Myfile");
+		conteudo.setDescricao("");
+		conteudo.setAvaliacao(10);
+		conteudo.setSubGestor(subGestor);
+		conteudo.setConteudista(conteudista);
 
-		ConteudistaBean conteBean = new ConteudistaBean();
-		conteBean.setConteudista(conteudista2);
+		Conteudo conteudo2 = new Conteudo();
+		conteudo2.setTitulo("Myfile2");
+		conteudo2.setDescricao("");
+		conteudo2.setAvaliacao(9);
+		conteudo2.setSubGestor(subGestor);
+		conteudo2.setConteudista(conteudista);
+		//ConteudistaBean conteBean = new ConteudistaBean();
+		//conteBean.setConteudista(conteudista2);
 
 		// conteBean.gravar();
 		//
 		// endereco.setUsuarios(Arrays.asList(conteudista, conteudista2));
-		// EntityManager em = new JPAUtil().getEntityManager();
+		 EntityManager em = new JPAUtil().getEntityManager();
 
-		// em.getTransaction().begin();
-		// em.persist(tecnologo);
-		// em.persist(graduacao);
-		// em.persist(posgraduacao);
-		// em.persist(mestrado);
-		// em.persist(doutorado);
-		// em.persist(posdoutorado);
-
+		 em.getTransaction().begin();
+		 em.persist(tecnologo);
+		 em.persist(graduacao);
+		 em.persist(posgraduacao);
+		 em.persist(mestrado);
+		 em.persist(doutorado);
+		 em.persist(posdoutorado);
+		 em.persist(endereco);
+		 em.persist(conteudista);
+		 em.persist(gestor);
+		 em.persist(subGestor);
+		 em.persist(conteudo);
+		 em.persist(conteudo2);
+		 
 		// em.persist(conteudista2);
 		// em.persist(conteudista);
 		// em.persist(endereco);
 		//
-		// em.getTransaction().commit();
-		// em.getTransaction().begin();
+		 em.getTransaction().commit();
+		 em.getTransaction().begin();
+		 em.close();
 		// Endereco end = em.find(Endereco.class, 1);
 		//
 		// Conteudista cond = em.find(Conteudista.class, 2);
@@ -146,120 +184,126 @@ public class PopulaBanco {
 		// System.out.println(resultados.get(i).getNome());
 		//
 		// }
-//		String palavraBuscada = "java";
-//		List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();
-//		List<BuscaEmConteudo> conteudosPalavras = new ArrayList<BuscaEmConteudo>();
-//		List<String> arquivosNomes = new ArrayList<String>();
-//		Integer palavras = 0;
-//		String str;
-//		int encontrado;
-//		int bloco = 1;
-//		String fazTitulo = "";
-//		String fazPalavra = "";
-//		int totalBloco = 0;
-//		String nomeArquivo = "Myfiles.html";
-//		arquivosNomes.add("Myfile");
-//		arquivosNomes.add("Myfile2");
-//
-//		for (int j = 0; j < arquivosNomes.size(); j++) {
-//			encontrado = 0;
-//			List<String> tituloAchado = new ArrayList<String>();
-//			List<String> titulos = new ArrayList<String>();
-//			try {
-//				BufferedReader in = new BufferedReader(new FileReader("/Users/feliperodrigues/Documents/" + arquivosNomes.get(j) + ".html")); // declara
-//																												// o
-//																												// nome
-//																												// do
-//																												// arquivo
-//
-//				while ((str = in.readLine()) != null) { // vasculha todo o arquivo e armazena os dados encontrado na
-//														// variável "str"
-//
-//					for (int i = 0; i < str.length(); i++) {
-//						Character caractere = str.charAt(i); // Aqui a estring é diluida, ou seja, os caractere do
-//																// arquivo
-//																// serão jogados em vetores, para possível maniplação.
-//
-//						fazTitulo = fazTitulo + caractere;// aqui eu criei blocos de palavras
-//						fazPalavra = fazPalavra + caractere;
-//
-//						if (fazPalavra.contains(palavraBuscada)) {
-//							encontrado++; // que será uma espécie de contagem de quantos blocos há dentro do
-//							fazPalavra = "";
-//						}
-//
-//						if (fazTitulo.contains("<h1>")) {
-//
-//							fazTitulo = "";
-//						} // arquivo.
-//						if (fazTitulo.contains("</h1>")) {
-//
-//							fazTitulo = fazTitulo.substring(0, fazTitulo.length() - 5);
-//							titulos.add(fazTitulo);
-//							fazTitulo = ""; // O bloco é zerado para não ficar um bloco acumuladtivo
-//						}
-//
-//					}
-//				}
-//
-//				in.close();
-//			} catch (IOException e) {
-//				System.out.println("Há a possibilidade de um arquivo com nome diferente ao regristro no banco."); // possiveis
-//																													// erros
-//																													// são
-//																													// tratatos
-//																													// aqui
-//			}
-//			BuscaEmConteudo conteudo = new BuscaEmConteudo();
-//			conteudo.setNomeArquivo(arquivosNomes.get(j));
-//			conteudo.setQtdParalavras(encontrado);
-//			if (titulos.size() > 0) {
-//				// System.out.println(titulos.size());
-//				Boolean inserirEmTitulos = false;
-//				for (int i = 0; i < titulos.size(); i++) {
-//					
-//					if (titulos.get(i).toUpperCase().contains(palavraBuscada.toUpperCase())) {
-//						inserirEmTitulos = true;
-//						tituloAchado.add(titulos.get(i));
-//						conteudo.setTitulo(tituloAchado);
-//					}
-//				}
-//				if (inserirEmTitulos == true) {
-//					conteudosTitulos.add(conteudo);
-//				} else if ((inserirEmTitulos == false) && (encontrado > 0)) {
-//					conteudosPalavras.add(conteudo);
-//				}
-//			}
-//			// System.exit(0);
-//			List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
-//			listaFinal = conteudosTitulos;
-//			for (int i = 0; i < conteudosPalavras.size(); i++) {
-//
-//				listaFinal.add(conteudosPalavras.get(i));
-//
-//			}
-//			// System.out.println(conteudosPalavras.size());
-//			// System.out.println(listaFinal.size());
-//			if(j == arquivosNomes.size()-1) {
-//			for (int i = 0; i < listaFinal.size(); i++) {
-//				System.out.println(listaFinal.get(i).getNomeArquivo());
-//				System.out.println(listaFinal.get(i).getTitulo());
-//				System.out.println(listaFinal.get(i).getQtdParalavras());
-//			}
-//			}
-//
-//		}
-	
-	EntityManager em = new JPAUtil().getEntityManager();
-		
-		String jpql = "select u from Usuario u where u.email = '123@gmail.com' amd u.senha = '123'";
-		Query query = em.createQuery(jpql);
-		//query.setParameter("pEmail", usuario.getEmail());
-		//query.setParameter("pSenha", usuario.getSenha());
-		List<Usuario> resultados = query.getResultList();
-		em.close(); 
-		
-		System.out.println(resultados.size()>0);
-	
+		// String palavraBuscada = "java";
+		// List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();
+		// List<BuscaEmConteudo> conteudosPalavras = new ArrayList<BuscaEmConteudo>();
+		// List<String> arquivosNomes = new ArrayList<String>();
+		// Integer palavras = 0;
+		// String str;
+		// int encontrado;
+		// int bloco = 1;
+		// String fazTitulo = "";
+		// String fazPalavra = "";
+		// int totalBloco = 0;
+		// String nomeArquivo = "Myfiles.html";
+		// arquivosNomes.add("Myfile");
+		// arquivosNomes.add("Myfile2");
+		//
+		// for (int j = 0; j < arquivosNomes.size(); j++) {
+		// encontrado = 0;
+		// List<String> tituloAchado = new ArrayList<String>();
+		// List<String> titulos = new ArrayList<String>();
+		// try {
+		// BufferedReader in = new BufferedReader(new
+		// FileReader("/Users/feliperodrigues/Documents/" + arquivosNomes.get(j) +
+		// ".html")); // declara
+		// // o
+		// // nome
+		// // do
+		// // arquivo
+		//
+		// while ((str = in.readLine()) != null) { // vasculha todo o arquivo e armazena
+		// os dados encontrado na
+		// // variável "str"
+		//
+		// for (int i = 0; i < str.length(); i++) {
+		// Character caractere = str.charAt(i); // Aqui a estring é diluida, ou seja, os
+		// caractere do
+		// // arquivo
+		// // serão jogados em vetores, para possível maniplação.
+		//
+		// fazTitulo = fazTitulo + caractere;// aqui eu criei blocos de palavras
+		// fazPalavra = fazPalavra + caractere;
+		//
+		// if (fazPalavra.contains(palavraBuscada)) {
+		// encontrado++; // que será uma espécie de contagem de quantos blocos há dentro
+		// do
+		// fazPalavra = "";
+		// }
+		//
+		// if (fazTitulo.contains("<h1>")) {
+		//
+		// fazTitulo = "";
+		// } // arquivo.
+		// if (fazTitulo.contains("</h1>")) {
+		//
+		// fazTitulo = fazTitulo.substring(0, fazTitulo.length() - 5);
+		// titulos.add(fazTitulo);
+		// fazTitulo = ""; // O bloco é zerado para não ficar um bloco acumuladtivo
+		// }
+		//
+		// }
+		// }
+		//
+		// in.close();
+		// } catch (IOException e) {
+		// System.out.println("Há a possibilidade de um arquivo com nome diferente ao
+		// regristro no banco."); // possiveis
+		// // erros
+		// // são
+		// // tratatos
+		// // aqui
+		// }
+		// BuscaEmConteudo conteudo = new BuscaEmConteudo();
+		// conteudo.setNomeArquivo(arquivosNomes.get(j));
+		// conteudo.setQtdParalavras(encontrado);
+		// if (titulos.size() > 0) {
+		// // System.out.println(titulos.size());
+		// Boolean inserirEmTitulos = false;
+		// for (int i = 0; i < titulos.size(); i++) {
+		//
+		// if (titulos.get(i).toUpperCase().contains(palavraBuscada.toUpperCase())) {
+		// inserirEmTitulos = true;
+		// tituloAchado.add(titulos.get(i));
+		// conteudo.setTitulo(tituloAchado);
+		// }
+		// }
+		// if (inserirEmTitulos == true) {
+		// conteudosTitulos.add(conteudo);
+		// } else if ((inserirEmTitulos == false) && (encontrado > 0)) {
+		// conteudosPalavras.add(conteudo);
+		// }
+		// }
+		// // System.exit(0);
+		// List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
+		// listaFinal = conteudosTitulos;
+		// for (int i = 0; i < conteudosPalavras.size(); i++) {
+		//
+		// listaFinal.add(conteudosPalavras.get(i));
+		//
+		// }
+		// // System.out.println(conteudosPalavras.size());
+		// // System.out.println(listaFinal.size());
+		// if(j == arquivosNomes.size()-1) {
+		// for (int i = 0; i < listaFinal.size(); i++) {
+		// System.out.println(listaFinal.get(i).getNomeArquivo());
+		// System.out.println(listaFinal.get(i).getTitulo());
+		// System.out.println(listaFinal.get(i).getQtdParalavras());
+		// }
+		// }
+		//
+		//// }
+		//
+		// EntityManager em = new JPAUtil().getEntityManager();
+		//
+		// String jpql = "select u from Usuario u where u.email = '123@gmail.com' amd
+		// u.senha = '123'";
+		// Query query = em.createQuery(jpql);
+		// //query.setParameter("pEmail", usuario.getEmail());
+		// //query.setParameter("pSenha", usuario.getSenha());
+		// List<Usuario> resultados = query.getResultList();
+		// em.close();
+		//
+		// System.out.println(resultados.size()>0);
 	}
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+			Novo Conteudo
+		</ui:define>
+	<ui:define name="conteudo">
+		<h:form>
+			<h:messages />
+			<fieldset>
+				<legend>Dados do Conteudo</legend>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Título: " for="titulo" />
+					<h:inputText id="titulo" value="#{conteudoBean.conteudo.titulo}" />
+					<h:outputLabel value="Descrição: " for="descricao" />
+					<h:inputText id="descricao" value="#{conteudoBean.conteudo.descricao}" />
+					<h:outputLabel value="Nota: " for="avaliacao" />
+					<h:inputText id="conteudista" value="#{conteudoBean.conteudo.avaliacao}" >
+					<f:passThroughAttribute name="type" value="number"></f:passThroughAttribute>
+					</h:inputText>
+					
+					<h:outputLabel value="Conteudista:" for="conteudista" />
+					<h:selectOneMenu value="#{conteudoBean.conteudistaId}">
+						<f:selectItems value="#{conteudoBean.conteudistas}"
+							var="conteudista" itemLabel="#{conteudista.nome}"
+							itemValue="#{conteudista.id}"></f:selectItems>
+					</h:selectOneMenu>
+					<h:commandButton value="Gravar" action="#{conteudoBean.gravar}" />
+				</h:panelGrid>
+			</fieldset>
+			<h:commandLink value="Next >" action="#{conteudistaBean.formCurso}"
+				immediate="true" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

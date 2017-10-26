@@ -7,6 +7,7 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
 import br.com.ucb.tcc.modelo.Login;
+import br.com.ucb.tcc.modelo.Usuario;
 
 public class Autorizador implements PhaseListener{
 	
@@ -21,11 +22,25 @@ public class Autorizador implements PhaseListener{
 		
 		System.out.println(nomePagina);
 		
-		if("/Login.xhtml".equals(nomePagina)) {
-			
+		if("/Login.xhtml".equals(nomePagina)) {			
+			return;
+		}else if("/CadastroConteudista.xhtml".equals(nomePagina)) {
+			return;
+		}else if("/BuscaConteudo.xhtml".equals(nomePagina)) {
+			return;
+		}else if("/CadrastaConteudo.xhtml".equals(nomePagina)) {
 			return;
 		}
+		
 		Login loginDeUsuario = (Login) context.getExternalContext().getSessionMap().get("usuarioLogado");
+		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
+	
+//		if((usuarioId == 1) ||(usuarioId ==2)) {
+//			NavigationHandler handler = context.getApplication().getNavigationHandler();
+//			handler.handleNavigation(context, null, "BuscaConteudo?faces-redirect=true");
+//			context.renderResponse();
+//			return;
+//		}
 		if(loginDeUsuario != null) {
 			return;
 		}

@@ -2,6 +2,7 @@ package br.com.ucb.tcc.dao;
 
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -23,6 +24,8 @@ public class LoginDAO {
 		em.close(); 
 		
 		if(resultados.size()>0) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().getSessionMap().put("usuarioId", resultados.get(0).getId());
 			return true;
 		}
 		
