@@ -41,7 +41,11 @@
 			<fieldset>
 				<legend>Cursos Concluídos</legend>
 				<h:dataTable id="tabelaCursos" value="#{conteudoAptoBean.cursos}"
-					var="curso">
+					var="curso" width="100%">
+					<h:column>
+						<f:facet name="header">Curso</f:facet>
+						<h:outputText value="#{curso.nivelCurso.tipo}" />
+					</h:column>
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
 						<h:outputText value="#{curso.name}" />
@@ -50,6 +54,7 @@
 						<f:facet name="header">Instituição de ensino</f:facet>
 						<h:outputText value="#{curso.instituicao}" />
 					</h:column>
+
 					<h:column>
 						<f:facet name="header">Data de inicio</f:facet>
 						<h:outputText value="#{curso.dataInicio.time}">
@@ -65,21 +70,36 @@
 						</h:outputText>
 					</h:column>
 					<h:column>
+					<filedset>
+						<f:facet name="header">Conteudos Aptos</f:facet>
+						<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
+							<h:column>
+								#{conteudo.titulo}
+							</h:column>
+						</h:dataTable>
+						</filedset>
+					</h:column>
+					<h:column>
 						<f:facet name="header">Alterar</f:facet>
 						<h:commandLink value="alterar"
-							action="#{cursoBean.carregar(curso)}"></h:commandLink>
+							action="#{cursoBean.carregar(curso)}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Excluir</f:facet>
-							<h:commandLink value="remover"
-								action="#{cursoBean.remover(curso)}"></h:commandLink>
+						<h:commandLink value="remover"
+							action="#{cursoBean.remover(curso)}" />
 					</h:column>
 				</h:dataTable>
+				<hr />
+				<h:commandLink value="Novo Curso" action="#{cursoBean.goCurso}"></h:commandLink>
+				<h:commandLink value="Adicionar conteudo Apto"
+					action="#{cursoBean.goCursoConteudo}"></h:commandLink>
 			</fieldset>
 			<fieldset>
 				<legend>Certificações</legend>
 				<h:dataTable id="tabelaCertificacoes"
 					value="#{conteudoAptoBean.certificacoes}" var="certificacao">
+
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
 						<h:outputText value="#{certificacao.nome}" />
@@ -88,6 +108,7 @@
 						<f:facet name="header">Area</f:facet>
 						<h:outputText value="#{certificacao.area}" />
 					</h:column>
+				
 					<h:column>
 						<f:facet name="header">Alterar</f:facet>
 						<h:commandLink value="alterar"
@@ -101,6 +122,12 @@
 						</h:commandLink>
 					</h:column>
 				</h:dataTable>
+				<hr />
+				<h:commandLink value="Nova Certificação"
+					action="#{certificacaoBean.goCertificacao}"></h:commandLink>
+				<h:commandLink value="Adicionar conteudo Apto"
+					action="#{certificacaoBean.goCertificacaoConteudo}"></h:commandLink>
+
 			</fieldset>
 		</h:form>
 	</ui:define>

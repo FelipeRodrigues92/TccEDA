@@ -22,8 +22,6 @@ public class GestorBean {
 	private Endereco endereco = new Endereco();
 	
 	private Curriculo curriculo = new Curriculo();
-
-	private SubGestor subGestor = new SubGestor();
 	
 	private Gestor gestor = new Gestor();
 	
@@ -43,27 +41,29 @@ public class GestorBean {
 		this.endereco = endereco;
 	}
 
-	
-	
-	public SubGestor getSubGestor() {
-		return subGestor;
+	public Gestor getGestor() {
+		return gestor;
 	}
 
-	public void setSubGestor(SubGestor subGestor) {
-		this.subGestor = subGestor;
+	public void setGestor(Gestor gestor) {
+		this.gestor = gestor;
 	}
 
-	public String formCurso() {
+	public String buscaConteudo() {
 		System.out.println("Chamando  o formulário do curso");
-		return "CadastroCurso?faces-redirect=true";
+		return "BuscaConteudo?faces-redirect=true";
 	}
-	public List<SubGestor> getPerfil() {
+	public String buscaConteudista() {
+		System.out.println("Chamando  o formulário do curso");
+		return "BuscaConteudo?faces-redirect=true";
+	}
+	public List<Gestor> getPerfil() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
 
-		SubGestor subGestor = new DAO<SubGestor>(SubGestor.class).buscaPorId(usuarioId);
-		List<SubGestor> lista = new ArrayList<SubGestor>();
-		lista.add(subGestor);
+		Gestor gestor = new DAO<Gestor>(Gestor.class).buscaPorId(usuarioId);
+		List<Gestor> lista = new ArrayList<Gestor>();
+		lista.add(gestor);
 		return lista;
 	}
 	

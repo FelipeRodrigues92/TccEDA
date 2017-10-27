@@ -7,9 +7,12 @@
 <h:head />
 <h:body>
 	<div id="cabecalho">
+		
+		<h:form rendered="#{usuarioLogado != null}">
 		<fieldset>
-		<h:outputText value="Login"></h:outputText>
+			<h:commandLink value="Logout" action="#{loginBean.deslogar}"/>
 		</fieldset>
+		</h:form>
 		<h1>
 			<ui:insert name="titulo">
 			</ui:insert>

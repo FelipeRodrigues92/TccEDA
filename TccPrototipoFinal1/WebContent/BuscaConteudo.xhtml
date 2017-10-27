@@ -2,44 +2,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:body>
-	<h1>Busca por Conteudo</h1>
-	<h:form>
-		<h:outputLabel value="Busca por: " for="palavraBuscada" />
-		<h:inputText id="palavraBuscada"
-			value="#{buscaConteudoBean.palavraBuscada}" />
-		<h:commandButton value="Buscar"
-			action="#{buscaConteudoBean.getConteudosComString}" />
-	</h:form>
-	<h:dataTable id="tabelaConteudos"
-		value="#{buscaConteudoBean.conteudosComString}" var="buscaEmConteudo">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+	Busca por Conteudo
+		</ui:define>
+	<ui:define name="conteudo">
+		<h:form>
+			<h:outputLabel value="Busca por: " for="palavraBuscada" />
+			<h:inputText id="palavraBuscada"
+				value="#{buscaConteudoBean.palavraBuscada}" />
+			<h:commandButton value="Buscar"
+				action="#{buscaConteudoBean.getConteudosComString}" />
+		</h:form>
+		<fieldset>
+			<h:dataTable id="tabelaConteudos"
+				value="#{buscaConteudoBean.conteudosComString}"
+				var="buscaEmConteudo" width="100%" columnClasses="centered">
 
-		<h:column>
-			<f:facet name="header">Arquivo</f:facet>
-			<h:outputText value="#{buscaEmConteudo.nomeArquivo}" />
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">Titulos</f:facet>
-			<h:dataTable value="#{buscaEmConteudo.titulo}" var="cadatitulo">
 				<h:column>
+					<f:facet name="header">Arquivo</f:facet>
+					<h:outputText value="#{buscaEmConteudo.nomeArquivo}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Titulos</f:facet>
+					<h:dataTable value="#{buscaEmConteudo.titulo}" var="cadatitulo">
+						<h:column>
 					#{cadatitulo}
 				</h:column>
+					</h:dataTable>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">QtdParalavras</f:facet>
+					<h:outputText
+						value="#{buscaEmConteudo.qtdParalavras} palavras em parágrafos." />
+				</h:column>
 			</h:dataTable>
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">QtdParalavras</f:facet>
-			<h:outputText
-				value="#{buscaEmConteudo.qtdParalavras} palavras em parágrafos." />
-		</h:column>
-	</h:dataTable>
-	<a href="http://localhost:8080/tcc/CadastroConteudista.xhtml">Back
-		></a>
-	<br />
-	<a href="http://localhost:8080/tcc/CadastroCertificacao.xhtml">Next
-		></a>
-</h:body>
-
+		</fieldset>
+	</ui:define>
+</ui:composition>
 </html>

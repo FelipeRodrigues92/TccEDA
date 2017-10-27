@@ -3,6 +3,7 @@ package br.com.ucb.tcc.modelo;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,19 +44,21 @@ public class Curso {
 		this.nivelCurso = nivelCurso;
 	}
 
+
 	public List<ConteudoApto> getConteudosAptos() {
-		return ConteudosAptos;
+		return conteudosAptos;
 	}
 
 	public void setConteudosAptos(List<ConteudoApto> conteudosAptos) {
-		ConteudosAptos = conteudosAptos;
+		this.conteudosAptos = conteudosAptos;
 	}
+
 
 	@ManyToOne
 	private Curriculo curriculo;
 	
-	@OneToMany(mappedBy = "curso")
-	private List<ConteudoApto> ConteudosAptos;
+	@OneToMany(mappedBy = "curso", fetch=FetchType.EAGER,cascade = CascadeType.REMOVE)
+	private List<ConteudoApto> conteudosAptos;
 	
 	public Integer getId() {
 		return id;

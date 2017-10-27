@@ -24,10 +24,10 @@
 					<h:inputText id="area"
 						value="#{certificacaoBean.certificacao.area}" />
 					<h:commandButton value="Gravar" action="#{certificacaoBean.gravar}" />
+					<h:commandButton value="Go Homepage" action="#{certificacaoBean.goHome}" />
 				</h:panelGrid>
 			</fieldset>
-			<h:commandLink value="Next >" action="#{certificacaoBean.formHome}"
-				immediate="true" />
+
 		</h:form>
 	</ui:define>
 </ui:composition>

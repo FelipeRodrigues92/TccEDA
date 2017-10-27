@@ -83,7 +83,7 @@ public class PopulaBanco {
 		
 		SubGestor subGestor = new SubGestor();
 		subGestor.setCPF("123123123444");
-		subGestor.setNome("ADM");
+		subGestor.setNome("SubADM");
 		subGestor.setEmail("subadm@gmail.com");
 		subGestor.setSenha("123");
 		subGestor.setSexo(Sexo.MASCULINO);

@@ -59,7 +59,7 @@ public class CursoBean {
 		return "CadastroCertificacao?faces-redirect=true";
 	}
 	
-	public void gravar(){
+	public String gravar(){
 		System.out.println("Gravando conteudista" + this.curso.getName());
 		FacesContext context = FacesContext.getCurrentInstance();
 		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
@@ -74,7 +74,7 @@ public class CursoBean {
 		this.curso.setCurriculo(curriculo);
 		this.curso.setNivelCurso(this.nivelCurso);
 		new DAO<Curso>(Curso.class).adiciona(this.curso); 
-		
+		return this.goCursoConteudo();
 	}
 	public void remover(Curso curso) {
 		System.out.println("Removendo livro");
@@ -84,5 +84,11 @@ public class CursoBean {
 		System.out.println("Chamando  o formulário do certificação");
 		this.curso = curso;
 		return "CadastroCurso?faces-redirect=true";
+	}
+	public String goCurso() {
+		return "CadastroCurso?faces-redirect=true";
+	}
+	public String goCursoConteudo() {
+		return "CadastroConteudoAptoPorCurso?faces-redirect=true";
 	}
 }

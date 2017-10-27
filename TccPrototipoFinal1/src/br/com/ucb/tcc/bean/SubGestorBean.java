@@ -53,9 +53,13 @@ public class SubGestorBean {
 		this.subGestor = subGestor;
 	}
 
-	public String formCurso() {
+	public String buscaConteudo() {
 		System.out.println("Chamando  o formulário do curso");
-		return "CadastroCurso?faces-redirect=true";
+		return "BuscaConteudo?faces-redirect=true";
+	}
+	public String buscaConteudista() {
+		System.out.println("Chamando  o formulário do curso");
+		return "BuscaConteudo?faces-redirect=true";
 	}
 	public List<SubGestor> getPerfil() {
 		FacesContext context = FacesContext.getCurrentInstance();

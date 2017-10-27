@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 
 import br.com.ucb.tcc.dao.CertificacaoDAO;
 import br.com.ucb.tcc.dao.ConteudistaDAO;
+import br.com.ucb.tcc.dao.CurriculoDAO;
 import br.com.ucb.tcc.dao.DAO;
 import br.com.ucb.tcc.modelo.Certificacao;
 import br.com.ucb.tcc.modelo.Conteudista;
@@ -44,7 +45,8 @@ public class CertificacaoBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
 
-		Curriculo curriculo = new DAO<Curriculo>(Curriculo.class).buscaPorId(usuarioId);
+
+		Curriculo curriculo = new CurriculoDAO().getCurriculoPorUserId(usuarioId);
 //		curriculo.;
 		List<Curriculo> listCurriculos = new ArrayList<Curriculo>();
 		listCurriculos.add(curriculo);
@@ -57,11 +59,20 @@ public class CertificacaoBean {
 		
 		
 		new CertificacaoDAO().gravar(curriculo, certificacao);
-		return "CadastroCurso?faces-redirect=true";
+		return "CadastroConteudoAptoPorCertificacao?faces-redirect=true";
 	}
 	public void remover(Certificacao certificacao) {
 		System.out.println("Removendo certificação");
 		new DAO<Certificacao>(Certificacao.class).remove(certificacao);
 	}
-	
+	public String goCertificacao() {
+		return "CadastroCertificacao?faces-redirect=true";
+	}
+	public String goCertificacaoConteudo() {
+		return "CadastroConteudoAptoPorCertificacao?faces-redirect=true";
+	}
+	public String goHome() {
+		return "Home?faces-redirect=true";
+	}
+
 }

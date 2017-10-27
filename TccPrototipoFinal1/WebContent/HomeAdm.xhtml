@@ -11,31 +11,40 @@
 	<ui:define name="conteudo">
 		<fieldset>
 				<legend>Seus dados</legend>
-			<h:dataTable id="tabelaConteudos" value="#{GestorBean.perfil}"
-				var="Gestor">
+			<h:dataTable id="tabelaConteudos" value="#{gestorBean.perfil}"
+				var="gestor">
 
 				<h:column>
 					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{Gestor.nome}" />
+					<h:outputText value="#{gestor.nome}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">CPF:</f:facet>
-					<h:outputText value="#{Gestor.CPF}" />
+					<h:outputText value="#{gestor.CPF}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Telefone:</f:facet>
-					<h:outputText value="#{Gestor.telefone}" />
+					<h:outputText value="#{gestor.telefone}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Email:</f:facet>
-					<h:outputText value="#{Gestor.email}" />
+					<h:outputText value="#{gestor.email}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Sexo:</f:facet>
-					<h:outputText value="#{Gestor.sexo}" />
+					<h:outputText value="#{gestor.sexo}" />
 				</h:column>
 
 			</h:dataTable>
+		</fieldset>
+		<fieldset>
+		<h:form>
+			<h:commandLink value="Consulta indexada em conteudos" action="#{gestorBean.buscaConteudo}"
+				immediate="true" />
+				<hr/>
+			<h:commandLink value="Consulta de contuedistas" action="#{gestorBean.buscaConteudista}"
+				immediate="true" />
+		</h:form>
 		</fieldset>
 	</ui:define>
 </ui:composition>

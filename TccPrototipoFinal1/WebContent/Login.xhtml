@@ -5,18 +5,27 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
 	<h1>Login</h1>
-	<h:form>
-		<h:outputLabel value="Email: " for="email" />
-		<h:inputText id="email" value="#{loginBean.login.email}" required="true">
-			<f:passThroughAttribute name="type" value="email"></f:passThroughAttribute>
-		</h:inputText>
-		<h:message for="email" id="menssagemEmail"></h:message>
-		<h:outputLabel value="Senha: " for="senha" />
-					<h:inputText id="senha" value="#{loginBean.login.senha}" ><f:passThroughAttribute name="type" value="password"></f:passThroughAttribute></h:inputText>
-		<h:message for="senha" id="menssagemSenha"></h:message>
-		<h:commandButton value="Entrar" action="#{loginBean.efetuaLogin}"></h:commandButton>
+	<h:messages globalOnly="true" />
+	<h:form id="login">
+		<fieldset>
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Email: " for="email" />
+				<h:inputText id="email" value="#{loginBean.login.email}" required="true">
+					<f:passThroughAttribute name="type" value="email"/>
+				</h:inputText>
+
+				<h:message for="email" id="menssagemEmail"/>
+
+				<h:outputLabel value="Senha: " for="senha" />
+				<h:inputText id="senha" value="#{loginBean.login.senha}" required="true">
+					<f:passThroughAttribute name="type" value="password"/>
+				</h:inputText>
+				<h:message for="senha" id="menssagemSenha"/>
+				<h:commandButton value="Entrar" action="#{loginBean.efetuaLogin}"></h:commandButton>
+			</h:panelGrid>
+		</fieldset>
 	</h:form>
-	
+
 </h:body>
 
 </html>

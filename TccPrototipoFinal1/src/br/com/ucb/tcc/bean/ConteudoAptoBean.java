@@ -115,7 +115,7 @@ public class ConteudoAptoBean {
 		return new CertificacaoDAO().getCerfiticacoes(curriculo);
 	}
 
-	public void gravarPorCurso() {
+	public String gravarPorCurso() {
 
 		// Buscar curriculo pelo id do usuario
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -138,9 +138,10 @@ public class ConteudoAptoBean {
 		this.conteudoApto.setCurso(curso);
 
 		new ConteudoAptoDAO().gravar(this.conteudoApto);
+		return "CadastroCertificacao?faces-redirect=true";
 	}
 
-	public void gravarPorCertificacao() {
+	public String gravarPorCertificacao() {
 
 		// Buscar curriculo pelo id do usuario
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -163,6 +164,11 @@ public class ConteudoAptoBean {
 		this.conteudoApto.setCertificacao(certificacao);
 
 		new ConteudoAptoDAO().gravar(this.conteudoApto);
+		return "Home?faces-redirect=true";
+		
+	}
+	public String goHome() {
+		return "Home?faces-redirect=true";
 	}
 
 }

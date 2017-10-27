@@ -18,8 +18,8 @@
 					<h:outputLabel value="Titulo: " for="titulo" />
 					<h:inputText id="titulo"
 						value="#{conteudoAptoBean.conteudoApto.titulo}" />
-					<h:outputLabel value="Certificacao referente:" for="certificacao" />
-					<h:selectOneMenu value="#{conteudoAptoBean.certificacaoId}">
+					<h:outputLabel value="Certificação referente:" for="certificacao" />
+					<h:selectOneMenu value="#{conteudoAptoBean.certificacaoId}" required="true">
 						<f:selectItems value="#{conteudoAptoBean.certificacoes}"
 							var="certificacao" itemLabel="#{certificacao.nome}"
 							itemValue="#{certificacao.id}"></f:selectItems>
@@ -41,14 +41,11 @@
 						value="#{conteudoAptoBean.desdobramento5.descricao}" />
 					<h:commandButton value="Gravar"
 						action="#{conteudoAptoBean.gravarPorCertificacao}" />
+						<h:commandButton value="Go Homepage"
+						action="#{conteudoAptoBean.goHome}" />
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
-		<a href="http://localhost:8080/tcc/CadastroConteudista.xhtml">Back
-			></a>
-		<br />
-		<a href="http://localhost:8080/tcc/CadastroCertificacao.xhtml">Next
-			></a>
 	</ui:define>
 </ui:composition>
 

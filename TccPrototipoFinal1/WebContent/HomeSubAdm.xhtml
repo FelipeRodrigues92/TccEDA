@@ -37,6 +37,15 @@
 
 			</h:dataTable>
 		</fieldset>
+		<fieldset>
+		<h:form>
+			<h:commandLink value="Consulta indexada em conteudos" action="#{subGestorBean.buscaConteudo}"
+				immediate="true" />
+				<hr/>
+			<h:commandLink value="Consulta de contuedistas" action="#{subGestorBean.buscaConteudista}"
+				immediate="true" />
+		</h:form>
+		</fieldset>
 	</ui:define>
 </ui:composition>
 </html>

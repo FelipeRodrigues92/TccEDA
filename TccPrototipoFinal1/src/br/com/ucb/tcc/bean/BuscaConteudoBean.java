@@ -9,6 +9,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.ucb.tcc.dao.DAO;
 import br.com.ucb.tcc.modelo.BuscaEmConteudo;
 import br.com.ucb.tcc.modelo.Conteudo;
 
@@ -33,24 +34,24 @@ public class BuscaConteudoBean {
 		List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosPalavras = new ArrayList<BuscaEmConteudo>();
-		List<String> arquivosNomes = new ArrayList<String>();
-		Integer palavras = 0;
+		List<Conteudo> arquivos = new DAO<Conteudo>(Conteudo.class).listaTodos();
 		String str;
 		int encontrado;
-		int bloco = 1;
 		String fazTitulo = "";
 		String fazPalavra = "";
-		int totalBloco = 0;
-		String nomeArquivo = "Myfiles.html";
-		arquivosNomes.add("Myfile");
-		arquivosNomes.add("Myfile2");
+		List<String> arquivosNome = new ArrayList<String>();
+		
+		for (Conteudo conteudo : arquivos) {
+			arquivosNome.add(conteudo.getTitulo());
+		}
+		
 
-		for (int j = 0; j < arquivosNomes.size(); j++) {
+		for (int j = 0; j < arquivosNome.size(); j++) {
 			encontrado = 0;
 			List<String> tituloAchado = new ArrayList<String>();
 			List<String> titulos = new ArrayList<String>();
 			try {
-				BufferedReader in = new BufferedReader(new FileReader("/Users/feliperodrigues/Documents/" + arquivosNomes.get(j) + ".html")); // declara
+				BufferedReader in = new BufferedReader(new FileReader("/Users/feliperodrigues/Documents/" + arquivosNome.get(j) + ".html")); // declara
 																												// o
 																												// nome
 																												// do
@@ -95,7 +96,7 @@ public class BuscaConteudoBean {
 																													// aqui
 			}
 			BuscaEmConteudo conteudo = new BuscaEmConteudo();
-			conteudo.setNomeArquivo(arquivosNomes.get(j));
+			conteudo.setNomeArquivo(arquivosNome.get(j));
 			conteudo.setQtdParalavras(encontrado);
 			if (titulos.size() > 0) {
 				// System.out.println(titulos.size());
@@ -123,7 +124,7 @@ public class BuscaConteudoBean {
 			}
 			// System.out.println(conteudosPalavras.size());
 			// System.out.println(listaFinal.size());
-			if(j == arquivosNomes.size()-1) {
+			if(j == arquivosNome.size()-1) {
 			for (int i = 0; i < listaFinal.size(); i++) {
 				System.out.println(listaFinal.get(i).getNomeArquivo());
 				System.out.println(listaFinal.get(i).getTitulo());

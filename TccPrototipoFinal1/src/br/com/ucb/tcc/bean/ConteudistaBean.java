@@ -60,7 +60,7 @@ public class ConteudistaBean {
 		return lista;
 	}
 	
-	public void gravar(){
+	public String gravar(){
 		System.out.println("Gravando conteudista" + this.conteudista.getNome());
 		
 		this.conteudista.setEndereco(this.endereco);
@@ -70,5 +70,6 @@ public class ConteudistaBean {
 		login.setSenha(conteudista.getSenha());
 		new DAO<Login>(Login.class).adiciona(login);
 		new ConteudistaDAO().gravar(this.conteudista, this.endereco, this.curriculo); 
+		return "Curso?faces-redirect=true";
 	}
 }
