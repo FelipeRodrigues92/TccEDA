@@ -66,6 +66,8 @@ public class PopulaBanco {
 		 endereco.setComplemento("33");
 		 endereco.setUF(UnidadeFederacao.DF);
 		 endereco.setCep("23345765");
+		
+		 
 		 
 		 Conteudista conteudista = new Conteudista();
 		 conteudista.setCPF("11111111111");
@@ -76,6 +78,8 @@ public class PopulaBanco {
 		 conteudista.setSexo(Sexo.MASCULINO);
 		 conteudista.setTelefone("5434543234");
 		
+		 Curriculo curriculo = new  Curriculo();
+		 curriculo.setConteudista(conteudista);
 		
 		SubGestor subGestor = new SubGestor();
 		subGestor.setCPF("123123123444");
@@ -122,9 +126,10 @@ public class PopulaBanco {
 		 em.persist(doutorado);
 		 em.persist(posdoutorado);
 		 em.persist(endereco);
-		 em.persist(conteudista);
 		 em.persist(gestor);
 		 em.persist(subGestor);
+		 em.persist(conteudista);
+		 em.persist(curriculo);
 		 em.persist(conteudo);
 		 em.persist(conteudo2);
 		 
