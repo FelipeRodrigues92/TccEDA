@@ -3,132 +3,122 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
 			Home
 		</ui:define>
 	<ui:define name="conteudo">
-		<fieldset>
-			<legend>Seus dados</legend>
-			<h:dataTable id="tabelaConteudos" value="#{conteudistaBean.perfil}"
-				var="conteudista">
+	<div>
+		<h:form id="conteudistaform">
+			<p:dataList value="#{conteudistaBean.perfil}" var="conteudista"
+				type="definition">
 
-				<h:column>
-					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{conteudista.nome}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">CPF:</f:facet>
-					<h:outputText value="#{conteudista.CPF}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Telefone:</f:facet>
-					<h:outputText value="#{conteudista.telefone}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Email:</f:facet>
-					<h:outputText value="#{conteudista.email}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Sexo:</f:facet>
-					<h:outputText value="#{conteudista.sexo}" />
-				</h:column>
-
-			</h:dataTable>
-		</fieldset>
+       			 Olá #{conteudista.nome}  
+			</p:dataList>
+		</h:form>
+		</div>
+		<br />
 		<h:form>
-			<fieldset>
-				<legend>Cursos Concluídos</legend>
-				<h:dataTable id="tabelaCursos" value="#{conteudoAptoBean.cursos}"
-					var="curso" width="100%">
-					<h:column>
-						<f:facet name="header">Curso</f:facet>
-						<h:outputText value="#{curso.nivelCurso.tipo}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Nome</f:facet>
-						<h:outputText value="#{curso.name}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Instituição de ensino</f:facet>
-						<h:outputText value="#{curso.instituicao}" />
-					</h:column>
+			<p:dataTable id="tabelaCursos" value="#{conteudoAptoBean.cursos}"
+				var="curso" width="100%">
+				<f:facet name="header">
+            			Cursos
+        			</f:facet>
+				<p:column>
+					<f:facet name="header">Curso</f:facet>
+					<h:outputText value="#{curso.nivelCurso.tipo}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{curso.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Instituição de ensino</f:facet>
+					<h:outputText value="#{curso.instituicao}" />
+				</p:column>
 
-					<h:column>
-						<f:facet name="header">Data de inicio</f:facet>
-						<h:outputText value="#{curso.dataInicio.time}">
-							<f:convertDateTime pattern="dd/MM/yyyy"
-								timeZone="America/Sao_Paulo" />
-						</h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Data de conclusão</f:facet>
-						<h:outputText value="#{curso.dataFim.time}">
-							<f:convertDateTime pattern="dd/MM/yyyy"
-								timeZone="America/Sao_Paulo" />
-						</h:outputText>
-					</h:column>
-					<h:column>
-					<filedset>
-						<f:facet name="header">Conteudos Aptos</f:facet>
-						<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
-							<h:column>
+				<p:column>
+					<f:facet name="header">Data de inicio</f:facet>
+					<h:outputText value="#{curso.dataInicio.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="America/Sao_Paulo" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Data de conclusão</f:facet>
+					<h:outputText value="#{curso.dataFim.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="America/Sao_Paulo" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Conteudos Aptos</f:facet>
+					<p:dataTable value="#{curso.conteudosAptos}" var="conteudo">
+						<p:column>
 								#{conteudo.titulo}
-							</h:column>
-						</h:dataTable>
-						</filedset>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Alterar</f:facet>
-						<h:commandLink value="alterar"
-							action="#{cursoBean.carregar(curso)}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Excluir</f:facet>
-						<h:commandLink value="remover"
-							action="#{cursoBean.remover(curso)}" />
-					</h:column>
-				</h:dataTable>
-				<hr />
-				<h:commandLink value="Novo Curso" action="#{cursoBean.goCurso}"></h:commandLink>
-				<h:commandLink value="Adicionar conteudo Apto"
-					action="#{cursoBean.goCursoConteudo}"></h:commandLink>
-			</fieldset>
-			<fieldset>
-				<legend>Certificações</legend>
-				<h:dataTable id="tabelaCertificacoes"
-					value="#{conteudoAptoBean.certificacoes}" var="certificacao">
+							</p:column>
+					</p:dataTable>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Alterar</f:facet>
+					<p:commandLink value="alterar"
+						action="#{cursoBean.carregar(curso)}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Excluir</f:facet>
+					<p:commandLink value="remover" icon="fa fa-fw fa-edit"
+						action="#{cursoBean.remover(curso)}" update="@form" />
+				</p:column>
+			</p:dataTable>
+			<hr />
+			<p:commandLink value="Novo Curso" action="#{cursoBean.goCurso}"
+				update="@form" />
+			<p:commandLink value="Adicionar conteudo Apto"
+				action="#{cursoBean.goCursoConteudo}" update="@form"></p:commandLink>
 
-					<h:column>
+			<br />
+				<p:dataTable id="tabelaCertificacoes"
+					value="#{conteudoAptoBean.certificacoes}" var="certificacao">
+					<f:facet name="header">
+          	  			Certificações
+        				</f:facet>
+					<p:column>
 						<f:facet name="header">Nome</f:facet>
 						<h:outputText value="#{certificacao.nome}" />
-					</h:column>
-					<h:column>
+					</p:column>
+					<p:column>
 						<f:facet name="header">Area</f:facet>
 						<h:outputText value="#{certificacao.area}" />
-					</h:column>
-				
-					<h:column>
+					</p:column>
+					<p:column>
+						<f:facet name="header">Conteudos Aptos</f:facet>
+						<p:dataTable value="#{certificacao.conteudosAptos}" var="conteudo">
+							<p:column>
+								#{conteudo.titulo}
+							</p:column>
+						</p:dataTable>
+					</p:column>
+					<p:column>
 						<f:facet name="header">Alterar</f:facet>
-						<h:commandLink value="alterar"
-							action="#{certificacaoBean.carregar(certificacao)}">
-						</h:commandLink>
-					</h:column>
-					<h:column>
+						<p:commandLink value="alterar"
+							action="#{certificacaoBean.carregar(certificacao)}" update="@form" >
+						</p:commandLink>
+					</p:column>
+					<p:column>
 						<f:facet name="header">Excluir</f:facet>
-						<h:commandLink value="remover"
-							action="#{certificacaoBean.remover(certificacao)}">
-						</h:commandLink>
-					</h:column>
-				</h:dataTable>
+						<p:commandLink value="remover"
+							action="#{certificacaoBean.remover(certificacao)}" update="@form">
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
 				<hr />
-				<h:commandLink value="Nova Certificação"
-					action="#{certificacaoBean.goCertificacao}"></h:commandLink>
-				<h:commandLink value="Adicionar conteudo Apto"
-					action="#{certificacaoBean.goCertificacaoConteudo}"></h:commandLink>
+				<p:commandLink value="Nova Certificação"
+					action="#{certificacaoBean.goCertificacao}" update="@form"></p:commandLink>
+				<p:commandLink value="Adicionar conteudo Apto"
+					action="#{certificacaoBean.goCertificacaoConteudo}" update="@form"></p:commandLink>
 
-			</fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>

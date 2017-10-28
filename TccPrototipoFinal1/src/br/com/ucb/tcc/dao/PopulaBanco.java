@@ -14,6 +14,9 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.sun.faces.facelets.tag.jstl.core.ForEachHandler;
+import com.sun.javafx.collections.ArrayListenerHelper;
+
 import br.com.ucb.tcc.modelo.Conteudista;
 import br.com.ucb.tcc.modelo.Conteudo;
 import br.com.ucb.tcc.modelo.Curriculo;
@@ -33,113 +36,113 @@ import br.com.ucb.tcc.modelo.Certificacao;
 public class PopulaBanco {
 
 	public static void main(String[] args) {
-
-		// TODO Auto-generated method stub
-		NivelCurso tecnologo = new NivelCurso();
-		tecnologo.setTipo("Tecnólogo");
-		tecnologo.setDescricacao(" ");
-
-		NivelCurso graduacao = new NivelCurso();
-		graduacao.setTipo("Graduação");
-		graduacao.setDescricacao(" ");
-
-		NivelCurso posgraduacao = new NivelCurso();
-		posgraduacao.setTipo("Pós-Graduação");
-		posgraduacao.setDescricacao(" ");
-
-		NivelCurso mestrado = new NivelCurso();
-		mestrado.setTipo("Mestrado");
-		mestrado.setDescricacao(" ");
-
-		NivelCurso doutorado = new NivelCurso();
-		doutorado.setTipo("Doutorado");
-		doutorado.setDescricacao(" ");
-
-		NivelCurso posdoutorado = new NivelCurso();
-		posdoutorado.setTipo("Pós-Doutorado");
-		posdoutorado.setDescricacao(" ");
-
-
-		 Endereco endereco = new Endereco();
-		 endereco.setBairro("Leste");
-		 endereco.setCidade("Gama");
-		 endereco.setComplemento("33");
-		 endereco.setUF(UnidadeFederacao.DF);
-		 endereco.setCep("23345765");
-		
-		 
-		 
-		 Conteudista conteudista = new Conteudista();
-		 conteudista.setCPF("11111111111");
-		 conteudista.setNome("Felipe");
-		 conteudista.setEmail("123@gmail.com");
-		 conteudista.setEndereco(endereco);
-		 conteudista.setSenha("123");
-		 conteudista.setSexo(Sexo.MASCULINO);
-		 conteudista.setTelefone("5434543234");
-		
-		 Curriculo curriculo = new  Curriculo();
-		 curriculo.setConteudista(conteudista);
-		
-		SubGestor subGestor = new SubGestor();
-		subGestor.setCPF("123123123444");
-		subGestor.setNome("SubADM");
-		subGestor.setEmail("subadm@gmail.com");
-		subGestor.setSenha("123");
-		subGestor.setSexo(Sexo.MASCULINO);
-		subGestor.setTelefone("5434543234");
-
-		Gestor gestor = new Gestor();
-		gestor.setCPF("123123123444");
-		gestor.setNome("ADM");
-		gestor.setEmail("adm@gmail.com");
-		gestor.setSenha("123");
-		gestor.setSexo(Sexo.MASCULINO);
-		gestor.setTelefone("5434543234");
-		
-		Conteudo conteudo = new Conteudo();
-		conteudo.setTitulo("Myfile");
-		conteudo.setDescricao("");
-		conteudo.setAvaliacao(10);
-		conteudo.setSubGestor(subGestor);
-		conteudo.setConteudista(conteudista);
-
-		Conteudo conteudo2 = new Conteudo();
-		conteudo2.setTitulo("Myfile2");
-		conteudo2.setDescricao("");
-		conteudo2.setAvaliacao(9);
-		conteudo2.setSubGestor(subGestor);
-		conteudo2.setConteudista(conteudista);
-		//ConteudistaBean conteBean = new ConteudistaBean();
-		//conteBean.setConteudista(conteudista2);
-
-		// conteBean.gravar();
-		//
-		// endereco.setUsuarios(Arrays.asList(conteudista, conteudista2));
-		 EntityManager em = new JPAUtil().getEntityManager();
-
-		 em.getTransaction().begin();
-		 em.persist(tecnologo);
-		 em.persist(graduacao);
-		 em.persist(posgraduacao);
-		 em.persist(mestrado);
-		 em.persist(doutorado);
-		 em.persist(posdoutorado);
-		 em.persist(endereco);
-		 em.persist(gestor);
-		 em.persist(subGestor);
-		 em.persist(conteudista);
-		 em.persist(curriculo);
-		 em.persist(conteudo);
-		 em.persist(conteudo2);
-		 
-		// em.persist(conteudista2);
-		// em.persist(conteudista);
-		// em.persist(endereco);
-		//
-		 em.getTransaction().commit();
-		 em.getTransaction().begin();
-		 em.close();
+//
+//		// TODO Auto-generated method stub
+//		NivelCurso tecnologo = new NivelCurso();
+//		tecnologo.setTipo("Tecnólogo");
+//		tecnologo.setDescricacao(" ");
+//
+//		NivelCurso graduacao = new NivelCurso();
+//		graduacao.setTipo("Graduação");
+//		graduacao.setDescricacao(" ");
+//
+//		NivelCurso posgraduacao = new NivelCurso();
+//		posgraduacao.setTipo("Pós-Graduação");
+//		posgraduacao.setDescricacao(" ");
+//
+//		NivelCurso mestrado = new NivelCurso();
+//		mestrado.setTipo("Mestrado");
+//		mestrado.setDescricacao(" ");
+//
+//		NivelCurso doutorado = new NivelCurso();
+//		doutorado.setTipo("Doutorado");
+//		doutorado.setDescricacao(" ");
+//
+//		NivelCurso posdoutorado = new NivelCurso();
+//		posdoutorado.setTipo("Pós-Doutorado");
+//		posdoutorado.setDescricacao(" ");
+//
+//
+//		 Endereco endereco = new Endereco();
+//		 endereco.setBairro("Leste");
+//		 endereco.setCidade("Gama");
+//		 endereco.setComplemento("33");
+//		 endereco.setUF(UnidadeFederacao.DF);
+//		 endereco.setCep("23345765");
+//		
+//		 
+//		 
+//		 Conteudista conteudista = new Conteudista();
+//		 conteudista.setCPF("11111111111");
+//		 conteudista.setNome("Felipe");
+//		 conteudista.setEmail("123@gmail.com");
+//		 conteudista.setEndereco(endereco);
+//		 conteudista.setSenha("123");
+//		 conteudista.setSexo(Sexo.MASCULINO);
+//		 conteudista.setTelefone("5434543234");
+//		
+//		 Curriculo curriculo = new  Curriculo();
+//		 curriculo.setConteudista(conteudista);
+//		
+//		SubGestor subGestor = new SubGestor();
+//		subGestor.setCPF("123123123444");
+//		subGestor.setNome("SubADM");
+//		subGestor.setEmail("subadm@gmail.com");
+//		subGestor.setSenha("123");
+//		subGestor.setSexo(Sexo.MASCULINO);
+//		subGestor.setTelefone("5434543234");
+//
+//		Gestor gestor = new Gestor();
+//		gestor.setCPF("123123123444");
+//		gestor.setNome("ADM");
+//		gestor.setEmail("adm@gmail.com");
+//		gestor.setSenha("123");
+//		gestor.setSexo(Sexo.MASCULINO);
+//		gestor.setTelefone("5434543234");
+//		
+//		Conteudo conteudo = new Conteudo();
+//		conteudo.setTitulo("Myfile");
+//		conteudo.setDescricao("");
+//		conteudo.setAvaliacao(10);
+//		conteudo.setSubGestor(subGestor);
+//		conteudo.setConteudista(conteudista);
+//
+//		Conteudo conteudo2 = new Conteudo();
+//		conteudo2.setTitulo("Myfile2");
+//		conteudo2.setDescricao("");
+//		conteudo2.setAvaliacao(9);
+//		conteudo2.setSubGestor(subGestor);
+//		conteudo2.setConteudista(conteudista);
+//		//ConteudistaBean conteBean = new ConteudistaBean();
+//		//conteBean.setConteudista(conteudista2);
+//
+//		// conteBean.gravar();
+//		//
+//		// endereco.setUsuarios(Arrays.asList(conteudista, conteudista2));
+//		 EntityManager em = new JPAUtil().getEntityManager();
+//
+//		 em.getTransaction().begin();
+//		 em.persist(tecnologo);
+//		 em.persist(graduacao);
+//		 em.persist(posgraduacao);
+//		 em.persist(mestrado);
+//		 em.persist(doutorado);
+//		 em.persist(posdoutorado);
+//		 em.persist(endereco);
+//		 em.persist(gestor);
+//		 em.persist(subGestor);
+//		 em.persist(conteudista);
+//		 em.persist(curriculo);
+//		 em.persist(conteudo);
+//		 em.persist(conteudo2);
+//		 
+//		// em.persist(conteudista2);
+//		// em.persist(conteudista);
+//		// em.persist(endereco);
+//		//
+//		 em.getTransaction().commit();
+//		 em.getTransaction().begin();
+//		 em.close();
 		// Endereco end = em.find(Endereco.class, 1);
 		//
 		// Conteudista cond = em.find(Conteudista.class, 2);
@@ -310,5 +313,28 @@ public class PopulaBanco {
 		// em.close();
 		//
 		// System.out.println(resultados.size()>0);
+		
+		
+		 EntityManager em = new JPAUtil().getEntityManager();
+		 List<Certificacao> resultados = new ArrayList<Certificacao>();
+			em.getTransaction().begin();
+			
+			String jpql = "Select u from Curriculo cu join cu.conteudista u ";
+			Query query = em.createQuery(jpql);
+		//	query.setParameter("pUsuarioId", usuarioId);
+			// persiste o objeto
+			resultados = query.getResultList();
+			// commita a transacao
+			em.getTransaction().commit();
+
+			
+			for (Certificacao certificacao : resultados) {
+				System.out.println(certificacao.getNome());
+			}
+//			for (Usuario usuario : resultados) {
+//				System.out.println(usuario.getNome());
+//			}
+		 		 em.close();
+		 		
 	}
 }
