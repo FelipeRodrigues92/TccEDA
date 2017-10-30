@@ -24,4 +24,20 @@ public class ConteudistaDAO {
 	// fecha a entity manager
 	em.close();
 	}
+	
+	public void atualiza(Conteudista conteudista, Endereco endereco) {
+		
+	EntityManager em = new JPAUtil().getEntityManager();
+	em.getTransaction().begin();
+	System.out.println("endereco" + endereco.getId());
+	System.out.println("conteudista " + conteudista.getId());
+	em.merge(endereco);
+	System.out.println("endereco" + endereco.getId());
+	System.out.println("conteudista " + conteudista.getId());
+	em.merge(conteudista);
+	System.out.println("endereco" + endereco.getId());
+	System.out.println("conteudista " + conteudista.getId());
+	em.getTransaction().commit();
+	em.close();
+	}
 }

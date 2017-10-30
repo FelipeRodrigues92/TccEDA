@@ -3,10 +3,12 @@ package br.com.ucb.tcc.modelo;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +39,7 @@ public class Usuario {
 	private String telefone;
 	private String senha;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	private Endereco endereco;
 	
 	public Endereco getEndereco() {

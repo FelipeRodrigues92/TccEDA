@@ -16,10 +16,13 @@ import br.com.ucb.tcc.modelo.Usuario;
 
 @ManagedBean
 public class ConteudistaBean {
-
+	
 	private Endereco endereco = new Endereco();
 	
 	private Curriculo curriculo = new Curriculo();
+	
+	
+	private Conteudista conteudista = new Conteudista();
 	
 	public Curriculo getCurriculo() {
 		return curriculo;
@@ -36,8 +39,6 @@ public class ConteudistaBean {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
-	private Conteudista conteudista = new Conteudista();
 
 	public void setConteudista(Conteudista conteudista) {
 		this.conteudista = conteudista;
@@ -72,6 +73,15 @@ public class ConteudistaBean {
 		new ConteudistaDAO().gravar(this.conteudista, this.endereco, this.curriculo); 
 		return "Curso?faces-redirect=true";
 	}
+
+	public String alterar(){
+		System.out.println("Alterando conteudista" + this.conteudista.getNome());
+		System.out.println("endereco" + this.endereco.getId());
+		System.out.println("conteudista " + this.conteudista.getId());
+
+			new ConteudistaDAO().atualiza(this.getConteudista(), this.getEndereco());
+		return "Curso?faces-redirect=true";
+	}
 	public Boolean isADM(){
 		FacesContext context = FacesContext.getCurrentInstance();
 		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
@@ -95,5 +105,19 @@ public class ConteudistaBean {
 			return true;
 		}
 		return false;
+	}
+	
+	public void carregarConteudista(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
+		
+		if((usuarioId != null) && (usuarioId > 2)) {
+			this.conteudista = new DAO<Conteudista>(Conteudista.class).buscaPorId(usuarioId);
+			this.endereco = new DAO<Endereco>(Endereco.class).buscaPorId(conteudista.getEndereco().getId());
+			System.out.println("endereco" + endereco.getId());
+			System.out.println("conteudista " + conteudista.getId());
+			this.setConteudista(new DAO<Conteudista>(Conteudista.class).buscaPorId(usuarioId));
+			this.setEndereco(new DAO<Endereco>(Endereco.class).buscaPorId(conteudista.getEndereco().getId()));
+		}
 	}
 }
