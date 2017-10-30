@@ -72,4 +72,28 @@ public class ConteudistaBean {
 		new ConteudistaDAO().gravar(this.conteudista, this.endereco, this.curriculo); 
 		return "Curso?faces-redirect=true";
 	}
+	public Boolean isADM(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
+		if(usuarioId ==1) {
+			return true;
+		}
+		return false;
+	}
+	public Boolean isSubADM(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
+		if(usuarioId == 2) {
+			return true;
+		}
+		return false;
+	}
+	public Boolean isSubADMOrADM(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
+		if(usuarioId == 2 || usuarioId == 2) {
+			return true;
+		}
+		return false;
+	}
 }

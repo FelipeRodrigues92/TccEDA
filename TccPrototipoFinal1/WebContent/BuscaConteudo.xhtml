@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
@@ -10,38 +11,40 @@
 		</ui:define>
 	<ui:define name="conteudo">
 		<h:form>
-			<h:outputLabel value="Busca por: " for="palavraBuscada" />
-			<h:inputText id="palavraBuscada"
+			<p:outputLabel value="Busca por: " for="palavraBuscada" />
+			<p:inputText id="palavraBuscada"
 				value="#{buscaConteudoBean.palavraBuscada}" />
 			<h:commandButton value="Buscar"
-				action="#{buscaConteudoBean.getConteudosComString}" />
+				action="#{buscaConteudoBean.getConteudosComString}"  />
 		</h:form>
+		<h:form id="form2">
 		<fieldset>
-			<h:dataTable id="tabelaConteudos"
+			<p:dataTable id="tabelaConteudos"
 				value="#{buscaConteudoBean.conteudosComString}"
 				var="buscaEmConteudo" width="100%" columnClasses="centered">
 
-				<h:column>
+				<p:column>
 					<f:facet name="header">Arquivo</f:facet>
 					<h:outputText value="#{buscaEmConteudo.nomeArquivo}" />
-				</h:column>
+				</p:column>
 
-				<h:column>
+				<p:column>
 					<f:facet name="header">Titulos</f:facet>
 					<h:dataTable value="#{buscaEmConteudo.titulo}" var="cadatitulo">
-						<h:column>
+						<p:column>
 					#{cadatitulo}
-				</h:column>
+				</p:column>
 					</h:dataTable>
-				</h:column>
+				</p:column>
 
-				<h:column>
+				<p:column>
 					<f:facet name="header">QtdParalavras</f:facet>
 					<h:outputText
 						value="#{buscaEmConteudo.qtdParalavras} palavras em parágrafos." />
-				</h:column>
-			</h:dataTable>
+				</p:column>
+			</p:dataTable>
 		</fieldset>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

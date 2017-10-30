@@ -10,15 +10,38 @@
 			Home
 		</ui:define>
 	<ui:define name="conteudo">
-	<div>
-		<h:form id="conteudistaform">
-			<p:dataList value="#{conteudistaBean.perfil}" var="conteudista"
-				type="definition">
+		<div>
+			<h:form id="conteudistaform">
+				<p:dataList value="#{conteudistaBean.perfil}" var="conteudista"
+					type="definition">
 
        			 Olá #{conteudista.nome}  
 			</p:dataList>
-		</h:form>
+			</h:form>
 		</div>
+		<!-- MENU -->
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:menuitem value="Home" icon="ui-icon-home"
+					url="http://localhost:9090/tcc/Home.xhtml" />
+
+				<p:submenu label="Gerenciar dados" icon="ui-icon-pencil">
+					<p:menuitem value="Perfil"
+						url="http://localhost:9090/tcc/GerenciarConteudista.xhtml" />
+					<p:menuitem value="Cursos"
+						url="http://localhost:9090/tcc/GerenciarCurso.xhtml" />
+					<p:menuitem value="Certificações"
+						url="http://localhost:9090/tcc/GerenciarCertificacao.xhtml" />
+					<p:menuitem value="Conteudos/Cursos"
+						url="http://localhost:9090/tcc/GerenciarConteudoAptoPorCurso.xhtml" />
+					<p:menuitem value="Conteudos/Certificações"
+						url="http://localhost:9090/tcc/GerenciarConteudoAptoPorCertificacao.xhtml" />
+				</p:submenu>
+			</p:menubar>
+		</h:form>
+
 		<br />
 		<h:form>
 			<p:dataTable id="tabelaCursos" value="#{conteudoAptoBean.cursos}"
@@ -55,11 +78,11 @@
 				</p:column>
 				<p:column>
 					<f:facet name="header">Conteudos Aptos</f:facet>
-					<p:dataTable value="#{curso.conteudosAptos}" var="conteudo">
-						<p:column>
+					<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
+						
 								#{conteudo.titulo}
-							</p:column>
-					</p:dataTable>
+							
+					</h:dataTable>
 				</p:column>
 				<p:column>
 					<f:facet name="header">Alterar</f:facet>
@@ -72,52 +95,63 @@
 						action="#{cursoBean.remover(curso)}" update="@form" />
 				</p:column>
 			</p:dataTable>
-			<hr />
-			<p:commandLink value="Novo Curso" action="#{cursoBean.goCurso}"
-				update="@form" />
-			<p:commandLink value="Adicionar conteudo Apto"
-				action="#{cursoBean.goCursoConteudo}" update="@form"></p:commandLink>
-
 			<br />
-				<p:dataTable id="tabelaCertificacoes"
-					value="#{conteudoAptoBean.certificacoes}" var="certificacao">
-					<f:facet name="header">
+			<p:commandLink action="#{cursoBean.goCurso}" update="@form">
+				<p:commandButton value="Adicionar novo curso" icon="ui-icon-plus" />
+			</p:commandLink>
+
+			<p:commandLink action="#{cursoBean.goCursoConteudo}" update="@form">
+				<p:commandButton value="Adicionar conteúdo Apto" icon="ui-icon-plus" />
+			</p:commandLink>
+			<br />
+			<hr />
+			<br />
+			<p:dataTable id="tabelaCertificacoes"
+				value="#{conteudoAptoBean.certificacoes}" var="certificacao">
+				<f:facet name="header">
           	  			Certificações
         				</f:facet>
-					<p:column>
-						<f:facet name="header">Nome</f:facet>
-						<h:outputText value="#{certificacao.nome}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">Area</f:facet>
-						<h:outputText value="#{certificacao.area}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">Conteudos Aptos</f:facet>
-						<p:dataTable value="#{certificacao.conteudosAptos}" var="conteudo">
-							<p:column>
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{certificacao.nome}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Area</f:facet>
+					<h:outputText value="#{certificacao.area}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Conteudos Aptos</f:facet>
+					<h:dataTable value="#{certificacao.conteudosAptos}" var="conteudo">
+						
 								#{conteudo.titulo}
-							</p:column>
-						</p:dataTable>
-					</p:column>
-					<p:column>
-						<f:facet name="header">Alterar</f:facet>
-						<p:commandLink value="alterar"
-							action="#{certificacaoBean.carregar(certificacao)}" update="@form" >
-						</p:commandLink>
-					</p:column>
-					<p:column>
-						<f:facet name="header">Excluir</f:facet>
-						<p:commandLink value="remover"
-							action="#{certificacaoBean.remover(certificacao)}" update="@form">
-						</p:commandLink>
-					</p:column>
-				</p:dataTable>
-				<hr />
-				<p:commandLink value="Nova Certificação"
-					action="#{certificacaoBean.goCertificacao}" update="@form"></p:commandLink>
-				<p:commandLink value="Adicionar conteudo Apto"
-					action="#{certificacaoBean.goCertificacaoConteudo}" update="@form"></p:commandLink>
+							
+					</h:dataTable>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Alterar</f:facet>
+					<p:commandLink value="alterar"
+						action="#{certificacaoBean.carregar(certificacao)}" update="@form">
+					</p:commandLink>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Excluir</f:facet>
+					<p:commandLink value="remover"
+						action="#{certificacaoBean.remover(certificacao)}" update="@form">
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+			<hr />
+			<p:commandLink action="#{certificacaoBean.goCertificacao}" update="@form">
+				<p:commandButton value="Nova Certificação" icon="ui-icon-plus" />
+			</p:commandLink>
+
+			<p:commandLink action="#{certificacaoBean.goCertificacaoConteudo}" update="@form">
+				<p:commandButton value="Adicionar conteúdo Apto" icon="ui-icon-plus" />
+			</p:commandLink>
+			<br />
+			<hr />
+			<br />
+
 
 		</h:form>
 	</ui:define>

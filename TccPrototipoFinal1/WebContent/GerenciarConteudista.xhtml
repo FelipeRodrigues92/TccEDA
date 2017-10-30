@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+		<p:outputPanel>Novo Conteudista</p:outputPanel>
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:form>
+			<p:messages />
+			<p:fieldset legend="Dados do Conteudista">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Nome: " for="nome" />
+					<p:inputText id="nome" value="#{conteudistaBean.conteudista.nome}" />
+					<p:outputLabel value="CPF: " for="cpf" />
+					<p:inputMask id="cpf" value="#{conteudistaBean.conteudista.CPF}"  mask="999.999.999-99" />
+					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+						<p:outputLabel for="sexo" value="Sexo:" />
+						<p:selectOneRadio id="sexo"
+							value="#{conteudistaBean.conteudista.sexo}">
+							<f:selectItem itemLabel="M" itemValue="MASCULINO" />
+							<f:selectItem itemLabel="F" itemValue="FEMININO" />
+						</p:selectOneRadio>
+					</h:panelGrid>
+					<p:outputLabel value="  " for=" " />
+					<p:outputLabel value="Email: " for="email" />
+					<p:inputText id="email"
+						value="#{conteudistaBean.conteudista.email}"
+						validatorMessage="Email inválido">
+						<f:attribute name="type" value="email" />
+						<f:validateRegex pattern=".+@.+" />
+						<f:ajax event="blur" render="messageEmail" />
+					</p:inputText>
+					<p:outputLabel value="Data de nascimento: " for="dataNascimento" />
+					<p:calendar id="dataNascimento"
+						value="#{conteudistaBean.conteudista.dataNascimento.time}"
+						pattern="dd-MM-yyyy" mask="true" />
+
+					<p:outputLabel value="Senha: " for="senha" />
+					<p:password id="senha" value="#{conteudistaBean.conteudista.senha}"
+						required="true" feedback="true" />
+
+					<p:outputLabel for="telefone" value="Telefone:" />
+					<p:inputMask id="telefone"
+						value="#{conteudistaBean.conteudista.telefone}"
+						mask="(99) 99999-9999" />
+
+					<p:outputLabel for="uf" value="UF:" />
+					<p:selectOneMenu id="uf" value="#{conteudistaBean.endereco.UF}"
+						style="width:125px">
+						<f:selectItem itemLabel="AC" itemValue="AC" />
+						<f:selectItem itemLabel="AL" itemValue="AL" />
+						<f:selectItem itemLabel="AM " itemValue="3" />
+						<f:selectItem itemLabel="AP" itemValue="AP" />
+						<f:selectItem itemLabel="BA" itemValue="BA" />
+						<f:selectItem itemLabel="CE" itemValue="CE" />
+						<f:selectItem itemLabel="DF" itemValue="DF" />
+						<f:selectItem itemLabel="ES" itemValue="ES" />
+						<f:selectItem itemLabel="GO" itemValue="GO" />
+						<f:selectItem itemLabel="MA" itemValue="MA" />
+						<f:selectItem itemLabel="MG" itemValue="MG" />
+						<f:selectItem itemLabel="MS" itemValue="MS" />
+						<f:selectItem itemLabel="MT" itemValue="MT" />
+						<f:selectItem itemLabel="PA" itemValue="PA" />
+						<f:selectItem itemLabel="PB" itemValue="PB" />
+						<f:selectItem itemLabel="PE" itemValue="PE" />
+						<f:selectItem itemLabel="PI" itemValue="PI" />
+						<f:selectItem itemLabel="PR" itemValue="PR" />
+						<f:selectItem itemLabel="RJ" itemValue="RJ" />
+						<f:selectItem itemLabel="RN" itemValue="RN" />
+						<f:selectItem itemLabel="RO" itemValue="RO" />
+						<f:selectItem itemLabel="RR" itemValue="RR" />
+						<f:selectItem itemLabel="RS" itemValue="RS" />
+						<f:selectItem itemLabel="SC" itemValue="SC" />
+						<f:selectItem itemLabel="SE" itemValue="SE" />
+						<f:selectItem itemLabel="SP" itemValue="SP" />
+						<f:selectItem itemLabel="TO" itemValue="TO" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Cidade: " for="cidade" />
+					<p:inputText id="cidade" value="#{conteudistaBean.endereco.cidade}" />
+					<p:outputLabel value="Bairro: " for="bairro" />
+					<p:inputText id="bairro" value="#{conteudistaBean.endereco.bairro}" />
+					<p:outputLabel value="Complemento: " for="complemento" />
+					<p:inputText id="complemento"
+						value="#{conteudistaBean.endereco.complemento}" />
+					<p:outputLabel value="CEP: " for="cep" />
+					<p:inputMask id="cep" value="#{conteudistaBean.endereco.cep}"   mask="99-999999" />
+					<p:commandButton value="Gravar" action="#{conteudistaBean.gravar}"
+						process="@form" update="@form" />
+				</p:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -3,48 +3,69 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
 			Home
 		</ui:define>
 	<ui:define name="conteudo">
+		<div>
+			<h:form id="conteudistaform">
+				<p:dataList value="#{gestorBean.perfil}" var="conteudista"
+					type="definition">
+
+       			 Olá #{conteudista.nome}  
+			</p:dataList>
+			</h:form>
+		</div>
+		<!-- MENU -->
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:menuitem value="Home" icon="ui-icon-home"
+					url="http://localhost:9090/tcc/HomeAdm.xhtml" />
+
+				<p:submenu label="Gerenciar dados" icon="ui-icon-pencil">
+					<p:menuitem value="Perfil"
+						url="http://localhost:9090/tcc/GerenciarConteudista.xhtml" />
+				</p:submenu>
+				<p:menuitem value="Busca indexada de conteudos"
+					icon="ui-icon-search"
+					url="http://localhost:9090/tcc/BuscaConteudo.xhtml" />
+				<p:menuitem value="Buscar Conteudistas" icon="ui-icon-search"
+					url="http://localhost:9090/tcc/ConsultarConteudista.xhtml" />
+			</p:menubar>
+		</h:form>
+		<br />
 		<fieldset>
-				<legend>Seus dados</legend>
-			<h:dataTable id="tabelaConteudos" value="#{gestorBean.perfil}"
+			<legend>Seus dados</legend>
+			<p:dataTable id="tabelaConteudos" value="#{gestorBean.perfil}"
 				var="gestor">
 
-				<h:column>
+				<p:column>
 					<f:facet name="header">Nome</f:facet>
 					<h:outputText value="#{gestor.nome}" />
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">CPF:</f:facet>
 					<h:outputText value="#{gestor.CPF}" />
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Telefone:</f:facet>
 					<h:outputText value="#{gestor.telefone}" />
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Email:</f:facet>
 					<h:outputText value="#{gestor.email}" />
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Sexo:</f:facet>
 					<h:outputText value="#{gestor.sexo}" />
-				</h:column>
+				</p:column>
 
-			</h:dataTable>
-		</fieldset>
-		<fieldset>
-		<h:form>
-			<h:commandLink value="Consulta indexada em conteudos" action="#{gestorBean.buscaConteudo}"
-				immediate="true" />
-				<hr/>
-			<h:commandLink value="Consulta de contuedistas" action="#{gestorBean.buscaConteudista}"
-				immediate="true" />
-		</h:form>
+			</p:dataTable>
 		</fieldset>
 	</ui:define>
 </ui:composition>
