@@ -7,7 +7,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-			Home
+		<p:outputPanel>Home</p:outputPanel>
 		</ui:define>
 	<ui:define name="conteudo">
 		<div>
@@ -22,7 +22,6 @@
 		<!-- MENU -->
 		<h:form>
 			<p:growl id="messages" />
-
 			<p:menubar>
 				<p:menuitem value="Home" icon="ui-icon-home"
 					url="http://localhost:9090/tcc/Home.xhtml" />
@@ -41,7 +40,6 @@
 				</p:submenu>
 			</p:menubar>
 		</h:form>
-
 		<br />
 		<h:form>
 			<p:dataTable id="tabelaCursos" value="#{conteudoAptoBean.cursos}"
@@ -79,9 +77,9 @@
 				<p:column>
 					<f:facet name="header">Conteudos Aptos</f:facet>
 					<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
-						
+						<h:column>	
 								#{conteudo.titulo}
-							
+						</h:column>
 					</h:dataTable>
 				</p:column>
 				<p:column>
@@ -122,9 +120,9 @@
 				<p:column>
 					<f:facet name="header">Conteudos Aptos</f:facet>
 					<h:dataTable value="#{certificacao.conteudosAptos}" var="conteudo">
-						
+						<h:column>
 								#{conteudo.titulo}
-							
+						</h:column>
 					</h:dataTable>
 				</p:column>
 				<p:column>
@@ -149,10 +147,6 @@
 				<p:commandButton value="Adicionar conteúdo Apto" icon="ui-icon-plus" />
 			</p:commandLink>
 			<br />
-			<hr />
-			<br />
-
-
 		</h:form>
 	</ui:define>
 </ui:composition>

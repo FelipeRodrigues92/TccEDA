@@ -104,6 +104,12 @@ public class ConteudoAptoBean {
 		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
 
 		Curriculo curriculo = (Curriculo) new CurriculoDAO().getCurriculoPorUserId(usuarioId);
+		
+		List<Curso> cursos = new CursoDAO().getCursos(curriculo);
+		
+		for (Curso curso : cursos) {
+			System.out.println(curso.getConteudosAptos().size());
+		}
 		return new CursoDAO().getCursos(curriculo);
 	}
 
