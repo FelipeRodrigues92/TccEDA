@@ -7,7 +7,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-	<p:outputPanel>Busca por Conteudo</p:outputPanel>
+	<p:outputPanel>Busca por Conteudista</p:outputPanel>
 		</ui:define>
 	<ui:define name="conteudo">
 	<!-- MENU -->
@@ -33,38 +33,24 @@
 		</h:form>
 		<br/>
 		<h:form id="form1">
-			<p:outputLabel value="Busca por: " for="palavraBuscada" />
-			<p:inputText id="palavraBuscada"
-				value="#{buscaConteudoBean.palavraBuscada}" />
+			<p:outputLabel value="Desdobramento: " for="desdobramento" />
+			<p:inputText id="desdobramento"
+				value="#{buscaConteudistaBean.desdobramento}" />
 			<p:commandButton value="Buscar"
-				action="#{buscaConteudoBean.getConteudosComString}"
-				update="form2:tabelaConteudos" />
+				action="#{buscaConteudistaBean.getConteudistas}"
+				update="form2:tabelaConteudistas" />
 		</h:form>
 		<h:form id="form2">
 			<fieldset>
-				<p:dataTable id="tabelaConteudos"
-					value="#{buscaConteudoBean.conteudosComString}"
-					var="buscaEmConteudo" width="100%" columnClasses="centered">
+				<p:dataTable id="tabelaConteudistas"
+					value="#{buscaConteudistaBean.conteudistas}"
+					var="conteudista" width="100%" columnClasses="centered">
 
 					<p:column>
 						<f:facet name="header">Arquivo</f:facet>
-						<h:outputText value="#{buscaEmConteudo.nomeArquivo}" />
+						<h:outputText value="#{conteudista.titulo}" />
 					</p:column>
 
-					<p:column>
-						<f:facet name="header">Titulos</f:facet>
-						<h:dataTable value="#{buscaEmConteudo.titulo}" var="cadatitulo">
-							<p:column>
-					#{cadatitulo}
-				</p:column>
-						</h:dataTable>
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">QtdParalavras</f:facet>
-						<h:outputText
-							value="#{buscaEmConteudo.qtdParalavras} palavras em parágrafos." />
-					</p:column>
 				</p:dataTable>
 			</fieldset>
 		</h:form>

@@ -12,22 +12,19 @@
 	<ui:define name="conteudo">
 		<h:form>
 			<h:messages />
-			<fieldset>
-				<legend>Dados da Certificacao</legend>
-				<h:panelGrid columns="2">
-					<h:outputLabel value="Nome: " for="nome" />
-					<h:inputText id="nome"
+			<p:fieldset legend="Dados da Certificacao">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Nome: " for="nome" />
+					<p:inputText id="nome"
 						value="#{certificacaoBean.certificacao.nome}" />
-					<h:outputLabel value="Nível: " for="nivel" />
-					<h:inputText id="nivel"
-						value="#{certificacaoBean.certificacao.nivel}" />
-					<h:outputLabel value="Area: " for="area" />
-					<h:inputText id="area"
+			
+					<p:outputLabel value="Area: " for="area" />
+					<p:inputText id="area"
 						value="#{certificacaoBean.certificacao.area}" />
-					<h:commandButton value="Gravar" action="#{certificacaoBean.gravar}" />
-					<h:commandButton value="Go Homepage" action="#{certificacaoBean.goHome}" />
-				</h:panelGrid>
-			</fieldset>
+					<p:commandButton value="Gravar" action="#{certificacaoBean.gravar}" />
+					<p:commandButton value="Go Homepage" action="#{certificacaoBean.goHome}" />
+				</p:panelGrid>
+			</p:fieldset>
 
 		</h:form>
 	</ui:define>

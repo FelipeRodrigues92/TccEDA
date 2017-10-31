@@ -12,6 +12,7 @@ import br.com.ucb.tcc.modelo.Conteudista;
 import br.com.ucb.tcc.modelo.Curriculo;
 import br.com.ucb.tcc.modelo.Endereco;
 import br.com.ucb.tcc.modelo.Login;
+import br.com.ucb.tcc.modelo.UnidadeFederacao;
 import br.com.ucb.tcc.modelo.Usuario;
 
 @ManagedBean
@@ -71,14 +72,19 @@ public class ConteudistaBean {
 		login.setSenha(conteudista.getSenha());
 		new DAO<Login>(Login.class).adiciona(login);
 		new ConteudistaDAO().gravar(this.conteudista, this.endereco, this.curriculo); 
-		return "Curso?faces-redirect=true";
+		return "Login?faces-redirect=true";
 	}
 
 	public String alterar(){
 		System.out.println("Alterando conteudista" + this.conteudista.getNome());
 		System.out.println("endereco" + this.endereco.getId());
 		System.out.println("conteudista " + this.conteudista.getId());
-
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
+		
+		this.endereco.setId(conteudista.getEndereco().getId());
+		this.conteudista.setId(usuarioId);
 			new ConteudistaDAO().atualiza(this.getConteudista(), this.getEndereco());
 		return "Curso?faces-redirect=true";
 	}
