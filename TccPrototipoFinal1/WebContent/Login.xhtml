@@ -10,7 +10,7 @@
 		<h:form>
 			<p:messages />
 			<p:fieldset legend="Logins">
-				<p:panelGrid columns="3">
+				<p:panelGrid columns="3"  styleClass="noGridBorder">
 					<p:outputLabel value="Email: " for="email" />
 					<p:inputText id="email" value="#{loginBean.login.email}"
 						required="true" validatorMessage="Email inválido">

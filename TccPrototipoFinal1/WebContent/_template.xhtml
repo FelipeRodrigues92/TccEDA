@@ -5,17 +5,22 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<style>
+.noGridBorder tr, .noGridBorder td {
+	border: none !important
+}
+</style>
 <h:head />
 <h:body>
 	<div id="cabecalho">
 
-	  	<h:form rendered="#{usuarioLogado != null}">
+		<h:form rendered="#{usuarioLogado != null}">
 			<fieldset>
-			<h:commandLink  action="#{loginBean.deslogar}" >
-				<p:commandButton value="Logout" icon="fa-chevron-left" />				
-			</h:commandLink>
+				<h:commandLink action="#{loginBean.deslogar}">
+					<p:commandButton value="Logout" icon="fa-chevron-left" />
+				</h:commandLink>
 			</fieldset>
-		</h:form> 
+		</h:form>
 		<h1>
 			<ui:insert name="titulo">
 			</ui:insert>
