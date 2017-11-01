@@ -3,6 +3,7 @@ package br.com.ucb.tcc.modelo;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ public class Curriculo {
 	private Integer id;
 	
 	@JoinColumn(unique = true)
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	private Conteudista conteudista;	
 	
 	@OneToMany(mappedBy="curriculo")

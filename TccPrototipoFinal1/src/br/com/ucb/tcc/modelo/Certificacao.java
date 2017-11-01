@@ -42,16 +42,18 @@ public class Certificacao {
 		this.curriculos = curriculos;
 	}
 
+
 	public List<ConteudoApto> getConteudosAptos() {
-		return ConteudosAptos;
+		return conteudosAptos;
 	}
 
 	public void setConteudosAptos(List<ConteudoApto> conteudosAptos) {
-		ConteudosAptos = conteudosAptos;
+		this.conteudosAptos = conteudosAptos;
 	}
 
+
 	@OneToMany(mappedBy = "certificacao", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
-	private List<ConteudoApto> ConteudosAptos;
+	private List<ConteudoApto> conteudosAptos;
 	
 	
 	public Integer getId() {
