@@ -17,7 +17,7 @@ import org.hibernate.FetchMode;
 import org.hibernate.annotations.Fetch;
 
 @Entity
-public class Curriculo {
+public class Curriculo implements Comparable<Curriculo>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,20 +79,30 @@ public class Curriculo {
 		}
 
 		for (Certificacao certificacao : certificacoes) {
-			pontuacao = pontuacao + 1;
+			pontuacao = pontuacao + 10;
 		}
 
 		for (Curso curso : cursos) {
-			pontuacao = pontuacao + 1;
+			pontuacao = pontuacao + curso.getId();
 
 		}
 		if (conteudos.size() > 0) {
 			for (Conteudo conteudo : conteudos) {
-				System.out.println(conteudo.getAvaliacao() +" valor avaliacao " +pontuacao + "pont");
 				pontuacao = pontuacao + (conteudo.getAvaliacao() * 2);
 			}
 		}
 		return pontuacao;
+	}
+
+	@Override
+	public int compareTo(Curriculo outroCurriculo) {
+		 if (this.getPontuacao() > outroCurriculo.getPontuacao()) {
+	          return -1;
+	     }
+	     if (this.getPontuacao() < outroCurriculo.getPontuacao()) {
+	          return 1;
+	     }
+	     return 0;
 	}
 
 }

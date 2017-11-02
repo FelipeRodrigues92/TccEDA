@@ -7,7 +7,7 @@
 	import br.com.ucb.tcc.modelo.Endereco;
 	import br.com.ucb.tcc.dao.JPAUtil;
 	
-	public class ConteudistaDAO {
+	public class ConteudistaDAO  {
 		public void gravar(Conteudista conteudista, Endereco endereco, Curriculo curriculo) {
 		EntityManager em = new JPAUtil().getEntityManager();
 	

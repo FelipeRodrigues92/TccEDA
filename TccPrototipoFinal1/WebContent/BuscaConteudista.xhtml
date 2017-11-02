@@ -7,18 +7,20 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-	<p:outputPanel>Busca por Conteudista</p:outputPanel>
-		</ui:define>
+		<p:outputPanel>Busca por Conteudista</p:outputPanel>
+	</ui:define>
 	<ui:define name="conteudo">
-	<!-- MENU -->
+		<!-- MENU -->
 		<h:form>
 			<p:growl id="messages" />
 
 			<p:menubar>
 				<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/HomeAdm.xhtml" rendered="#{usuarioId == 1}"/>
-					<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/HomeSubAdm.xhtml" rendered="#{usuarioId == 2}"/>
+					url="http://localhost:9090/tcc/HomeAdm.xhtml"
+					rendered="#{usuarioId == 1}" />
+				<p:menuitem value="Home" icon="ui-icon-home"
+					url="http://localhost:9090/tcc/HomeSubAdm.xhtml"
+					rendered="#{usuarioId == 2}" />
 
 				<p:submenu label="Gerenciar dados" icon="ui-icon-pencil">
 					<p:menuitem value="Perfil"
@@ -31,7 +33,7 @@
 					url="http://localhost:9090/tcc/BuscaConteudista.xhtml" />
 			</p:menubar>
 		</h:form>
-		<br/>
+		<br />
 		<h:form id="form1">
 			<p:outputLabel value="Desdobramento: " for="desdobramento" />
 			<p:inputText id="desdobramento"
@@ -43,15 +45,97 @@
 		<h:form id="form2">
 			<fieldset>
 				<p:dataTable id="tabelaConteudistas"
-					value="#{buscaConteudistaBean.conteudistas}"
-					var="conteudista" width="100%" columnClasses="centered">
+					value="#{buscaConteudistaBean.conteudistas}" var="curriculo"
+					width="100%" columnClasses="centered" styleClass="noGridBorder">
 
 					<p:column>
-						<f:facet name="header">Arquivo</f:facet>
-						<h:outputText value="#{conteudista.titulo}" />
+						
+						Nome:
+						<h:outputText value="#{curriculo.conteudista.nome}" />
+
+					</p:column>
+					<p:column>
+						<h:dataTable value="#{curriculo.cursos}" var="curso"
+							styleClass="noGridBorder">
+
+							<h:column>	
+							Instituição de ensino: #{curso.instituicao}
+						
+							Curso: #{curso.name}
+						</h:column>
+						</h:dataTable>
+					</p:column>
+					<p:column>
+						<h:dataTable value="#{curriculo.certificacoes}" var="certificacao"
+							styleClass="noGridBorder">
+							<h:column>	
+								#{certificacao.nome}
+						</h:column>
+						</h:dataTable>
 					</p:column>
 
+
 				</p:dataTable>
+				<p:dataTable id="tabelaCursos" value="#{curriculo.cursos}"
+				var="curso" width="100%"  styleClass="noGridBorder">
+				<f:facet name="header">
+            			Cursos
+        			</f:facet>
+				<p:column>
+					<f:facet name="header">Curso</f:facet>
+					<h:outputText value="#{curso.nivelCurso.tipo}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{curso.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Instituição de ensino</f:facet>
+					<h:outputText value="#{curso.instituicao}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">Data de inicio</f:facet>
+					<h:outputText value="#{curso.dataInicio.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="America/Sao_Paulo" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Data de conclusão</f:facet>
+					<h:outputText value="#{curso.dataFim.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="America/Sao_Paulo" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Conteudos Aptos</f:facet>
+					<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
+						<h:column>	
+								#{conteudo.titulo}
+						</h:column>
+					</h:dataTable>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Alterar</f:facet>
+					<p:commandLink value="alterar"
+						action="#{cursoBean.carregar(curso)}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Excluir</f:facet>
+					<p:commandLink value="remover" icon="fa fa-fw fa-edit"
+						action="#{cursoBean.remover(curso)}" update="@form" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<p:commandLink action="#{cursoBean.goCurso}" update="@form">
+				<p:commandButton value="Adicionar novo curso" icon="ui-icon-plus" />
+			</p:commandLink>
+
+			<p:commandLink action="#{cursoBean.goCursoConteudo}" update="@form">
+				<p:commandButton value="Adicionar conteúdo Apto" icon="ui-icon-plus" />
+			</p:commandLink>
+				
 			</fieldset>
 		</h:form>
 	</ui:define>
