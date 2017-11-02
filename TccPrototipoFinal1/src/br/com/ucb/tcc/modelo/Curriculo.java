@@ -71,12 +71,12 @@ public class Curriculo {
 		Integer pontuacao = 0;
 		Integer showcont = 0;
 		Integer cont = 0;
-	//	List<Conteudo> conteudos = new ArrayList();
+		List<Conteudo> conteudos = this.getConteudista().getConteudos();
 
-//		if (conteudista.getConteudos().isEmpty()) {
-//		} else {
-//			conteudos = conteudista.getConteudos();
-//		}
+		if (conteudista.getConteudos().isEmpty()) {
+		} else {
+			conteudos = conteudista.getConteudos();
+		}
 
 		for (Certificacao certificacao : certificacoes) {
 			pontuacao = pontuacao + 1;
@@ -86,11 +86,12 @@ public class Curriculo {
 			pontuacao = pontuacao + 1;
 
 		}
-//		if (conteudos.size() > 0) {
-//			for (Conteudo conteudo : conteudos) {
-//				pontuacao += pontuacao + (conteudo.getAvaliacao() * 2);
-//			}
-//		}
+		if (conteudos.size() > 0) {
+			for (Conteudo conteudo : conteudos) {
+				System.out.println(conteudo.getAvaliacao() +" valor avaliacao " +pontuacao + "pont");
+				pontuacao = pontuacao + (conteudo.getAvaliacao() * 2);
+			}
+		}
 		return pontuacao;
 	}
 
