@@ -34,6 +34,7 @@ public class BuscaConteudistaBean {
 		List<ConteudoApto> conteudosAptos = new ConteudoAptoDAO().getConteudoPorDesdobramento(desdobramento); 
 		List<Curriculo> curriculosCursos = new ArrayList<Curriculo>();
 		List<Curriculo> curriculosCertificacao = new ArrayList<Curriculo>();
+		List<Curriculo> allCurriculos = new ArrayList<Curriculo>();
 		List<Integer> curriculosId = new ArrayList<Integer>();
 //		curriculosCursos.add(new ConteudoAptoDAO().getCurriculoCursoConteudo(4));
 		
@@ -49,26 +50,29 @@ public class BuscaConteudistaBean {
 				curriculosCertificacao.add(curricloCertificacao);
 			}
 		}
-//		curriculosId = curriculosCertificacao;
+		allCurriculos = curriculosCertificacao;
 		for (Curriculo curriculo : curriculosCertificacao) {
 			curriculosId.add(curriculo.getId());
 		}
-		for (Curriculo curriculo : curriculosCursos) {
+		for (Curriculo curriculo : curriculosCursos) {			
 			if(curriculosId.contains(curriculo.getId())) 
 			{
 			}else {
+				allCurriculos.add(curriculo);
 				curriculosId.add(curriculo.getId());
 			}
 		}
-		
-		List<Conteudista> conteudistas = new ArrayList<Conteudista>();
-		for (Integer id : curriculosId) {
-			System.out.println(curriculosId);
-			conteudistas.add(new CurriculoDAO().getUserPorCurriculo(id));
+		for (Curriculo curriculo : allCurriculos) {
+			System.out.println("Pontuacao: " + curriculo.getPontuacao() + " Nome : " + curriculo.getConteudista().getNome());
 		}
-		for (Conteudista conteudista : conteudistas) {
-			System.out.println(conteudista.getNome());
-		}
+//		List<Conteudista> conteudistas = new ArrayList<Conteudista>();
+//		for (Integer id : curriculosId) {
+//			System.out.println(curriculosId);
+//			conteudistas.add(new CurriculoDAO().getUserPorCurriculo(id));
+//		}
+//		for (Conteudista conteudista : conteudistas) {
+//			System.out.println(conteudista.getNome());
+//		}
 //		for (Curriculo curriculo : curriculosOrdem) {
 //			System.out.println(curriculo.getId());
 //		}

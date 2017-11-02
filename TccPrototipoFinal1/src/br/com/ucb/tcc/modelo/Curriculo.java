@@ -1,5 +1,6 @@
 package br.com.ucb.tcc.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,21 +13,26 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.FetchMode;
+import org.hibernate.annotations.Fetch;
+
 @Entity
 public class Curriculo {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@JoinColumn(unique = true)
-	@OneToOne(fetch=FetchType.EAGER)
-	private Conteudista conteudista;	
-	
-	@OneToMany(mappedBy="curriculo")
+	@OneToOne(fetch = FetchType.EAGER)
+	private Conteudista conteudista;
+
+	@OneToMany(mappedBy = "curriculo", fetch= FetchType.EAGER)
+	@Fetch(value = org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Curso> cursos;
-	
-	@ManyToMany(mappedBy = "curriculos")
+
+	@ManyToMany(mappedBy = "curriculos", fetch = FetchType.EAGER)
+	@Fetch(value = org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Certificacao> certificacoes;
 
 	public Integer getId() {
@@ -60,6 +66,32 @@ public class Curriculo {
 	public void setCertificacoes(List<Certificacao> certificacoes) {
 		this.certificacoes = certificacoes;
 	}
-	
-	
+
+	public Integer getPontuacao() {
+		Integer pontuacao = 0;
+		Integer showcont = 0;
+		Integer cont = 0;
+	//	List<Conteudo> conteudos = new ArrayList();
+
+//		if (conteudista.getConteudos().isEmpty()) {
+//		} else {
+//			conteudos = conteudista.getConteudos();
+//		}
+
+		for (Certificacao certificacao : certificacoes) {
+			pontuacao = pontuacao + 1;
+		}
+
+		for (Curso curso : cursos) {
+			pontuacao = pontuacao + 1;
+
+		}
+//		if (conteudos.size() > 0) {
+//			for (Conteudo conteudo : conteudos) {
+//				pontuacao += pontuacao + (conteudo.getAvaliacao() * 2);
+//			}
+//		}
+		return pontuacao;
+	}
+
 }
