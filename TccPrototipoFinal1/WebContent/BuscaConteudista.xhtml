@@ -48,94 +48,37 @@
 					value="#{buscaConteudistaBean.conteudistas}" var="curriculo"
 					width="100%" columnClasses="centered" styleClass="noGridBorder">
 
-					<p:column>
+					<p:column style="width='20%'">
 						
 						Nome:
 						<h:outputText value="#{curriculo.conteudista.nome}" />
 
 					</p:column>
 					<p:column>
-						<h:dataTable value="#{curriculo.cursos}" var="curso"
-							styleClass="noGridBorder">
-
-							<h:column>	
-							Instituição de ensino: #{curso.instituicao}
-						
-							Curso: #{curso.name}
-						</h:column>
-						</h:dataTable>
+						<fieldset>
+							<legend>Curso</legend>
+							<h:dataTable id="tabelaCursos" value="#{curriculo.cursos}"
+								var="curso" width="100%" styleClass="noGridBorder">
+								<p:column>
+									<h:outputText value="#{curso.nivelCurso.tipo}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{curso.name}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{curso.instituicao}" />
+								</p:column>
+								<p:column rendered="#{curso.conteudosAptos}">
+									<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
+										<h:column>	
+										#{conteudo.titulo}
+									</h:column>
+									</h:dataTable>
+								</p:column>
+							</h:dataTable>
+						</fieldset>
 					</p:column>
-					<p:column>
-						<h:dataTable value="#{curriculo.certificacoes}" var="certificacao"
-							styleClass="noGridBorder">
-							<h:column>	
-								#{certificacao.nome}
-						</h:column>
-						</h:dataTable>
-					</p:column>
-
-
 				</p:dataTable>
-				<p:dataTable id="tabelaCursos" value="#{curriculo.cursos}"
-				var="curso" width="100%"  styleClass="noGridBorder">
-				<f:facet name="header">
-            			Cursos
-        			</f:facet>
-				<p:column>
-					<f:facet name="header">Curso</f:facet>
-					<h:outputText value="#{curso.nivelCurso.tipo}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{curso.name}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Instituição de ensino</f:facet>
-					<h:outputText value="#{curso.instituicao}" />
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">Data de inicio</f:facet>
-					<h:outputText value="#{curso.dataInicio.time}">
-						<f:convertDateTime pattern="dd/MM/yyyy"
-							timeZone="America/Sao_Paulo" />
-					</h:outputText>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Data de conclusão</f:facet>
-					<h:outputText value="#{curso.dataFim.time}">
-						<f:convertDateTime pattern="dd/MM/yyyy"
-							timeZone="America/Sao_Paulo" />
-					</h:outputText>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Conteudos Aptos</f:facet>
-					<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
-						<h:column>	
-								#{conteudo.titulo}
-						</h:column>
-					</h:dataTable>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Alterar</f:facet>
-					<p:commandLink value="alterar"
-						action="#{cursoBean.carregar(curso)}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Excluir</f:facet>
-					<p:commandLink value="remover" icon="fa fa-fw fa-edit"
-						action="#{cursoBean.remover(curso)}" update="@form" />
-				</p:column>
-			</p:dataTable>
-			<br />
-			<p:commandLink action="#{cursoBean.goCurso}" update="@form">
-				<p:commandButton value="Adicionar novo curso" icon="ui-icon-plus" />
-			</p:commandLink>
-
-			<p:commandLink action="#{cursoBean.goCursoConteudo}" update="@form">
-				<p:commandButton value="Adicionar conteúdo Apto" icon="ui-icon-plus" />
-			</p:commandLink>
-				
 			</fieldset>
 		</h:form>
 	</ui:define>
