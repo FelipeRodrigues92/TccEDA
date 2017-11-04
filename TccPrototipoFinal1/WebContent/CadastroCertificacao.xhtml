@@ -18,9 +18,10 @@
 					<p:inputText id="nome"
 						value="#{certificacaoBean.certificacao.nome}" />
 			
-					<p:outputLabel value="Area: " for="area" />
-					<p:inputText id="area"
-						value="#{certificacaoBean.certificacao.area}" />
+					<p:outputLabel value="Data de conclusão: " for="dataFim" />
+					<p:calendar id="dataFim" value="#{certificacaoBean.certificacao.dataFim.time}"
+						pattern="dd-MM-yyyy" mask="true" />
+						
 					<p:commandButton value="Gravar" action="#{certificacaoBean.gravar}" />
 					<p:commandButton value="Go Homepage" action="#{certificacaoBean.goHome}" />
 				</p:panelGrid>

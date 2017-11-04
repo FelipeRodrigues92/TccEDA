@@ -39,20 +39,21 @@ public class ConteudoApto {
 		this.desdobramentos = desdobramentos;
 	}
 
-	public Curso getCurso() {
-		return curso;
+
+	public List<Curso> getCursos() {
+		return cursos;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
 
-	public Certificacao getCertificacao() {
-		return certificacao;
+	public List<Certificacao> getCertificacoes() {
+		return certificacoes;
 	}
 
-	public void setCertificacao(Certificacao certificacao) {
-		this.certificacao = certificacao;
+	public void setCertificacoes(List<Certificacao> certificacoes) {
+		this.certificacoes = certificacoes;
 	}
 
 	private String titulo;
@@ -60,9 +61,9 @@ public class ConteudoApto {
 	@ManyToMany
 	private List<Desdobramento> desdobramentos;
 	
-	@ManyToOne
-	private Curso curso;
+	@ManyToMany
+	private List<Curso> cursos;
 	
-	@ManyToOne
-	private Certificacao certificacao;
+	@ManyToMany
+	private List<Certificacao> certificacoes;
 }

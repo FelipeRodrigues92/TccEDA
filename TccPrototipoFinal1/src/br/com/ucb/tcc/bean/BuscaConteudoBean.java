@@ -16,7 +16,7 @@ import br.com.ucb.tcc.modelo.Conteudo;
 @ManagedBean
 @ViewScoped
 public class BuscaConteudoBean {
-	private String palavraBuscada = "";
+	private String palavraBuscada;
 	
 	public String getPalavraBuscada() {
 		return palavraBuscada;
@@ -29,7 +29,7 @@ public class BuscaConteudoBean {
 	public List<BuscaEmConteudo> getConteudosComString(){
 		String palavraBuscada = getPalavraBuscada();
 		if(palavraBuscada == null){
-			palavraBuscada="chamander";
+			palavraBuscada="   ";
 		}
 		List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();

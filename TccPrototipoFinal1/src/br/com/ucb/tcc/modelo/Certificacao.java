@@ -1,5 +1,6 @@
 package br.com.ucb.tcc.modelo;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Certificacao {
@@ -20,9 +23,24 @@ public class Certificacao {
 	private Integer id;
 	
 	private String nome;
-	private Integer nivel;
 	private Area area;
 	
+	@Temporal(TemporalType.DATE)
+	private Calendar dataFim = Calendar.getInstance();
+
+
+	@ManyToMany(mappedBy = "certificacoes", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private List<ConteudoApto> conteudosAptos;
+	
+	
+	public Calendar getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Calendar dataFim) {
+		this.dataFim = dataFim;
+	}
+
 	@ManyToMany
 	private List<Curriculo> curriculos;
 
@@ -52,10 +70,6 @@ public class Certificacao {
 	}
 
 
-	@OneToMany(mappedBy = "certificacao", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
-	private List<ConteudoApto> conteudosAptos;
-	
-	
 	public Integer getId() {
 		return id;
 	}
@@ -70,14 +84,6 @@ public class Certificacao {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Integer getNivel() {
-		return nivel;
-	}
-
-	public void setNivel(Integer nivel) {
-		this.nivel = nivel;
 	}
 
 	

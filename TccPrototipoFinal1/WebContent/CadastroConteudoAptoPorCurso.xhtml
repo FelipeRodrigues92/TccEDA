@@ -8,7 +8,7 @@
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
 		<p:outputPanel>Novo Conteúdo relacionado a curso</p:outputPanel>
-		</ui:define>
+	</ui:define>
 	<ui:define name="conteudo">
 		<h:form>
 			<h:messages />
@@ -17,11 +17,7 @@
 					<p:outputLabel value="Titulo: " for="titulo" />
 					<p:inputText id="titulo"
 						value="#{conteudoAptoBean.conteudoApto.titulo}" />
-					<p:outputLabel value="Curso referente:" for="curso" />
-					<p:selectOneMenu id="curso" value="#{conteudoAptoBean.cursoId}" required="true">
-						<f:selectItems value="#{conteudoAptoBean.cursos}" var="curso"
-							itemLabel="#{curso.name}" itemValue="#{curso.id}"></f:selectItems>
-					</p:selectOneMenu>
+						
 					<p:outputLabel value="Desdobramento: " for="desdobramento1" />
 					<p:inputText id="desdobramento1"
 						value="#{conteudoAptoBean.desdobramento1.descricao}" />
@@ -37,9 +33,23 @@
 					<p:outputLabel value="Desdobramento: " for="desdobramento5" />
 					<p:inputText id="desdobramento5"
 						value="#{conteudoAptoBean.desdobramento5.descricao}" />
+								<p:outputLabel value="Curso referente:" for="curso" />			
+					<p:selectManyCheckbox id="curso"
+						value="#{conteudoAptoBean.cursosId}" layout="grid" columns="3">
+						<f:selectItems value="#{conteudoAptoBean.cursos}" var="curso"
+							itemLabel="#{curso.bancoCurso.nome}" itemValue="#{curso.id}" />
+					</p:selectManyCheckbox>
+					
+						<p:outputLabel value="Certificações referentes:" for="certificacoes" />			
+					<p:selectManyCheckbox id="certificacoes"
+						value="#{conteudoAptoBean.certificacoesId}" layout="grid" columns="3">
+						<f:selectItems value="#{conteudoAptoBean.certificacoes}" var="certificacao"
+							itemLabel="#{certificacao.nome}" itemValue="#{certificacao.id}" />
+					</p:selectManyCheckbox>
 					<p:commandButton value="Gravar"
-						action="#{conteudoAptoBean.gravarPorCurso}" />
-						<p:commandButton value="Go Homepage" action="#{conteudoAptoBean.goHome}" />
+						action="#{conteudoAptoBean.gravar}" />
+					<p:commandButton value="Go Homepage"
+						action="#{conteudoAptoBean.goHome}" />
 				</p:panelGrid>
 			</p:fieldset>
 		</h:form>

@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import br.com.ucb.tcc.dao.ConteudistaDAO;
 import br.com.ucb.tcc.dao.CurriculoDAO;
 import br.com.ucb.tcc.dao.DAO;
+import br.com.ucb.tcc.modelo.BancoCurso;
 import br.com.ucb.tcc.modelo.Certificacao;
 import br.com.ucb.tcc.modelo.Conteudista;
 import br.com.ucb.tcc.modelo.Curriculo;
@@ -23,7 +24,19 @@ public class CursoBean {
 	
 	private NivelCurso nivelCurso = new NivelCurso();
 	
+	private BancoCurso bancoCurso = new BancoCurso();
+	
 	private Integer nivelCursoId;
+	
+	private Integer bancoCursoId;
+	
+	public Integer getBancoCursoId() {
+		return bancoCursoId;
+	}
+
+	public void setBancoCursoId(Integer bancoCursoId) {
+		this.bancoCursoId = bancoCursoId;
+	}
 	
 	
 	public Integer getNivelCursoId() {
@@ -54,6 +67,9 @@ public class CursoBean {
 		return new DAO<NivelCurso>(NivelCurso.class).listaTodos();
 	}
 	
+	public List<BancoCurso> getBancoCursos(){
+		return new DAO<BancoCurso>(BancoCurso.class).listaTodos();
+	}
 	public String formCertificacao() {
 		System.out.println("Chamando  o formulário do certificação");
 		return "CadastroCertificacao?faces-redirect=true";
@@ -70,12 +86,22 @@ public class CursoBean {
 //		curriculo.;
 		
 		this.nivelCurso = new DAO<NivelCurso>(NivelCurso.class).buscaPorId(nivelCursoId);
+		this.bancoCurso = new DAO<BancoCurso>(BancoCurso.class).buscaPorId(bancoCursoId);
 		
+		this.curso.setBancoCurso(bancoCurso);
 		this.curso.setCurriculo(curriculo);
 		this.curso.setNivelCurso(this.nivelCurso);
 		new DAO<Curso>(Curso.class).adiciona(this.curso); 
 		return this.goCursoConteudo();
 	}
+	public BancoCurso getBancoCurso() {
+		return bancoCurso;
+	}
+
+	public void setBancoCurso(BancoCurso bancoCurso) {
+		this.bancoCurso = bancoCurso;
+	}
+
 	public void remover(Curso curso) {
 		System.out.println("Removendo livro");
 		new DAO<Curso>(Curso.class).remove(curso);

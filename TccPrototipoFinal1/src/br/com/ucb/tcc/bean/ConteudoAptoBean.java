@@ -1,5 +1,6 @@
 package br.com.ucb.tcc.bean;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,26 @@ public class ConteudoAptoBean {
 	private Desdobramento desdobramento5 = new Desdobramento();
 
 	private Integer CursoId;
+	
+	private List<String> cursosId = new ArrayList<String>();
+	private List<String> certificacoesId = new ArrayList<String>();
+	
+	public List<String> getCursosId() {
+		return cursosId;
+	}
+
+	public void setCursosId(List<String> cursosId) {
+		this.cursosId = cursosId;
+	}
+
+	public List<String> getCertificacoesId() {
+		return certificacoesId;
+	}
+
+	public void setCertificacoesId(List<String> certificacoesId) {
+		this.certificacoesId = certificacoesId;
+	}
+
 	private Integer CertificacaoId;
 
 	public Desdobramento getDesdobramento1() {
@@ -108,7 +129,7 @@ public class ConteudoAptoBean {
 		List<Curso> cursos = new CursoDAO().getCursos(curriculo);
 		
 		for (Curso curso : cursos) {
-			System.out.println(curso.getConteudosAptos().size());
+			//System.out.println(curso.getConteudosAptos().size());
 		}
 		return new CursoDAO().getCursos(curriculo);
 	}
@@ -121,7 +142,7 @@ public class ConteudoAptoBean {
 		return new CertificacaoDAO().getCerfiticacoes(curriculo);
 	}
 
-	public String gravarPorCurso() {
+	public String gravar() {
 
 		// Buscar curriculo pelo id do usuario
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -130,8 +151,21 @@ public class ConteudoAptoBean {
 		Curriculo curriculo = (Curriculo) new CurriculoDAO().getCurriculoPorUserId(usuarioId);
 		//Curriculo curriculo = new DAO<Curriculo>(Curriculo.class).buscaPorId(1);
 		// curriculo.;
-		Curso curso = new DAO<Curso>(Curso.class).buscaPorId(CursoId);
-
+		
+		List<Curso> cursos = new ArrayList<Curso>();
+		List<Certificacao> certificacoes = new ArrayList<Certificacao>();
+		System.out.println("passou 1");
+		for (String string : this.getCursosId()) {
+			System.out.println(string);
+			Curso cursoRelacionado = new DAO<Curso>(Curso.class).buscaPorId(Integer.parseInt(string));
+			cursos.add(cursoRelacionado);
+		}
+		
+		for (String string : this.getCertificacoesId()) {
+			Certificacao certificacaoRelacionada = new DAO<Certificacao>(Certificacao.class).buscaPorId(Integer.parseInt(string));
+			certificacoes.add(certificacaoRelacionada);
+		}
+		
 		List<Desdobramento> desdobramentos = new ArrayList<Desdobramento>();
 		desdobramentos.add(desdobramento1);
 		desdobramentos.add(desdobramento2);
@@ -140,41 +174,20 @@ public class ConteudoAptoBean {
 		desdobramentos.add(desdobramento5);
 
 		this.conteudoApto.setDesdobramentos(desdobramentos);// getDesdobramentos().add(desdobramento1);//
-															// setDesdobramentos(desdobramentos);
-		this.conteudoApto.setCurso(curso);
+		this.conteudoApto.setCertificacoes(certificacoes);
+		this.conteudoApto.setCursos(cursos);
+		// setDesdobramentos(desdobramentos);
+	//	this.conteudoApto.setCurso(curso);
+		System.out.println("passou 2");
+		for (Certificacao cert : certificacoes) {
+			System.out.println(cert);
+		}
+		for (Curso curs : cursos) {
+			System.out.println(curs);
+		}
 
 		new ConteudoAptoDAO().gravar(this.conteudoApto);
 		return "CadastroCertificacao?faces-redirect=true";
-	}
-
-	public String gravarPorCertificacao() {
-
-		// Buscar curriculo pelo id do usuario
-		FacesContext context = FacesContext.getCurrentInstance();
-		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
-
-		Curriculo curriculo = (Curriculo) new CurriculoDAO().getCurriculoPorUserId(usuarioId);
-	//	Curriculo curriculo = new DAO<Curriculo>(Curriculo.class).buscaPorId(1);
-		// curriculo.;
-		Certificacao certificacao = new DAO<Certificacao>(Certificacao.class).buscaPorId(CertificacaoId);
-
-		List<Desdobramento> desdobramentos = new ArrayList<Desdobramento>();
-		desdobramentos.add(desdobramento1);
-		desdobramentos.add(desdobramento2);
-		desdobramentos.add(desdobramento3);
-		desdobramentos.add(desdobramento4);
-		desdobramentos.add(desdobramento5);
-
-		this.conteudoApto.setDesdobramentos(desdobramentos);// getDesdobramentos().add(desdobramento1);//
-															// setDesdobramentos(desdobramentos);
-		this.conteudoApto.setCertificacao(certificacao);
-
-		new ConteudoAptoDAO().gravar(this.conteudoApto);
-		return "Home?faces-redirect=true";
-		
-	}
-	public String goHome() {
-		return "Home?faces-redirect=true";
 	}
 
 }

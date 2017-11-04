@@ -1,6 +1,7 @@
 package br.com.ucb.tcc.dao;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -30,6 +32,8 @@ import br.com.ucb.tcc.modelo.UnidadeFederacao;
 import br.com.ucb.tcc.modelo.Usuario;
 import br.com.ucb.tcc.bean.ConteudistaBean;
 import br.com.ucb.tcc.dao.JPAUtil;
+import br.com.ucb.tcc.modelo.Area;
+import br.com.ucb.tcc.modelo.BancoCurso;
 import br.com.ucb.tcc.modelo.BuscaEmConteudo;
 import br.com.ucb.tcc.modelo.Certificacao;
 
@@ -38,9 +42,6 @@ public class PopulaBanco {
 	public static void main(String[] args) {
 //
 		// TODO Auto-generated method stub
-		NivelCurso tecnologo = new NivelCurso();
-		tecnologo.setTipo("Tecnólogo");
-		tecnologo.setDescricacao(" ");
 
 		NivelCurso graduacao = new NivelCurso();
 		graduacao.setTipo("Graduação");
@@ -62,7 +63,42 @@ public class PopulaBanco {
 		posdoutorado.setTipo("Pós-Doutorado");
 		posdoutorado.setDescricacao(" ");
 
+		BancoCurso bancoCurso = new BancoCurso();
+		bancoCurso.setNome("CURSO SUPERIOR DE TECNOLOGIA EM ARTILHARIA");
+		bancoCurso.setArea(Area.MILITAR);
+		
+		BancoCurso bancoCurso2 = new BancoCurso();
+		bancoCurso2.setNome("CURSO SUPERIOR DE TECNOLOGIA EM SISTEMAS DE NAVEGAÇÃO FLUVIAL ");
+		bancoCurso2.setArea(Area.INFRAESTRUTURA);
+		
+		BancoCurso bancoCurso3 = new BancoCurso();
+		bancoCurso3.setNome("CURSO SUPERIOR DE TECNOLOGIA EM GEOPROCESSAMENTO");
+		bancoCurso3.setArea(Area.INFRAESTRUTURA);
+		
+		BancoCurso bancoCurso4 = new BancoCurso();
+		bancoCurso4.setNome("CURSO SUPERIOR DE TECNOLOGIA EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS");
+		bancoCurso4.setArea(Area.INFORMACAO_COMUNICACAO);
 
+		BancoCurso bancoCurso5 = new BancoCurso();
+		bancoCurso5.setNome("CURSO SUPERIOR DE TECNOLOGIA EM BANCO DE DADOS");
+		bancoCurso5.setArea(Area.INFORMACAO_COMUNICACAO);
+
+		BancoCurso bancoCurso6 = new BancoCurso();
+		bancoCurso6.setNome("CURSO SUPERIOR DE TECNOLOGIA EM GESTÃO DA TECNOLOGIA DA INFORMAÇÃO");
+		bancoCurso6.setArea(Area.INFORMACAO_COMUNICACAO);
+		
+		BancoCurso bancoCurso7 = new BancoCurso();
+		bancoCurso7.setNome("CURSO SUPERIOR DE TECNOLOGIA EM REDES DE COMPUTADORES");
+		bancoCurso7.setArea(Area.INFORMACAO_COMUNICACAO);
+		
+		BancoCurso bancoCurso8 = new BancoCurso();
+		bancoCurso8.setNome("CURSO SUPERIOR SISTEMAS DE INFORMAÇÃO");
+		bancoCurso8.setArea(Area.INFORMACAO_COMUNICACAO);
+		
+		BancoCurso bancoCurso9 = new BancoCurso();
+		bancoCurso9.setNome("CURSO SUPERIOR DE TECNOLOGIA EM JOGOS DIGITAIS");
+		bancoCurso9.setArea(Area.INFORMACAO_COMUNICACAO);
+		
 		 Endereco endereco = new Endereco();
 		 endereco.setBairro("Leste");
 		 endereco.setCidade("Gama");
@@ -122,20 +158,29 @@ public class PopulaBanco {
 		 EntityManager em = new JPAUtil().getEntityManager();
 
 		 em.getTransaction().begin();
-		 em.persist(tecnologo);
-		 em.persist(graduacao);
-		 em.persist(posgraduacao);
-		 em.persist(mestrado);
-		 em.persist(doutorado);
-		 em.persist(posdoutorado);
-		 em.persist(endereco);
-		 em.persist(gestor);
-		 em.persist(subGestor);
-		 em.persist(conteudista);
-		 em.persist(curriculo);
-		 em.persist(conteudo);
-		 em.persist(conteudo2);
 		 
+//		 em.persist(graduacao);
+//		 em.persist(posgraduacao);
+//		 em.persist(mestrado);
+//		 em.persist(doutorado);
+//		 em.persist(posdoutorado);
+//		 em.persist(endereco);
+//		 em.persist(gestor);
+//		 em.persist(subGestor);
+//		 em.persist(conteudista);
+//		 em.persist(curriculo);
+//		 em.persist(conteudo);
+//		 em.persist(conteudo2);
+//		 em.persist(bancoCurso);
+//		 em.persist(bancoCurso2);
+//		 em.persist(bancoCurso3);
+//		 em.persist(bancoCurso4);
+//		 em.persist(bancoCurso5);
+//		 em.persist(bancoCurso6);
+//		 em.persist(bancoCurso7);
+//		 em.persist(bancoCurso8);
+//		 em.persist(bancoCurso9);
+//		 
 		// em.persist(conteudista2);
 		// em.persist(conteudista);
 		// em.persist(endereco);
@@ -143,198 +188,30 @@ public class PopulaBanco {
 		 em.getTransaction().commit();
 		 em.getTransaction().begin();
 		 em.close();
-		// Endereco end = em.find(Endereco.class, 1);
-		//
-		// Conteudista cond = em.find(Conteudista.class, 2);
-		// end.setUsuarios(Arrays.asList(cond, conteudista));
-		// em.getTransaction().commit();
-
-		// Curriculo curriculo = new DAO<Curriculo>(Curriculo.class).buscaPorId(1);
-		// List<Certificacao> resultados = new ArrayList<Certificacao>();
-		// EntityManager em = new JPAUtil().getEntityManager();
-		//
-		// // abre transacao
-		// em.getTransaction().begin();
-		//
-		// String jpql = "Select c from Curso c where c.curriculo = :pCurriculo";
-		// Query query = em.createQuery(jpql);
-		// query.setParameter("pCurriculo", curriculo);
-		// // persiste o objeto
-		// resultados = query.getResultList();
-		// // commita a transacao
-		// em.getTransaction().commit();
-		//
-		// // fecha a entity manager
-		// em.close();
-		// System.out.println("opaa");
-		// //System.out.println(end.getUsuarios().size());
-		// em.close();
-
-		// EntityManager em = new JPAUtil().getEntityManager();
-		//
-		// // abre transacao
-		// em.getTransaction().begin();
-		//
-		// String jpql = "Select c from Certificacao c join c.curriculos cu where cu =
-		// :pCurriculo";
-		// Query query = em.createQuery(jpql);
-		// query.setParameter("pCurriculo", curriculo);
-		// // persiste o objeto
-		// resultados = query.getResultList();
-		// // commita a transacao
-		// em.getTransaction().commit();
-		//
-		// // fecha a entity manager
-		// em.close();
-		//
-		//
-		// for(int i= 0; i < resultados.size(); i++ ) {
-		// System.out.println(resultados.get(i).getNome());
-		//
-		// }
-		// String palavraBuscada = "java";
-		// List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();
-		// List<BuscaEmConteudo> conteudosPalavras = new ArrayList<BuscaEmConteudo>();
-		// List<String> arquivosNomes = new ArrayList<String>();
-		// Integer palavras = 0;
-		// String str;
-		// int encontrado;
-		// int bloco = 1;
-		// String fazTitulo = "";
-		// String fazPalavra = "";
-		// int totalBloco = 0;
-		// String nomeArquivo = "Myfiles.html";
-		// arquivosNomes.add("Myfile");
-		// arquivosNomes.add("Myfile2");
-		//
-		// for (int j = 0; j < arquivosNomes.size(); j++) {
-		// encontrado = 0;
-		// List<String> tituloAchado = new ArrayList<String>();
-		// List<String> titulos = new ArrayList<String>();
-		// try {
-		// BufferedReader in = new BufferedReader(new
-		// FileReader("/Users/feliperodrigues/Documents/" + arquivosNomes.get(j) +
-		// ".html")); // declara
-		// // o
-		// // nome
-		// // do
-		// // arquivo
-		//
-		// while ((str = in.readLine()) != null) { // vasculha todo o arquivo e armazena
-		// os dados encontrado na
-		// // variável "str"
-		//
-		// for (int i = 0; i < str.length(); i++) {
-		// Character caractere = str.charAt(i); // Aqui a estring é diluida, ou seja, os
-		// caractere do
-		// // arquivo
-		// // serão jogados em vetores, para possível maniplação.
-		//
-		// fazTitulo = fazTitulo + caractere;// aqui eu criei blocos de palavras
-		// fazPalavra = fazPalavra + caractere;
-		//
-		// if (fazPalavra.contains(palavraBuscada)) {
-		// encontrado++; // que será uma espécie de contagem de quantos blocos há dentro
-		// do
-		// fazPalavra = "";
-		// }
-		//
-		// if (fazTitulo.contains("<h1>")) {
-		//
-		// fazTitulo = "";
-		// } // arquivo.
-		// if (fazTitulo.contains("</h1>")) {
-		//
-		// fazTitulo = fazTitulo.substring(0, fazTitulo.length() - 5);
-		// titulos.add(fazTitulo);
-		// fazTitulo = ""; // O bloco é zerado para não ficar um bloco acumuladtivo
-		// }
-		//
-		// }
-		// }
-		//
-		// in.close();
-		// } catch (IOException e) {
-		// System.out.println("Há a possibilidade de um arquivo com nome diferente ao
-		// regristro no banco."); // possiveis
-		// // erros
-		// // são
-		// // tratatos
-		// // aqui
-		// }
-		// BuscaEmConteudo conteudo = new BuscaEmConteudo();
-		// conteudo.setNomeArquivo(arquivosNomes.get(j));
-		// conteudo.setQtdParalavras(encontrado);
-		// if (titulos.size() > 0) {
-		// // System.out.println(titulos.size());
-		// Boolean inserirEmTitulos = false;
-		// for (int i = 0; i < titulos.size(); i++) {
-		//
-		// if (titulos.get(i).toUpperCase().contains(palavraBuscada.toUpperCase())) {
-		// inserirEmTitulos = true;
-		// tituloAchado.add(titulos.get(i));
-		// conteudo.setTitulo(tituloAchado);
-		// }
-		// }
-		// if (inserirEmTitulos == true) {
-		// conteudosTitulos.add(conteudo);
-		// } else if ((inserirEmTitulos == false) && (encontrado > 0)) {
-		// conteudosPalavras.add(conteudo);
-		// }
-		// }
-		// // System.exit(0);
-		// List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
-		// listaFinal = conteudosTitulos;
-		// for (int i = 0; i < conteudosPalavras.size(); i++) {
-		//
-		// listaFinal.add(conteudosPalavras.get(i));
-		//
-		// }
-		// // System.out.println(conteudosPalavras.size());
-		// // System.out.println(listaFinal.size());
-		// if(j == arquivosNomes.size()-1) {
-		// for (int i = 0; i < listaFinal.size(); i++) {
-		// System.out.println(listaFinal.get(i).getNomeArquivo());
-		// System.out.println(listaFinal.get(i).getTitulo());
-		// System.out.println(listaFinal.get(i).getQtdParalavras());
-		// }
-		// }
-		//
-		//// }
-		//
-		// EntityManager em = new JPAUtil().getEntityManager();
-		//
-		// String jpql = "select u from Usuario u where u.email = '123@gmail.com' amd
-		// u.senha = '123'";
-		// Query query = em.createQuery(jpql);
-		// //query.setParameter("pEmail", usuario.getEmail());
-		// //query.setParameter("pSenha", usuario.getSenha());
-		// List<Usuario> resultados = query.getResultList();
-		// em.close();
-		//
-		// System.out.println(resultados.size()>0);
-		
-		
-//		 EntityManager em = new JPAUtil().getEntityManager();
-//		 List<Certificacao> resultados = new ArrayList<Certificacao>();
-//			em.getTransaction().begin();
-//			
-//			String jpql = "Select u from Curriculo cu join cu.conteudista u ";
-//			Query query = em.createQuery(jpql);
-//		//	query.setParameter("pUsuarioId", usuarioId);
-//			// persiste o objeto
-//			resultados = query.getResultList();
-//			// commita a transacao
-//			em.getTransaction().commit();
-//
-//			
-//			for (Certificacao certificacao : resultados) {
-//				System.out.println(certificacao.getNome());
-//			}
-////			for (Usuario usuario : resultados) {
-////				System.out.println(usuario.getNome());
-////			}
-//		 		 em.close();
-//		 		
+	
+		 listDir( new File("/Users/feliperodrigues/Documents/tcc2"));
 	}
+	public static File[] listDir(File dir) {
+		Vector enc = new Vector();
+		File[] files = dir.listFiles();
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isDirectory()) {
+				//Adiciona no Vector os arquivos encontrados dentro de 'files[i]':
+				File[] recFiles = listDir(files[i]);
+				for (int j = 0; j < recFiles.length; j++) {
+					enc.addElement(recFiles[j]);
+				}
+			} else {
+				//Adiciona no Vector o arquivo encontrado dentro de 'dir':
+				enc.addElement(files[i]);
+			}
+		}
+		//Transforma um Vector em um File[]:
+		File[] encontrados = new File[enc.size()];
+		for (int i = 0; i < enc.size(); i++) {
+			encontrados[i] = (File)enc.elementAt(i);
+		}
+		return encontrados;
+	}
+	
 }

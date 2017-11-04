@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -28,14 +29,23 @@ public class Curso {
 	private Area area;
 	
 	@Temporal(TemporalType.DATE)
-	private Calendar dataInicio = Calendar.getInstance();;
-	
-	@Temporal(TemporalType.DATE)
-	private Calendar dataFim = Calendar.getInstance();;
+	private Calendar dataFim = Calendar.getInstance();
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	private NivelCurso nivelCurso;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	private BancoCurso bancoCurso;
+	
+
+	public BancoCurso getBancoCurso() {
+		return bancoCurso;
+	}
+
+	public void setBancoCurso(BancoCurso bancoCurso) {
+		this.bancoCurso = bancoCurso;
+	}
+
 	public NivelCurso getNivelCurso() {
 		return nivelCurso;
 	}
@@ -57,7 +67,7 @@ public class Curso {
 	@ManyToOne
 	private Curriculo curriculo;
 	
-	@OneToMany(mappedBy = "curso", fetch=FetchType.EAGER,cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy = "cursos", fetch=FetchType.EAGER,cascade = CascadeType.REMOVE)
 	private List<ConteudoApto> conteudosAptos;
 	
 	public Integer getId() {
@@ -82,14 +92,6 @@ public class Curso {
 
 	public void setInstituicao(String instituicao) {
 		this.instituicao = instituicao;
-	}
-
-	public Calendar getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(Calendar dataInicio) {
-		this.dataInicio = dataInicio;
 	}
 
 	public Calendar getDataFim() {

@@ -7,32 +7,37 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-			<p:outputPanel>Novo Curso</p:outputPanel>
-		</ui:define>
+		<p:outputPanel>Novo Curso</p:outputPanel>
+	</ui:define>
 	<ui:define name="conteudo">
 		<h:form>
 			<p:messages />
-			<p:fieldset legend="Dados do Curso" >
+			<p:fieldset legend="Dados do Curso">
 				<p:panelGrid columns="2" styleClass="noGridBorder">
-					<p:outputLabel value="Nome: " for="name" />
-					<p:inputText id="name" value="#{cursoBean.curso.name}" />
-					<p:outputLabel value="Instituição de ensino: " for="instituicao" />
-					<p:inputText id="instituicao"
-						value="#{cursoBean.curso.instituicao}" />
-					<p:outputLabel value="Area: " for="area" />
-					<p:inputText id="area" value="#{cursoBean.curso.area}" />
-					<p:outputLabel value="Data de Inicio: " for="dataInicio" />
-					<p:calendar id="dataInicio" value="#{cursoBean.curso.dataInicio.time}" pattern="dd-MM-yyyy" mask="true" />
-					<p:outputLabel value="Data de conclusão" for="dataFim" />
-					<p:calendar id="dataFim" value="#{cursoBean.curso.dataInicio.time}" pattern="dd-MM-yyyy" mask="true" />
-					<p:outputLabel value="Nivel de formação" for="nivelCurso" />
-					<p:selectOneMenu id ="nivelCurso" value="#{cursoBean.nivelCursoId}">
+				
+					<p:outputLabel value="Nivel de formação: " for="nivelCurso" />
+					<p:selectOneMenu id="nivelCurso" value="#{cursoBean.nivelCursoId}">
 						<f:selectItems value="#{cursoBean.nivelCursos}" var="nivelCurso"
 							itemLabel="#{nivelCurso.tipo}" itemValue="#{nivelCurso.id}"></f:selectItems>
 					</p:selectOneMenu>
-					<p:commandButton value="Gravar" action="#{cursoBean.gravar}"/>
+					
+					<p:outputLabel value="Curso: " for="bancoCurso" />
+					<p:selectOneMenu id="bancoCurso" value="#{cursoBean.bancoCursoId}">
+						<f:selectItems value="#{cursoBean.bancoCursos}" var="bancoCurso"
+							itemLabel="#{bancoCurso.nome}" itemValue="#{bancoCurso.id}"></f:selectItems>
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Instituição de ensino: " for="instituicao" />
+					<p:inputText id="instituicao"
+						value="#{cursoBean.curso.instituicao}" />
+					
+					<p:outputLabel value="Data de conclusão: " for="dataFim" />
+					<p:calendar id="dataFim" value="#{cursoBean.curso.dataFim.time}"
+						pattern="dd-MM-yyyy" mask="true" />
+
+					<p:commandButton value="Gravar" action="#{cursoBean.gravar}" />
 				</p:panelGrid>
-				</p:fieldset>
+			</p:fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>
