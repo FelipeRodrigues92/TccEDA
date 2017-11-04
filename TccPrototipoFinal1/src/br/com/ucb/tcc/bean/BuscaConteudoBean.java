@@ -1,10 +1,12 @@
 package br.com.ucb.tcc.bean;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -34,28 +36,20 @@ public class BuscaConteudoBean {
 		List<BuscaEmConteudo> listaFinal = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosTitulos = new ArrayList<BuscaEmConteudo>();
 		List<BuscaEmConteudo> conteudosPalavras = new ArrayList<BuscaEmConteudo>();
-		List<Conteudo> arquivos = new DAO<Conteudo>(Conteudo.class).listaTodos();
 		String str;
 		int encontrado;
 		String fazTitulo = "";
 		String fazPalavra = "";
-		List<String> arquivosNome = new ArrayList<String>();
 		
-		for (Conteudo conteudo : arquivos) {
-			arquivosNome.add(conteudo.getTitulo());
-		}
-		
+		 File[] files = listDir( new File("/Users/feliperodrigues/Documents/tcc2"));
 
-		for (int j = 0; j < arquivosNome.size(); j++) {
+		
+		for (File file : files) {
 			encontrado = 0;
 			List<String> tituloAchado = new ArrayList<String>();
 			List<String> titulos = new ArrayList<String>();
 			try {
-				BufferedReader in = new BufferedReader(new FileReader("/Users/feliperodrigues/Documents/" + arquivosNome.get(j) + ".html")); // declara
-																												// o
-																												// nome
-																												// do
-																												// arquivo
+				BufferedReader in = new BufferedReader(new FileReader(file.getPath().toString())); // declara
 
 				while ((str = in.readLine()) != null) { // vasculha todo o arquivo e armazena os dados encontrado na
 														// variável "str"
@@ -96,7 +90,7 @@ public class BuscaConteudoBean {
 																													// aqui
 			}
 			BuscaEmConteudo conteudo = new BuscaEmConteudo();
-			conteudo.setNomeArquivo(arquivosNome.get(j));
+			conteudo.setNomeArquivo(file.getName());
 			conteudo.setQtdParalavras(encontrado);
 			if (titulos.size() > 0) {
 				// System.out.println(titulos.size());
@@ -124,17 +118,37 @@ public class BuscaConteudoBean {
 			}
 			// System.out.println(conteudosPalavras.size());
 			// System.out.println(listaFinal.size());
-			if(j == arquivosNome.size()-1) {
-			for (int i = 0; i < listaFinal.size(); i++) {
-				System.out.println(listaFinal.get(i).getNomeArquivo());
-				System.out.println(listaFinal.get(i).getTitulo());
-				System.out.println(listaFinal.get(i).getQtdParalavras());
-			}
-			}
-
 		}
 		return listaFinal;
 	}
+
+	private File[] listDir(File dir) {
+		Vector enc = new Vector();
+		File[] files = dir.listFiles();
+		List<String> diretorios = new ArrayList<String>();
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isDirectory()) {
+				//Adiciona no Vector os arquivos encontrados dentro de 'files[i]':
+				File[] recFiles = listDir(files[i]);
+				for (int j = 0; j < recFiles.length; j++) {
+						enc.addElement(recFiles[j]);
+				}
+			} else {
+				//Adiciona no Vector o arquivo encontrado dentro de 'dir':
+				if(files[i].getName().endsWith(".html")) {
+					//System.out.println(files[i].toString());
+					enc.addElement(files[i]);
+				}
+			}
+		}
+		//Transforma um Vector em um File[]:
+		File[] encontrados = new File[enc.size()];
+		for (int i = 0; i < enc.size(); i++) {
+			encontrados[i] = (File)enc.elementAt(i);
+		}
+		return encontrados;
+	}
+	
 
 }
 

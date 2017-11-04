@@ -189,21 +189,31 @@ public class PopulaBanco {
 		 em.getTransaction().begin();
 		 em.close();
 	
-		 listDir( new File("/Users/feliperodrigues/Documents/tcc2"));
-	}
+		 
+		 List<String> paths = new ArrayList<String>();
+		 File[] files = listDir( new File("/Users/feliperodrigues/Documents/tcc2"));
+		 for (File file : files) {
+			 System.out.println(file.getPath().toString());
+			 paths.add(file.getPath());
+		}
+	}	 
 	public static File[] listDir(File dir) {
 		Vector enc = new Vector();
 		File[] files = dir.listFiles();
+		List<String> diretorios = new ArrayList<String>();
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isDirectory()) {
 				//Adiciona no Vector os arquivos encontrados dentro de 'files[i]':
 				File[] recFiles = listDir(files[i]);
 				for (int j = 0; j < recFiles.length; j++) {
-					enc.addElement(recFiles[j]);
+						enc.addElement(recFiles[j]);
 				}
 			} else {
 				//Adiciona no Vector o arquivo encontrado dentro de 'dir':
-				enc.addElement(files[i]);
+				if(files[i].getName().endsWith(".html")) {
+					//System.out.println(files[i].toString());
+					enc.addElement(files[i]);
+				}
 			}
 		}
 		//Transforma um Vector em um File[]:
@@ -213,5 +223,4 @@ public class PopulaBanco {
 		}
 		return encontrados;
 	}
-	
 }
