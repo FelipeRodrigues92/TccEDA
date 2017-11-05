@@ -7,18 +7,20 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-	<p:outputPanel>Busca por Conteudo</p:outputPanel>
-		</ui:define>
+		<p:outputPanel>Busca por Conteudo</p:outputPanel>
+	</ui:define>
 	<ui:define name="conteudo">
-	<!-- MENU -->
+		<!-- MENU -->
 		<h:form>
 			<p:growl id="messages" />
 
 			<p:menubar>
 				<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/HomeAdm.xhtml" rendered="#{usuarioId == 1}"/>
-					<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/HomeSubAdm.xhtml" rendered="#{usuarioId == 2}"/>
+					url="http://localhost:9090/tcc/HomeAdm.xhtml"
+					rendered="#{usuarioId == 1}" />
+				<p:menuitem value="Home" icon="ui-icon-home"
+					url="http://localhost:9090/tcc/HomeSubAdm.xhtml"
+					rendered="#{usuarioId == 2}" />
 
 				<p:submenu label="Gerenciar dados" icon="ui-icon-pencil">
 					<p:menuitem value="Perfil"
@@ -31,7 +33,7 @@
 					url="http://localhost:9090/tcc/BuscaConteudista.xhtml" />
 			</p:menubar>
 		</h:form>
-		<br/>
+		<br />
 		<h:form id="form1">
 			<p:outputLabel value="Busca por: " for="palavraBuscada" />
 			<p:inputText id="palavraBuscada"
@@ -44,23 +46,41 @@
 			<fieldset>
 				<p:dataTable id="tabelaConteudos"
 					value="#{buscaConteudoBean.conteudosComString}"
-					var="buscaEmConteudo" width="100%" columnClasses="centered" styleClass="noGridBorder" emptyMessage="Nenhum conteúdo achado.">
+					var="buscaEmConteudo" width="100%" columnClasses="centered"
+					styleClass="noGridBorder" emptyMessage="Nenhum Conteúdo achado.">
 
 					<p:column>
 						<f:facet name="header">Arquivo</f:facet>
-						<a href="">
-					<h:outputText value="#{buscaEmConteudo.nomeArquivo}" /></a>
+						<a href=""> <h:outputText
+								value="#{buscaEmConteudo.nomeArquivo}" /></a>
 					</p:column>
 
 					<p:column>
-						<f:facet name="header">Titulos</f:facet>
-						<h:dataTable value="#{buscaEmConteudo.titulo}" var="cadatitulo">
+						<f:facet name="header">h1</f:facet>
+						<h:dataTable value="#{buscaEmConteudo.h1}" var="h1">
 							<p:column>
-					#{cadatitulo}
-				</p:column>
+								#{h1}
+							</p:column>
 						</h:dataTable>
 					</p:column>
 
+					<p:column>
+						<f:facet name="header">h2</f:facet>
+						<h:dataTable value="#{buscaEmConteudo.h2}" var="h2">
+							<p:column>
+								#{h2}
+							</p:column>
+						</h:dataTable>
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">h1</f:facet>
+						<h:dataTable value="#{buscaEmConteudo.h3}" var="h3">
+							<p:column>
+								#{h3}
+							</p:column>
+						</h:dataTable>
+					</p:column>
 					<p:column>
 						<f:facet name="header">QtdParalavras</f:facet>
 						<h:outputText
