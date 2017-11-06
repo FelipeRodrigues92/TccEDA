@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 import java.util.List;
 import java.util.Vector;
 
@@ -133,38 +134,46 @@ public class BuscaConteudoBean {
 
 			BuscaEmConteudo conteudo = new BuscaEmConteudo();
 			conteudo.setNomeArquivo(file.getName());
-			conteudo.setQtdParalavras(encontrado);
+		//	conteudo.setQtdParalavras(encontrado);
 			boolean inserirEmTitulos = false;
+			System.out.println(contH1);
+			System.out.println(contH2);
+			System.out.println(contH3);
+			System.out.println(contH4);
+			System.out.println(contH5);
+//			conteudo.setContadorH1("0");
+//			conteudo.setContadorH2("0");
+//			conteudo.setContadorH3("0");
+//			conteudo.setContadorH4("0");
+//			conteudo.setContadorH5("0");
 			if (h1.size() > 0) {
 				// System.out.println(titulos.size());
 				conteudo.setH1(h1);
-				conteudo.setContadorH1(contH1);
+				conteudo.setContadorH1(contH1.toString());
 				inserirEmTitulos = true;
 			}
 			if (h2.size() > 0) {
 				// System.out.println(titulos.size());
 				conteudo.setH2(h2);
-				conteudo.setContadorH2(contH2);
-				inserirEmTitulos = true;
-			}
-			if (h2.size() > 0) {
-				// System.out.println(titulos.size());
-				conteudo.setH3(h3);
+				conteudo.setContadorH2(contH2.toString());
 				inserirEmTitulos = true;
 			}
 			if (h3.size() > 0) {
 				// System.out.println(titulos.size());
 				conteudo.setH3(h3);
+				conteudo.setContadorH3(contH3.toString());
 				inserirEmTitulos = true;
 			}
 			if (h4.size() > 0) {
 				// System.out.println(titulos.size());
 				conteudo.setH4(h4);
+				conteudo.setContadorH4(contH4.toString());
 				inserirEmTitulos = true;
 			}
 			if (h5.size() > 0) {
 				// System.out.println(titulos.size());
 				conteudo.setH5(h5);
+				conteudo.setContadorH5(contH5.toString());
 				inserirEmTitulos = true;
 			}
 
@@ -183,7 +192,9 @@ public class BuscaConteudoBean {
 		}
 		// System.out.println(conteudosPalavras.size());
 		// System.out.println(listaFinal.size());
-	return listaFinal;
+		java.util.Collections.sort(listaFinal);
+		
+		return listaFinal;
 
 	}
 

@@ -74,17 +74,30 @@
 					</p:column>
 					
 					<p:column>
-						<f:facet name="header">h1</f:facet>
+						<f:facet name="header">h3</f:facet>
 						<h:dataTable value="#{buscaEmConteudo.h3}" var="h3">
 							<p:column>
 								#{h3}
 							</p:column>
 						</h:dataTable>
 					</p:column>
-					<p:column>
-						<f:facet name="header">QtdParalavras</f:facet>
-						<h:outputText
-							value="#{buscaEmConteudo.qtdParalavras} palavras em parágrafos." />
+					
+						<p:column>
+						<f:facet name="header">h4</f:facet>
+						<h:dataTable value="#{buscaEmConteudo.h4}" var="h4">
+							<p:column>
+								#{h4}
+							</p:column>
+						</h:dataTable>
+					</p:column>
+					
+						<p:column>
+						<f:facet name="header">h5</f:facet>
+						<h:dataTable value="#{buscaEmConteudo.h5}" var="h5">
+							<p:column>
+								#{h5}
+							</p:column>
+						</h:dataTable>
 					</p:column>
 				</p:dataTable>
 			</fieldset>

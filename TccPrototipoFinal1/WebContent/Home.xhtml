@@ -29,14 +29,6 @@
 				<p:submenu label="Gerenciar dados" icon="ui-icon-pencil">
 					<p:menuitem value="Perfil"
 						url="http://localhost:9090/tcc/GerenciarConteudista.xhtml" />
-					<p:menuitem value="Cursos"
-						url="http://localhost:9090/tcc/GerenciarCurso.xhtml" />
-					<p:menuitem value="Certificações"
-						url="http://localhost:9090/tcc/GerenciarCertificacao.xhtml" />
-					<p:menuitem value="Conteudos/Cursos"
-						url="http://localhost:9090/tcc/GerenciarConteudoAptoPorCurso.xhtml" />
-					<p:menuitem value="Conteudos/Certificações"
-						url="http://localhost:9090/tcc/GerenciarConteudoAptoPorCertificacao.xhtml" />
 				</p:submenu>
 			</p:menubar>
 		</h:form>
@@ -74,11 +66,6 @@
 								#{conteudo.titulo}
 						</h:column>
 					</h:dataTable>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Alterar</f:facet>
-					<p:commandLink value="alterar"
-						action="#{cursoBean.carregar(curso)}" />
 				</p:column>
 				<p:column>
 					<f:facet name="header">Excluir</f:facet>
@@ -122,12 +109,6 @@
 								#{conteudo.titulo}
 						</h:column>
 					</h:dataTable>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Alterar</f:facet>
-					<p:commandLink value="alterar"
-						action="#{certificacaoBean.carregar(certificacao)}" update="@form">
-					</p:commandLink>
 				</p:column>
 				<p:column>
 					<f:facet name="header">Excluir</f:facet>
