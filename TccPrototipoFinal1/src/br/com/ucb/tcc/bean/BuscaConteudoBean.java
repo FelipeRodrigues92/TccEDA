@@ -141,11 +141,11 @@ public class BuscaConteudoBean {
 			System.out.println(contH3);
 			System.out.println(contH4);
 			System.out.println(contH5);
-//			conteudo.setContadorH1("0");
-//			conteudo.setContadorH2("0");
-//			conteudo.setContadorH3("0");
-//			conteudo.setContadorH4("0");
-//			conteudo.setContadorH5("0");
+			conteudo.setContadorH1("0");
+			conteudo.setContadorH2("0");
+			conteudo.setContadorH3("0");
+			conteudo.setContadorH4("0");
+			conteudo.setContadorH5("0");
 			if (h1.size() > 0) {
 				// System.out.println(titulos.size());
 				conteudo.setH1(h1);

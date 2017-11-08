@@ -3,6 +3,7 @@ package br.com.ucb.tcc.modelo;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ public class Desdobramento {
 	private String descricao;
 	
 	
-	@ManyToMany(mappedBy= "desdobramentos")
+	@ManyToMany(mappedBy= "desdobramentos",fetch=FetchType.EAGER)
 	private List<ConteudoApto> conteudosAptos;
 	
 	public List<ConteudoApto> getConteudosAptos() {

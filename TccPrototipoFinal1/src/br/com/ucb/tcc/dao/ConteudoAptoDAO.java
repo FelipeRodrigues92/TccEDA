@@ -101,4 +101,22 @@ public class ConteudoAptoDAO {
 		em.close();
 		return resultados;
 	}
+	public List<ConteudoApto> getConteudoCom(String conteudoNome) {
+		EntityManager em = new JPAUtil().getEntityManager();
+
+		// abre transacao
+		em.getTransaction().begin();
+
+		String jpql = "Select distinct ca from ConteudoApto ca join ca.desdobramentos d where ca.titulo like :pConteudoNome";
+		Query query = em.createQuery(jpql);
+		query.setParameter("pConteudoNome", "%" + conteudoNome + "%");
+		// persiste o objeto
+		List<ConteudoApto> resultados = query.getResultList();
+		// commita a transacao
+		em.getTransaction().commit();
+
+		// fecha a entity manager
+		em.close();
+		return resultados;
+	}
 }

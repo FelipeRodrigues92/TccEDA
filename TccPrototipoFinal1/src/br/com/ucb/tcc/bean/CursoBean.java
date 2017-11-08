@@ -92,7 +92,7 @@ public class CursoBean {
 		this.curso.setCurriculo(curriculo);
 		this.curso.setNivelCurso(this.nivelCurso);
 		new DAO<Curso>(Curso.class).adiciona(this.curso); 
-		return this.goCursoConteudo();
+		return this.goCadastroFeito();
 	}
 	public BancoCurso getBancoCurso() {
 		return bancoCurso;
@@ -113,6 +113,9 @@ public class CursoBean {
 	}
 	public String goCurso() {
 		return "CadastroCurso?faces-redirect=true";
+	}
+	public String goCadastroFeito() {
+		return "CasdatroFeito?faces-redirect=true";
 	}
 	public String goCursoConteudo() {
 		return "CadastroConteudoAptoPorCurso?faces-redirect=true";

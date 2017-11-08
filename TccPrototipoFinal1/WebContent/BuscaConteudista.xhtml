@@ -35,9 +35,9 @@
 		</h:form>
 		<br />
 		<h:form id="form1">
-			<p:outputLabel value="Desdobramento: " for="desdobramento" />
-			<p:inputText id="desdobramento"
-				value="#{buscaConteudistaBean.desdobramento}" />
+			<p:outputLabel value="Desdobramento: " for="nomeConteudo" />
+			<p:inputText id="nomeConteudo"
+				value="#{buscaConteudistaBean.nomeConteudo}" />
 			<p:commandButton value="Buscar"
 				action="#{buscaConteudistaBean.getConteudistas}"
 				update="form2:tabelaConteudistas" />
