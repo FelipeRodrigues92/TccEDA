@@ -69,25 +69,6 @@ public class BuscaConteudistaBean {
 			}
 		}
 
-		// System.out.println("primeiro for"+ conteudoApto().);
-		// if (!conteudoApto.getDesdobramentos().isEmpty()) {
-		// for (Desdobramento ConteudoDesdobramento : conteudoApto.getDesdobramentos())
-		// {
-		// System.out.println("segundo for");
-		// List<ConteudoApto> listaConteudosNovos = new
-		// ConteudoAptoDAO().getConteudoPorDesdobramento(desdobramento);
-		// for (ConteudoApto conteudoApto2 : listaConteudosNovos) {
-		// System.out.println("terceiro for");
-		// if (conteudosAptos.contains(conteudoApto2)) {
-		// listaConteudosNovos.remove(conteudoApto2);
-		// }else {
-		// conteudosAptos.add(conteudoApto2);
-		// }
-		//
-		// }
-		// }
-		// }
-
 		List<Curriculo> curriculosCursos = new ArrayList<Curriculo>();
 		List<Curriculo> curriculosCertificacao = new ArrayList<Curriculo>();
 		List<Curriculo> allCurriculos = new ArrayList<Curriculo>();

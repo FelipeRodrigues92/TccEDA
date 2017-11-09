@@ -7,18 +7,10 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-		<p:outputPanel>Home</p:outputPanel>
+		<p:outputPanel>Meus Cursos</p:outputPanel>
 	</ui:define>
 	<ui:define name="conteudo">
-		<div>
-			<h:form id="conteudistaform">
-				<p:dataList value="#{conteudistaBean.perfil}" var="conteudista"
-					type="definition" styleClass="noGridBorder">
 
-       			 Olá #{conteudista.nome}  
-			</p:dataList>
-			</h:form>
-		</div>
 		<!-- MENU -->
 		<h:form>
 			<p:growl id="messages" />
@@ -83,39 +75,12 @@
 						</h:column>
 					</h:dataTable>
 				</p:column>
-			</p:dataTable>
-			<br />
-			<hr />
-			<br />
-			<p:dataTable id="tabelaCertificacoes"
-				value="#{conteudoAptoBean.certificacoes}" var="certificacao"
-				styleClass="noGridBorder"
-				emptyMessage="Nenhuma certificação encontrada.">
-				<f:facet name="header">
-          	  			Certificações
-        				</f:facet>
 				<p:column>
-					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{certificacao.nome}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Data de conclusão</f:facet>
-					<h:outputText value="#{certificacao.dataFim.time}">
-						<f:convertDateTime pattern="dd/MM/yyyy"
-							timeZone="America/Sao_Paulo" />
-					</h:outputText>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Conteudos Aptos</f:facet>
-					<h:dataTable value="#{certificacao.conteudosAptos}" var="conteudo">
-						<h:column>
-								#{conteudo.titulo}
-						</h:column>
-					</h:dataTable>
+					<f:facet name="header">Excluir</f:facet>
+					<p:commandLink value="remover" icon="fa fa-fw fa-edit"
+						action="#{cursoBean.remover(curso)}" update="@form" />
 				</p:column>
 			</p:dataTable>
-			<hr />
-			<br />
 		</h:form>
 	</ui:define>
 </ui:composition>

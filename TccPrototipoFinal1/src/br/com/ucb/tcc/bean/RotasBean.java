@@ -6,19 +6,19 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class RotasBean {
-	public String goHome() {
+	public static String goHome() {
 		return "Home?faces-redirect=true";
 	}
-	public String goCertificacao() {
+	public static String goCertificacao() {
 		return "CadastroCertificacao?faces-redirect=true";
 	}
-	public String goCurso() {
+	public static String goCurso() {
 		return "CadastroCurso?faces-redirect=true";
 	}
-	public String goCadastroFeito() {
-		return "Encaminhamento?faces-redirect=true";
+	public static String goCadastroFeito() {
+		return "CadastroFeito?faces-redirect=true";
 	}
-	public String goConteudo() {
+	public static String goConteudo() {
 		return "CadastroConteudoAptoPorCurso?faces-redirect=true";
 	}
 }

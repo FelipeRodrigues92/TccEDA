@@ -7,18 +7,10 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-		<p:outputPanel>Home</p:outputPanel>
+		<p:outputPanel>Minhas Certificações</p:outputPanel>
 	</ui:define>
 	<ui:define name="conteudo">
-		<div>
-			<h:form id="conteudistaform">
-				<p:dataList value="#{conteudistaBean.perfil}" var="conteudista"
-					type="definition" styleClass="noGridBorder">
 
-       			 Olá #{conteudista.nome}  
-			</p:dataList>
-			</h:form>
-		</div>
 		<!-- MENU -->
 		<h:form>
 			<p:growl id="messages" />
@@ -50,43 +42,6 @@
 		</h:form>
 		<br />
 		<h:form>
-			<p:dataTable id="tabelaCursos" value="#{conteudoAptoBean.cursos}"
-				var="curso" width="100%" styleClass="noGridBorder"
-				emptyMessage="Nenhum curso encontrado.">
-				<f:facet name="header">
-            			Cursos
-        			</f:facet>
-				<p:column>
-					<f:facet name="header">Nivel</f:facet>
-					<h:outputText value="#{curso.nivelCurso.tipo}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Curso</f:facet>
-					<h:outputText value="#{curso.bancoCurso.nome}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Instituição de ensino</f:facet>
-					<h:outputText value="#{curso.instituicao}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Data de conclusão</f:facet>
-					<h:outputText value="#{curso.dataFim.time}">
-						<f:convertDateTime pattern="dd/MM/yyyy"
-							timeZone="America/Sao_Paulo" />
-					</h:outputText>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Conteudos Aptos</f:facet>
-					<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
-						<h:column>	
-								#{conteudo.titulo}
-						</h:column>
-					</h:dataTable>
-				</p:column>
-			</p:dataTable>
-			<br />
-			<hr />
-			<br />
 			<p:dataTable id="tabelaCertificacoes"
 				value="#{conteudoAptoBean.certificacoes}" var="certificacao"
 				styleClass="noGridBorder"
@@ -113,9 +68,13 @@
 						</h:column>
 					</h:dataTable>
 				</p:column>
+				<p:column>
+					<f:facet name="header">Excluir</f:facet>
+					<p:commandLink value="remover"
+						action="#{certificacaoBean.remover(certificacao)}" update="@form">
+					</p:commandLink>
+				</p:column>
 			</p:dataTable>
-			<hr />
-			<br />
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -56,28 +56,37 @@
 					</p:column>
 
 					<p:column>
-						<f:facet name="header">h1</f:facet>
+						<f:facet name="header">Conteúdo</f:facet>
 						<h:dataTable value="#{buscaEmConteudo.h1}" var="h1">
 							<p:column>
 								#{h1}
+							</p:column>
+							<p:column>
+							#{buscaEmConteudo.getRelevanciaH1()}%
 							</p:column>
 						</h:dataTable>
 					</p:column>
 
 					<p:column>
-						<f:facet name="header">h2</f:facet>
+						<f:facet name="header">Título</f:facet>
 						<h:dataTable value="#{buscaEmConteudo.h2}" var="h2">
 							<p:column>
-								#{h2}
+								#{h2} 
+							</p:column>
+							<p:column>
+							#{buscaEmConteudo.getRelevanciaH2()}%
 							</p:column>
 						</h:dataTable>
 					</p:column>
 					
 					<p:column>
-						<f:facet name="header">h3</f:facet>
+						<f:facet name="header">subtítulo</f:facet>
 						<h:dataTable value="#{buscaEmConteudo.h3}" var="h3">
 							<p:column>
-								#{h3}
+								#{h3} 
+							</p:column>
+							<p:column>
+							#{buscaEmConteudo.getRelevanciaH3()}%
 							</p:column>
 						</h:dataTable>
 					</p:column>

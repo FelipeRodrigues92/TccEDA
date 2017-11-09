@@ -126,7 +126,25 @@ public class BuscaEmConteudo implements Comparable<BuscaEmConteudo> {
 	public void setContadorH5(String contadorH5) {
 		this.contadorH5 = contadorH5;
 	}
-
+	
+	public int getRelevanciaH1() {
+		if(this.h1.isEmpty()) {
+			return 0;
+		}
+		return 100;
+	}
+	public int getRelevanciaH2() {
+		if(this.h2.isEmpty()) {
+			return 0;
+		}
+		return 50;
+	}
+	public int getRelevanciaH3() {
+		if(this.h3.isEmpty()) {
+			return 0;
+		}
+		return 30;
+	}
 
 	@Override
 	public int compareTo(BuscaEmConteudo outroConteudo) {

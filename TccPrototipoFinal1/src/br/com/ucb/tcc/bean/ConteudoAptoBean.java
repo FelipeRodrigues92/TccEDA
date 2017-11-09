@@ -187,7 +187,7 @@ public class ConteudoAptoBean {
 		}
 
 		new ConteudoAptoDAO().gravar(this.conteudoApto);
-		return "CadastroCertificacao?faces-redirect=true";
+		return RotasBean.goHome();
 	}
 
 }

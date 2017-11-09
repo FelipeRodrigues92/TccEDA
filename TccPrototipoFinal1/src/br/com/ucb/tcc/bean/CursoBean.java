@@ -70,20 +70,14 @@ public class CursoBean {
 	public List<BancoCurso> getBancoCursos(){
 		return new DAO<BancoCurso>(BancoCurso.class).listaTodos();
 	}
-	public String formCertificacao() {
-		System.out.println("Chamando  o formulário do certificação");
-		return "CadastroCertificacao?faces-redirect=true";
-	}
 	
 	public String gravar(){
-		System.out.println("Gravando conteudista" + this.curso.getName());
 		FacesContext context = FacesContext.getCurrentInstance();
 		Integer usuarioId = (Integer) context.getExternalContext().getSessionMap().get("usuarioId");
 
 		Curriculo curriculo = new CurriculoDAO().getCurriculoPorUserId(usuarioId);
 		System.out.println(usuarioId);
 		System.out.println(curriculo.getId());
-//		curriculo.;
 		
 		this.nivelCurso = new DAO<NivelCurso>(NivelCurso.class).buscaPorId(nivelCursoId);
 		this.bancoCurso = new DAO<BancoCurso>(BancoCurso.class).buscaPorId(bancoCursoId);
@@ -92,7 +86,7 @@ public class CursoBean {
 		this.curso.setCurriculo(curriculo);
 		this.curso.setNivelCurso(this.nivelCurso);
 		new DAO<Curso>(Curso.class).adiciona(this.curso); 
-		return this.goCadastroFeito();
+		return  RotasBean.goCadastroFeito();
 	}
 	public BancoCurso getBancoCurso() {
 		return bancoCurso;
@@ -110,14 +104,5 @@ public class CursoBean {
 		System.out.println("Chamando  o formulário do certificação");
 		this.curso = curso;
 		return "CadastroCurso?faces-redirect=true";
-	}
-	public String goCurso() {
-		return "CadastroCurso?faces-redirect=true";
-	}
-	public String goCadastroFeito() {
-		return "CasdatroFeito?faces-redirect=true";
-	}
-	public String goCursoConteudo() {
-		return "CadastroConteudoAptoPorCurso?faces-redirect=true";
 	}
 }

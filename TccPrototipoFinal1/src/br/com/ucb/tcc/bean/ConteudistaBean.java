@@ -86,7 +86,7 @@ public class ConteudistaBean {
 		this.endereco.setId(conteudista.getEndereco().getId());
 		this.conteudista.setId(usuarioId);
 			new ConteudistaDAO().atualiza(this.getConteudista(), this.getEndereco());
-		return "Curso?faces-redirect=true";
+		return "Home?faces-redirect=true";
 	}
 	public Boolean isADM(){
 		FacesContext context = FacesContext.getCurrentInstance();
