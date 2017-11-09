@@ -83,12 +83,12 @@ public class Curriculo implements Comparable<Curriculo>{
 		}
 
 		for (Curso curso : cursos) {
-			pontuacao = pontuacao + curso.getId();
+			pontuacao = pontuacao + (curso.getId() * 10);
 
 		}
 		if (conteudos.size() > 0) {
 			for (Conteudo conteudo : conteudos) {
-				pontuacao = pontuacao + (conteudo.getAvaliacao() * 2);
+				pontuacao = pontuacao + (conteudo.getAvaliacao());
 			}
 		}
 		return pontuacao;

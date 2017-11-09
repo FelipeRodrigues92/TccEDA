@@ -43,46 +43,49 @@
 				update="form2:tabelaConteudistas" />
 		</h:form>
 		<h:form id="form2">
-		
-				<p:dataTable id="tabelaConteudistas"
-					value="#{buscaConteudistaBean.conteudistas}" var="curriculo"
-					width="100%" columnClasses="centered" styleClass="noGridBorder" emptyMessage="Não foi encontrado nenhum conteudista.">
-					<p:column>
+
+			<p:dataTable id="tabelaConteudistas"
+				value="#{buscaConteudistaBean.conteudistas}" var="curriculo"
+				width="100%" columnClasses="centered" styleClass="noGridBorder"
+				emptyMessage="Não foi encontrado nenhum conteudista.">
+				<p:column>
 					<f:facet name="header"></f:facet>
-					
-					<h:outputText value="#{curriculo.conteudista.nome}" /> - <h:outputText value="#{curriculo.conteudista.CPF}" />
-					
-						<h:dataTable id="tabelaCursos" value="#{curriculo.cursos}"
-							var="curso" width="100%" styleClass="noGridBorder">
-							<p:column>
-								 (<h:outputText value="#{curso.nivelCurso.tipo}" />) - <h:outputText value="#{curso.bancoCurso.nome}" />
-							</p:column>
-							<p:column>
-								Instituição de ensino: <h:outputText value="#{curso.instituicao}" />
-							</p:column>
-							<p:column rendered="#{curso.conteudosAptos}">
-								<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
-									<h:column>	
+
+					<h:outputText value="#{curriculo.conteudista.nome}" /> - <h:outputText
+						value="#{curriculo.conteudista.CPF}" />
+
+					<h:dataTable id="tabelaCursos" value="#{curriculo.cursos}"
+						var="curso" width="100%" styleClass="noGridBorder">
+						<p:column>
+								 (<h:outputText value="#{curso.nivelCurso.tipo}" />) - <h:outputText
+								value="#{curso.bancoCurso.nome}" />
+						</p:column>
+						<p:column>
+							<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
+								<h:column>	
 									Conteúdo apto:	#{conteudo.titulo}
 									</h:column>
-								</h:dataTable>
-							</p:column>
-						</h:dataTable>
-				
-						<h:dataTable id="tabelaCertificacoes"
-							value="#{curriculo.certificacoes}" var="certificacao"
-							width="100%" styleClass="noGridBorder">
-							<p:column>
+							</h:dataTable>
+						</p:column>
+						<p:column>
+						 <h:outputText value="#{curriculo.getPontuacao()}" />
+						</p:column>
+					</h:dataTable>
+
+					<h:dataTable id="tabelaCertificacoes"
+						value="#{curriculo.certificacoes}" var="certificacao" width="100%"
+						styleClass="noGridBorder">
+						<p:column>
 								Certificação: <h:outputText value="#{certificacao.nome}" />
-							</p:column>
-							<p:column>
-								<h:outputText value="Nenhum dados achado."
-									rendered="#{certificacao == ' '}" />
-							</p:column>
-						</h:dataTable>
-					</p:column>
-				
-				</p:dataTable>
+						</p:column>
+						<p:column>
+							<h:outputText value="Nenhum dados achado."
+								rendered="#{certificacao == ' '}" />
+						</p:column>
+					</h:dataTable>
+				</p:column>
+
+			</p:dataTable>
 		</h:form>
 	</ui:define>
 </ui:composition>
