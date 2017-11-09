@@ -19,6 +19,6 @@ public class RotasBean {
 		return "CadastroFeito?faces-redirect=true";
 	}
 	public static String goConteudo() {
-		return "CadastroConteudoAptoPorCurso?faces-redirect=true";
+		return "CadastroConteudoApto?faces-redirect=true";
 	}
 }

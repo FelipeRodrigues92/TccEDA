@@ -7,7 +7,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-		<p:outputPanel>Novo Conteúdo relacionado a curso</p:outputPanel>
+		<p:outputPanel>Novo Conteúdo apto a se desenvolver</p:outputPanel>
 	</ui:define>
 	<ui:define name="conteudo">
 		<h:form>
@@ -48,8 +48,8 @@
 					</p:selectManyCheckbox>
 					<p:commandButton value="Gravar"
 						action="#{conteudoAptoBean.gravar}" />
-					<p:commandButton value="Go Homepage"
-						action="#{conteudoAptoBean.goHome}" />
+					<p:commandButton value="Ir Homepage"
+						action="#{rotasBean.goHome}" />
 				</p:panelGrid>
 			</p:fieldset>
 		</h:form>

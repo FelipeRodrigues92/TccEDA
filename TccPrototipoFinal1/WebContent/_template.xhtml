@@ -13,14 +13,22 @@
 <h:head />
 <h:body>
 	<div id="cabecalho">
-
-		<h:form rendered="#{usuarioLogado != null}">
-			<fieldset>
-				<h:commandLink action="#{loginBean.deslogar}">
-					<p:commandButton value="Logout" icon="fa-chevron-left" />
-				</h:commandLink>
-			</fieldset>
-		</h:form>
+		<p:panelGrid columns="1" style="width: 100%;">
+			
+					<h:form rendered="#{usuarioLogado != null}" >
+						<h:commandLink action="#{loginBean.deslogar}">
+							<p:commandButton value="Logout" icon="fa-chevron-left" />
+						</h:commandLink>
+					<h:form >
+							<p:themeSwitcher id="basic" style="width:135px"
+								value="#{temaBean.tema}" >
+								<f:selectItem itemLabel="Choose Theme" itemValue="" />
+								<f:selectItems value="#{temaBean.temas}" var="tema" itemLabel="#{tema}" itemValue="#{tema}" />
+								<f:ajax />
+							</p:themeSwitcher>
+						</h:form>
+					</h:form>
+		</p:panelGrid>
 		<h1>
 			<ui:insert name="titulo">
 			</ui:insert>
