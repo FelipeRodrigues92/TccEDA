@@ -134,6 +134,7 @@ public class BuscaConteudoBean {
 
 			BuscaEmConteudo conteudo = new BuscaEmConteudo();
 			conteudo.setNomeArquivo(file.getName());
+			conteudo.setDiretorio(file.getPath().toString());
 		//	conteudo.setQtdParalavras(encontrado);
 			boolean inserirEmTitulos = false;
 			System.out.println(contH1);
@@ -146,6 +147,7 @@ public class BuscaConteudoBean {
 			conteudo.setContadorH3("0");
 			conteudo.setContadorH4("0");
 			conteudo.setContadorH5("0");
+			
 			if (h1.size() > 0) {
 				// System.out.println(titulos.size());
 				conteudo.setH1(h1);

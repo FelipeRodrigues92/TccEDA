@@ -21,4 +21,11 @@ public class RotasBean {
 	public static String goConteudo() {
 		return "CadastroConteudoApto?faces-redirect=true";
 	}
+	public static String goLogin() {
+		return "Login?faces-redirect=true";
+	}
+	public static String goGerenciarConteudista() {
+		return "GerenciarConteudista?faces-redirect=true";
+	}
 }
+

@@ -7,6 +7,16 @@ public class BuscaEmConteudo implements Comparable<BuscaEmConteudo> {
 	
 	
 	private String nomeArquivo;
+	private String diretorio;
+	public String getDiretorio() {
+		return diretorio;
+	}
+
+
+	public void setDiretorio(String diretorio) {
+		this.diretorio = diretorio;
+	}
+
 	private List<String> h1;
 	private List<String> h2;
 	private List<String> h3;

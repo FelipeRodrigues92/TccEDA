@@ -42,11 +42,7 @@
 		</h:form>
 
 		<br />
-		<!-- Conteudista -->
-		<h:form>
-			<p:commandButton value="Carregar meus dados"
-				action="#{conteudistaBean.carregarConteudista}" update="formDeUser" />
-		</h:form>
+		<!-- Conteudista -->	
 		<h:form id="formDeUser" rendered="#{usuarioId > 2}">
 			<p:messages />
 				<p:panelGrid columns="2" styleClass="noGridBorder">

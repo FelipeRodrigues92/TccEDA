@@ -67,9 +67,6 @@
 									</h:column>
 							</h:dataTable>
 						</p:column>
-						<p:column>
-						 <h:outputText value="#{curriculo.getPontuacao()}" />
-						</p:column>
 					</h:dataTable>
 
 					<h:dataTable id="tabelaCertificacoes"
@@ -84,7 +81,9 @@
 						</p:column>
 					</h:dataTable>
 				</p:column>
-
+				<p:column>
+					Pontuação : <h:outputText value="#{curriculo.getPontuacao()}" />
+				</p:column>
 			</p:dataTable>
 		</h:form>
 	</ui:define>

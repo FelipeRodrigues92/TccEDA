@@ -90,6 +90,14 @@
 							</p:column>
 						</h:dataTable>
 					</p:column>
+					<p:column>
+						<f:facet name="header">Diretório</f:facet>
+						<h:dataTable value="#{buscaEmConteudo.diretorio}" var="diretorio">
+							<p:column>
+							#{diretorio}
+							</p:column>
+						</h:dataTable>
+					</p:column>
 					
 				</p:dataTable>
 			</fieldset>
