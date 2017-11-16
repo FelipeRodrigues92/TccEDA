@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="_templateForLogin.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form>
+			<p:messages />
+			<p:fieldset legend="Solicitação de cadastro Concluído!">
+				<p:panelGrid columns="3"  styleClass="noGridBorder">
+					<p:outputLabel value="Cheque seu email para ter a confirmação de acesso ao sistema." />
+					
+				</p:panelGrid>
+			</p:fieldset>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

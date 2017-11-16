@@ -7,48 +7,48 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-		<p:outputPanel>Perfil</p:outputPanel>
+		<div >
+			<p:outputPanel>Perfil</p:outputPanel>
+		</div>
 	</ui:define>
 	<ui:define name="conteudo">
 		<!-- MENU -->
 		<h:form>
 			<p:growl id="messages" />
-
 			<p:menubar>
 				<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/HomeAdm.xhtml"
-					rendered="#{usuarioId == 1}" />
-				<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/HomeSubAdm.xhtml"
-					rendered="#{usuarioId == 2}" />
+					url="http://localhost:9090/tcc/Home.xhtml" />
 
-				<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/Home.xhtml"
-					rendered="#{usuarioId >= 2}" />
-
-				<p:submenu label="Gerenciar dados" icon="ui-icon-pencil">
-					<p:menuitem value="Perfil"
+				<p:submenu label="Perfil" icon="ui-icon-pencil">
+					<p:menuitem value="Alterar Dados"
 						url="http://localhost:9090/tcc/GerenciarConteudista.xhtml" />
-					<p:menuitem value="Cursos"
-						url="http://localhost:9090/tcc/GerenciarCurso.xhtml" />
-					<p:menuitem value="Certificações"
-						url="http://localhost:9090/tcc/GerenciarCertificacao.xhtml" />
-					<p:menuitem value="Conteudos/Cursos"
-						url="http://localhost:9090/tcc/GerenciarConteudoAptoPorCurso.xhtml" />
-					<p:menuitem value="Conteudos/Certificações"
-						url="http://localhost:9090/tcc/GerenciarConteudoAptoPorCertificacao.xhtml" />
+				</p:submenu>
+				<p:submenu label="Formação" icon="ui-icon-pencil">
+					<p:menuitem value="Novo curso"
+						url="http://localhost:9090/tcc/CadastroCurso.xhtml" />
+					<p:menuitem value="Meus cursos"
+						url="http://localhost:9090/tcc/ShowCursos.xhtml" />
+				</p:submenu>
+				<p:submenu label="Certificação" icon="ui-icon-pencil">
+					<p:menuitem value="Nova Certificação"
+						url="http://localhost:9090/tcc/CadastroCertificacao.xhtml" />
+					<p:menuitem value="Minhas certificações"
+						url="http://localhost:9090/tcc/ShowCertificacao.xhtml" />
+				</p:submenu>
+				<p:submenu label="Conteudos a desenvolver " icon="ui-icon-pencil"
+					rendered="#{conteudoAptoBean.cursos.size() > 0}">
+					<p:menuitem value="Novo Conteudo apto"
+						url="http://localhost:9090/tcc/CadastroConteudoApto.xhtml" />
 				</p:submenu>
 			</p:menubar>
 		</h:form>
 
 		<br />
-		<!-- Conteudista -->	
-		<h:form id="formDeUser" rendered="#{usuarioId > 2}">
-			<p:messages />
+		<!-- Conteudista -->
+		<p:fieldset legend="Dados de usuário">
+			<h:form id="formDeUser" rendered="#{usuarioId > 2}">
+				<p:messages />
 				<p:panelGrid columns="2" styleClass="noGridBorder">
-					<p:outputLabel value="Id:" for="nome" />
-					<p:outputLabel value="#{conteudistaBean.conteudista.id} "
-						for="nome" />
 					<p:outputLabel value="Nome: " for="nome" />
 					<p:inputText id="nome" value="#{conteudistaBean.conteudista.nome}" />
 					<p:outputLabel value="CPF: " for="cpf" />
@@ -84,10 +84,8 @@
 					<p:inputMask id="telefone"
 						value="#{conteudistaBean.conteudista.telefone}"
 						mask="(99) 99999-9999" />
-					<p:outputLabel value="ENDERECOId:" for="nome" />
-					<p:outputLabel value="#{conteudistaBean.conteudista.endereco.id} "/>
 					<p:outputLabel for="uf" value="UF:" />
-					<p:selectOneMenu id="uf" value="#{conteudistaBean.endereco.UF}"
+					<p:selectOneMenu id="uf" value="#{conteudistaBean.conteudista.endereco.UF}"
 						style="width:125px">
 						<f:selectItem itemLabel="AC" itemValue="AC" />
 						<f:selectItem itemLabel="AL" itemValue="AL" />
@@ -118,20 +116,20 @@
 						<f:selectItem itemLabel="TO" itemValue="TO" />
 					</p:selectOneMenu>
 					<p:outputLabel value="Cidade: " for="cidade" />
-					<p:inputText id="cidade" value="#{conteudistaBean.endereco.cidade}" />
+					<p:inputText id="cidade" value="#{conteudistaBean.conteudista.endereco.cidade}" />
 					<p:outputLabel value="Bairro: " for="bairro" />
-					<p:inputText id="bairro" value="#{conteudistaBean.endereco.bairro}" />
+					<p:inputText id="bairro" value="#{conteudistaBean.conteudista.endereco.bairro}" />
 					<p:outputLabel value="Complemento: " for="complemento" />
 					<p:inputText id="complemento"
 						value="#{conteudistaBean.endereco.complemento}" />
 					<p:outputLabel value="CEP: " for="cep" />
-					<p:inputMask id="cep" value="#{conteudistaBean.endereco.cep}"
+					<p:inputMask id="cep" value="#{conteudistaBean.conteudista.endereco.cep}"
 						mask="99-999999" />
-					<p:commandButton value="Atualizar" action="#{conteudistaBean.alterar}"
-						process="@form" update="@form" />
+					<p:commandButton value="Atualizar"
+						action="#{conteudistaBean.alterar}" process="@form" update="@form" />
 				</p:panelGrid>
-		</h:form>
-
+			</h:form>
+		</p:fieldset>
 
 
 	</ui:define>

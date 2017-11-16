@@ -85,20 +85,6 @@ public class ConteudistaBean {
 
 	}
 
-	public String gravar() {
-
-		
-		this.conteudista.setEndereco(this.endereco);
-		this.curriculo.setConteudista(this.conteudista);
-		Login login = new Login();
-		login.setEmail(conteudista.getEmail());
-		login.setSenha(conteudista.getSenha());
-		new DAO<Login>(Login.class).adiciona(login);
-		new ConteudistaDAO().gravar(this.conteudista, this.endereco, this.curriculo);
-		GerenciadorEmail.enviarEmailConfirmacaoCadastro(conteudista.getEmail(), conteudista.getSenha());
-		return RotasBean.goLogin();
-	}
-
 	public String alterar() {
 		System.out.println("Alterando conteudista" + this.conteudista.getNome());
 		System.out.println("endereco" + this.endereco.getId());

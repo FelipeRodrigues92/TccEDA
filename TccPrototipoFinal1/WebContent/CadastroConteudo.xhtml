@@ -7,34 +7,32 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-			<p:outputPanel>Novo Conteudo</p:outputPanel>
+				<p:outputPanel>Novo Conteudo</p:outputPanel>
 		</ui:define>
 	<ui:define name="conteudo">
 		<h:form>
-			<h:messages />
-			<fieldset>
-				<legend>Dados do Conteudo</legend>
-				<h:panelGrid columns="2" styleClass="noGridBorder">
-					<h:outputLabel value="Título: " for="titulo" />
-					<h:inputText id="titulo" value="#{conteudoBean.conteudo.titulo}" />
-					<h:outputLabel value="Descrição: " for="descricao" />
-					<h:inputText id="descricao" value="#{conteudoBean.conteudo.descricao}" />
+			<p:messages />
+			<p:fieldset legend="Dados do conteúdo">
+				<p:panelGrid columns="2" styleClass="noGridBorder">
+					<p:outputLabel value="Título: " for="titulo" />
+					<p:inputText id="titulo" value="#{conteudoBean.conteudo.titulo}" />
+					<p:outputLabel value="Descrição: " for="descricao" />
+					<p:inputText id="descricao" value="#{conteudoBean.conteudo.descricao}" />
 					<h:outputLabel value="Nota: " for="avaliacao" />
 					<h:inputText id="conteudista" value="#{conteudoBean.conteudo.avaliacao}" >
 					<f:passThroughAttribute name="type" value="number"></f:passThroughAttribute>
 					</h:inputText>
 					
 					<h:outputLabel value="Conteudista:" for="conteudista" />
-					<h:selectOneMenu value="#{conteudoBean.conteudistaId}">
+					<p:selectOneMenu value="#{conteudoBean.conteudistaId}">
 						<f:selectItems value="#{conteudoBean.conteudistas}"
 							var="conteudista" itemLabel="#{conteudista.nome}"
 							itemValue="#{conteudista.id}"></f:selectItems>
-					</h:selectOneMenu>
-					<h:commandButton value="Gravar" action="#{conteudoBean.gravar}" />
-				</h:panelGrid>
-			</fieldset>
-			<h:commandLink value="Next >" action="#{conteudistaBean.formCurso}"
-				immediate="true" />
+					</p:selectOneMenu>
+					<p:commandButton value="Gravar" action="#{conteudoBean.gravar}" />
+					<p:commandButton value="Ir Home" action="#{rotasBean.goSubHome}" />
+				</p:panelGrid>
+			</p:fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>

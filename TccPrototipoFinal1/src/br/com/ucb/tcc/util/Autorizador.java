@@ -24,11 +24,11 @@ public class Autorizador implements PhaseListener{
 		
 		if("/Login.xhtml".equals(nomePagina)) {			
 			return;
-		}else if("/CadastroConteudista.xhtml".equals(nomePagina)) {
-			return;
 		}else if("/CadastroSimples.xhtml".equals(nomePagina)) {
 			return;
 		}else if("/BuscaConteudo.xhtml".equals(nomePagina)) {
+			return;
+		}else if("/ShowAvisoCadastro.xhtml".equals(nomePagina)) {
 			return;
 		}else if("/CadrastaConteudo.xhtml".equals(nomePagina)) {
 			return;

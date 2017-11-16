@@ -12,14 +12,14 @@
 	<ui:define name="conteudo">
 
 		<!-- MENU -->
-		<h:form>
+		<h:form style="width:101%;">
 			<p:growl id="messages" />
 			<p:menubar>
 				<p:menuitem value="Home" icon="ui-icon-home"
 					url="http://localhost:9090/tcc/Home.xhtml" />
 
-				<p:submenu label="Meus dados" icon="ui-icon-pencil">
-					<p:menuitem value="Perfil"
+				<p:submenu label="Perfil" icon="ui-icon-pencil">
+					<p:menuitem value="Alterar Dados"
 						url="http://localhost:9090/tcc/GerenciarConteudista.xhtml" />
 				</p:submenu>
 				<p:submenu label="Formação" icon="ui-icon-pencil">
@@ -34,7 +34,7 @@
 					<p:menuitem value="Minhas certificações"
 						url="http://localhost:9090/tcc/ShowCertificacao.xhtml" />
 				</p:submenu>
-				<p:submenu label="Conteudos a desenvolver " icon="ui-icon-pencil">
+				<p:submenu label="Conteudos a desenvolver " icon="ui-icon-pencil" rendered="#{conteudoAptoBean.cursos.size() > 0 ||conteudoAptoBean.certificacoes.size() > 0 }">
 					<p:menuitem value="Novo Conteudo apto"
 						url="http://localhost:9090/tcc/CadastroConteudoApto.xhtml" />
 				</p:submenu>
@@ -42,6 +42,7 @@
 		</h:form>
 		<br />
 		<h:form>
+		<div style="width:101%;text-align: center; box-shadow: 5px 5px 10px #C0C0C0;">
 			<p:dataTable id="tabelaCertificacoes"
 				value="#{conteudoAptoBean.certificacoes}" var="certificacao"
 				styleClass="noGridBorder"
@@ -53,7 +54,7 @@
 					<f:facet name="header">Nome</f:facet>
 					<h:outputText value="#{certificacao.nome}" />
 				</p:column>
-				<p:column>
+				<p:column width="10%">
 					<f:facet name="header">Data de conclusão</f:facet>
 					<h:outputText value="#{certificacao.dataFim.time}">
 						<f:convertDateTime pattern="dd/MM/yyyy"
@@ -75,6 +76,7 @@
 					</p:commandLink>
 				</p:column>
 			</p:dataTable>
+			</div>
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -8,6 +8,7 @@ public class BuscaEmConteudo implements Comparable<BuscaEmConteudo> {
 	
 	private String nomeArquivo;
 	private String diretorio;
+	
 	public String getDiretorio() {
 		return diretorio;
 	}

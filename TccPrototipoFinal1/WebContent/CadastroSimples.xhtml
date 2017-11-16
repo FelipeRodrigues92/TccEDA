@@ -16,19 +16,19 @@
 			<p:fieldset legend="Dados do Conteudista">
 				<p:panelGrid columns="2" styleClass="noGridBorder">
 					<p:outputLabel value="Nome: " for="nome" />
-					<p:inputText id="nome" value="#{conteudistaBean.conteudista.nome}" />
+					<p:inputText id="nome" value="#{cadastroSimplesBean.conteudista.nome}" />
 					<p:outputLabel value="Email: " for="email" />
 					<p:inputText id="email"
-						value="#{conteudistaBean.conteudista.email}"
+						value="#{cadastroSimplesBean.conteudista.email}"
 						validatorMessage="Email inválido">
 						<f:attribute name="type" value="email" />
 						<f:validateRegex pattern=".+@.+" />
 						<f:ajax event="blur" render="messageEmail" />
 					</p:inputText>
 					<p:outputLabel value="Senha: " for="senha" />
-					<p:password id="senha" value="#{conteudistaBean.conteudista.senha}"
+					<p:password id="senha" value="#{cadastroSimplesBean.conteudista.senha}"
 						required="true" feedback="true" />
-					<p:commandButton value="Gravar" action="#{conteudistaBean.gravar}"
+					<p:commandButton value="Gravar" action="#{cadastroSimplesBean.gravar}"
 						process="@form" update="@form" />
 				</p:panelGrid>
 			</p:fieldset>

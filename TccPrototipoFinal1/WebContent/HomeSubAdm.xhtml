@@ -7,57 +7,72 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-			<p:outputPanel>Home</p:outputPanel>
-		</ui:define>
+		<p:outputPanel>Home</p:outputPanel>
+	</ui:define>
 	<ui:define name="conteudo">
 		<!-- MENU -->
-		<h:form>
+		<h:form style="width: 101%">
 			<p:growl id="messages" />
 
 			<p:menubar>
 				<p:menuitem value="Home" icon="ui-icon-home"
 					url="http://localhost:9090/tcc/HomeSubAdm.xhtml" />
 
-				<p:submenu label="Gerenciar dados" icon="ui-icon-pencil">
+				<p:submenu label="Perfil" icon="ui-icon-pencil">
 					<p:menuitem value="Perfil"
-						url="http://localhost:9090/tcc/GerenciarConteudista.xhtml" />
+						url="http://localhost:9090/tcc/PerfilSubAdm.xhtml" />
 				</p:submenu>
 				<p:menuitem value="Busca indexada de conteudos"
 					icon="ui-icon-search"
 					url="http://localhost:9090/tcc/BuscaConteudo.xhtml" />
 				<p:menuitem value="Buscar Conteudistas" icon="ui-icon-search"
 					url="http://localhost:9090/tcc/BuscaConteudista.xhtml" />
+				<p:menuitem value="Cadastrar Conteúdo" icon="ui-icon-plus"
+					url="http://localhost:9090/tcc/CadastroConteudo.xhtml" />
 			</p:menubar>
 		</h:form>
-		<br/>
-		<fieldset>
-			<legend>Seus dados</legend>
-			<p:dataTable id="tabelaConteudos" value="#{subGestorBean.perfil}"
-				var="subGestor" styleClass="noGridBorder">
+		<br />
 
-				<p:column>
-					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{subGestor.nome}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">CPF:</f:facet>
-					<h:outputText value="#{subGestor.CPF}" />
-				</p:column>
-				<p:column>	
-					<f:facet name="header">Telefone:</f:facet>
-					<h:outputText value="#{subGestor.telefone}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Email:</f:facet>
-					<h:outputText value="#{subGestor.email}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Sexo:</f:facet>
-					<h:outputText value="#{subGestor.sexo}" />
-				</p:column>
+		<div
+			style="width: 101%; height: 350px; color: #C0C0C0; background-color: #FFFAFA; border: 1px solid; text-align: center; box-shadow: 0px 5px 10px #C0C0C0; justify-content: center; align-items: center;">
 
-			</p:dataTable>
-		</fieldset>
+			<p:panelGrid styleClass="noGridBorder"
+				style="width: 100%; text-align: center; justify-content: center; align-items: center;">
+				<p:column style="width:33%">
+					<p:commandLink action="#{rotasBean.goBuscaConteudo}">
+						<div
+							style="width: 200px; height: 200px; color: #C0C0C0; margin-top: 50px; background-color: #FFFFFF; border: 1px solid; border-radius: 5px; text-align: center; box-shadow: 5px 5px 10px #C0C0C0; margin-left: 100px;">
+							<img src="resources/arquivesearch.png" alt="form" align="middle"
+								style="margin-top: 50px;" />
+						</div>
+					</p:commandLink>
+					<br />
+					<p:outputLabel style="color:#000000;">Ementa em conteudos</p:outputLabel>
+				</p:column>
+				<p:column style="width:33%">
+					<p:commandLink action="#{rotasBean.goBuscaConteudista}">
+						<div
+							style="width: 200px; height: 200px; color: #C0C0C0; margin-top: 50px; background-color: #FFFFFF; border: 1px solid; border-radius: 5px; text-align: center; box-shadow: 5px 5px 10px #C0C0C0; margin-left: 100px;">
+							<img src="resources/usersearch.png" alt="formacao" align="middle"
+								style="margin-top: 50px;" />
+						</div>
+					</p:commandLink>
+					<br />
+					<p:outputLabel style="color:#000000;">Busca Conteudista</p:outputLabel>
+				</p:column>
+				<p:column style="width:33%">
+					<p:commandLink action="#{rotasBean.goCadastroConteudo}">
+						<div
+							style="width: 200px; height: 200px; color: #C0C0C0; margin-top: 50px; background-color: #FFFFFF; border: 1px solid; border-radius: 5px; text-align: center; box-shadow: 5px 5px 10px #C0C0C0; margin-left: 100px;">
+							<img src="resources/newConteudo.png" alt="certificado"
+								align="middle" style="margin-top: 50px;" />
+						</div>
+					</p:commandLink>
+					<br />
+					<p:outputLabel style="color:#000000;">Cadastrar conteudo</p:outputLabel>
+				</p:column>
+			</p:panelGrid>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

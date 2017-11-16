@@ -9,11 +9,17 @@
 .noGridBorder tr, .noGridBorder td {
 	border: none !important
 }
+.myTable td:nth-child(1) {
+    width: 20px;
+}
+.toSombra form{
+ box-shadow: 0px 5px 10px #C0C0C0;
+}
 </style>
 <h:head />
 <h:body>
 	<div id="cabecalho">
-		<p:panelGrid columns="1" style="width: 100%;">
+		<p:panelGrid columns="1" style="width: 101%; box-shadow: 0px 5px 10px #C0C0C0;">
 			
 					<h:form rendered="#{usuarioLogado != null}" >
 						<h:commandLink action="#{loginBean.deslogar}">
@@ -30,7 +36,7 @@
 					</h:form>
 		</p:panelGrid>
 		<h1>
-			<ui:insert name="titulo">
+			<ui:insert name="titulo" >
 			</ui:insert>
 		</h1>
 	</div>

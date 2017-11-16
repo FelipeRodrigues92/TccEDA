@@ -56,6 +56,7 @@ public class BuscaConteudoBean {
 			Integer contH3 = 0;
 			Integer contH4 = 0;
 			Integer contH5 = 0;
+			
 			try {
 				BufferedReader in = new BufferedReader(new FileReader(file.getPath().toString()));
 
@@ -134,6 +135,7 @@ public class BuscaConteudoBean {
 
 			BuscaEmConteudo conteudo = new BuscaEmConteudo();
 			conteudo.setNomeArquivo(file.getName());
+			System.out.println(file.getPath().toString());
 			conteudo.setDiretorio(file.getPath().toString());
 		//	conteudo.setQtdParalavras(encontrado);
 			boolean inserirEmTitulos = false;

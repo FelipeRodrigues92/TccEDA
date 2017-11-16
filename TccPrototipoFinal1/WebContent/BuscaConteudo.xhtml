@@ -43,18 +43,15 @@
 				update="form2:tabelaConteudos" />
 		</h:form>
 		<h:form id="form2">
-			<fieldset>
 				<p:dataTable id="tabelaConteudos"
 					value="#{buscaConteudoBean.conteudosComString}"
 					var="buscaEmConteudo" width="100%" columnClasses="centered"
-					styleClass="noGridBorder" emptyMessage="Nenhum Conteúdo achado.">
-
-					<p:column>
+					styleClass="noGridBorder" emptyMessage="Nenhum Conteúdo achado." style="font-size:14px;">
+					  <p:column>
 						<f:facet name="header">Arquivo</f:facet>
 						<a href=""> <h:outputText
 								value="#{buscaEmConteudo.nomeArquivo}" /></a>
 					</p:column>
-
 					<p:column>
 						<f:facet name="header">Conteúdo</f:facet>
 						<h:dataTable value="#{buscaEmConteudo.h1}" var="h1">
@@ -77,8 +74,7 @@
 							#{buscaEmConteudo.getRelevanciaH2()}%
 							</p:column>
 						</h:dataTable>
-					</p:column>
-					
+					</p:column>					
 					<p:column>
 						<f:facet name="header">subtítulo</f:facet>
 						<h:dataTable value="#{buscaEmConteudo.h3}" var="h3">
@@ -90,17 +86,11 @@
 							</p:column>
 						</h:dataTable>
 					</p:column>
-					<p:column>
+					<p:column width="50%">
 						<f:facet name="header">Diretório</f:facet>
-						<h:dataTable value="#{buscaEmConteudo.diretorio}" var="diretorio">
-							<p:column>
-							#{diretorio}
-							</p:column>
-						</h:dataTable>
+						<h:outputText value="#{buscaEmConteudo.diretorio}"/>
 					</p:column>
-					
 				</p:dataTable>
-			</fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>
