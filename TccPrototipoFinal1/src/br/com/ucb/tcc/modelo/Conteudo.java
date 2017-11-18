@@ -14,7 +14,7 @@ public class Conteudo {
 	private Integer id;
 	private String titulo;
 	private String descricao;
-	private Integer avaliacao;
+	private Integer avaliacao = 0;
 	
 	@ManyToOne
 	private Conteudista conteudista;

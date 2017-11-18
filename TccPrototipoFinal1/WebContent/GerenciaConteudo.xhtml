@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+				<p:outputPanel>Avaliar Conteudo</p:outputPanel>
+		</ui:define>
+	<ui:define name="conteudo">
+		<h:form>
+			<p:messages />
+			<p:fieldset legend="Dados do conteúdo">
+				<p:panelGrid columns="2" styleClass="noGridBorder">
+					<p:outputLabel value="Título: " for="titulo" />
+					<p:outputLabel id="titulo" value="#{conteudoBean.conteudo.titulo}" />
+					<p:outputLabel value="Descrição: " for="descricao" />
+					<p:outputLabel id="descricao" value="#{conteudoBean.conteudo.descricao}" />
+					<h:outputLabel value="Nota: " for="avaliacao" />
+					<h:inputText id="avaliacao" value="#{conteudoBean.conteudo.avaliacao}" >
+					<f:passThroughAttribute name="type" value="number"></f:passThroughAttribute>
+					</h:inputText>
+					
+					<h:outputLabel value="Conteudista:" for="conteudista" />
+					<p:outputLabel id="conteudista" value="#{conteudoBean.conteudo.conteudista.nome}" />
+					<p:commandButton value="Gravar" action="#{conteudoBean.alterar}" />
+					<p:commandButton value="Ir Home" action="#{conteudoBean.goSubHome}" />
+				</p:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -24,6 +24,9 @@ public class RotasBean {
 	public static String goCadastroFeito() {
 		return "CadastroFeito?faces-redirect=true";
 	}
+	public static String goCadastroFeitoCurso() {
+		return "CadastroFeitoCurso?faces-redirect=true";
+	}
 	public static String goConteudo() {
 		return "CadastroConteudoApto?faces-redirect=true";
 	}
@@ -50,6 +53,12 @@ public class RotasBean {
 	}
 	public static String goADMDados() {
 		return "ShowAdmDados?faces-redirect=true";
+	}
+	public static String goConteudosDesenvolvidos() {
+		return "ShowConteudosDesenvolvidos?faces-redirect=true";
+	}
+	public static String goAlteraConteudosDesenvolvidos() {
+		return "GerenciaConteudo?faces-redirect=true";
 	}
 }
 

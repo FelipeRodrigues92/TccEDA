@@ -26,21 +26,27 @@
 			<p:growl id="messages" />
 			<p:menubar>
 				<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/HomeAdm.xhtml"
+					url="http://localhost:8080/tcc/HomeAdm.xhtml"
 					rendered="#{usuarioId == 1}" />
 				<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/HomeSubAdm.xhtml"
+					url="http://localhost:8080/tcc/HomeSubAdm.xhtml"
 					rendered="#{usuarioId == 2}" />
 
 				<p:submenu label="Meus dados" icon="ui-icon-pencil">
 					<p:menuitem value="Perfil"
-						url="http://localhost:9090/tcc/ShowAdmDados.xhtml" />
+						url="http://localhost:8080/tcc/ShowAdmDados.xhtml" />
 				</p:submenu>
 				<p:menuitem value="Busca indexada de conteudos"
 					icon="ui-icon-search"
-					url="http://localhost:9090/tcc/BuscaConteudo.xhtml" />
+					url="http://localhost:8080/tcc/BuscaConteudo.xhtml" />
 				<p:menuitem value="Buscar Conteudistas" icon="ui-icon-search"
-					url="http://localhost:9090/tcc/BuscaConteudista.xhtml" />
+					url="http://localhost:8080/tcc/BuscaConteudista.xhtml" />
+				<p:submenu label="Conteúdos" icon="ui-icon-pencil" rendered="#{usuarioId == 2}">
+					<p:menuitem value="Cadastrar Conteúdo" icon="ui-icon-plus"
+						url="http://localhost:8080/tcc/CadastroConteudo.xhtml" />
+					<p:menuitem value="Avaliação" 
+						url="http://localhost:8080/tcc/ShowConteudosDesenvolvidos.xhtml" />
+				</p:submenu>
 			</p:menubar>
 		</h:form>
 		<br />
@@ -155,7 +161,7 @@
 				</p:column>
 			</p:dataTable>
 		</div>
-		<br/>
+		<br />
 	</ui:define>
 </ui:composition>
 </html>

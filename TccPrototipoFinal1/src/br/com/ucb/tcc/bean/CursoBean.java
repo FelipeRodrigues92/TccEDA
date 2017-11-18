@@ -86,7 +86,7 @@ public class CursoBean {
 		this.curso.setCurriculo(curriculo);
 		this.curso.setNivelCurso(this.nivelCurso);
 		new DAO<Curso>(Curso.class).adiciona(this.curso); 
-		return  RotasBean.goCadastroFeito();
+		return  RotasBean.goCadastroFeitoCurso();
 	}
 	public BancoCurso getBancoCurso() {
 		return bancoCurso;

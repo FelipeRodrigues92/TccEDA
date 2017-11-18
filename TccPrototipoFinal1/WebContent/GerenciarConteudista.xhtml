@@ -17,28 +17,28 @@
 			<p:growl id="messages" />
 			<p:menubar>
 				<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/Home.xhtml" />
+					url="http://localhost:8080/tcc/Home.xhtml" />
 
 				<p:submenu label="Perfil" icon="ui-icon-pencil">
 					<p:menuitem value="Alterar Dados"
-						url="http://localhost:9090/tcc/GerenciarConteudista.xhtml" />
+						url="http://localhost:8080/tcc/GerenciarConteudista.xhtml" />
 				</p:submenu>
 				<p:submenu label="Formação" icon="ui-icon-pencil">
 					<p:menuitem value="Novo curso"
-						url="http://localhost:9090/tcc/CadastroCurso.xhtml" />
+						url="http://localhost:8080/tcc/CadastroCurso.xhtml" />
 					<p:menuitem value="Meus cursos"
-						url="http://localhost:9090/tcc/ShowCursos.xhtml" />
+						url="http://localhost:8080/tcc/ShowCursos.xhtml" />
 				</p:submenu>
 				<p:submenu label="Certificação" icon="ui-icon-pencil">
 					<p:menuitem value="Nova Certificação"
-						url="http://localhost:9090/tcc/CadastroCertificacao.xhtml" />
+						url="http://localhost:8080/tcc/CadastroCertificacao.xhtml" />
 					<p:menuitem value="Minhas certificações"
-						url="http://localhost:9090/tcc/ShowCertificacao.xhtml" />
+						url="http://localhost:8080/tcc/ShowCertificacao.xhtml" />
 				</p:submenu>
 				<p:submenu label="Conteudos a desenvolver " icon="ui-icon-pencil"
 					rendered="#{conteudoAptoBean.cursos.size() > 0}">
 					<p:menuitem value="Novo Conteudo apto"
-						url="http://localhost:9090/tcc/CadastroConteudoApto.xhtml" />
+						url="http://localhost:8080/tcc/CadastroConteudoApto.xhtml" />
 				</p:submenu>
 			</p:menubar>
 		</h:form>

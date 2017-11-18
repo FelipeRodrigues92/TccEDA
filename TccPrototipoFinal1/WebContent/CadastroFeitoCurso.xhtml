@@ -12,13 +12,13 @@
 	<ui:define name="conteudo">
 
 		<h:form>
-			<fildset> <p:dataList type="definition"
+			<fildset> 
+			<p:dataList type="definition"
 				styleClass="noGridBorder" emptyMessage="Escolha uma das opções: ">
 			</p:dataList> <p:commandLink action="#{rotasBean.goHome}" update="@form">
 				<p:commandButton value="Ir Homepage" />
-			</p:commandLink> <p:commandLink action="#{rotasBean.goCertificacao}" update="@form">
-				<p:commandButton value="Cadastrar nova certificação"
-					icon="ui-icon-plus" />
+			</p:commandLink> <p:commandLink action="#{rotasBean.goCurso}" update="@form">
+				<p:commandButton value="Cadastrar novo curso" icon="ui-icon-plus" />
 			</p:commandLink> 
 			</fildset>
 		</h:form>

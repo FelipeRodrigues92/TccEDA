@@ -16,25 +16,29 @@
 
 			<p:menubar>
 				<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/HomeSubAdm.xhtml" />
+					url="http://localhost:8080/tcc/HomeSubAdm.xhtml" />
 
 				<p:submenu label="Meus dados" icon="ui-icon-pencil">
 					<p:menuitem value="Perfil"
-						url="http://localhost:9090/tcc/ShowAdmDados.xhtml" />
+						url="http://localhost:8080/tcc/ShowAdmDados.xhtml" />
 				</p:submenu>
 				<p:menuitem value="Busca indexada de conteudos"
 					icon="ui-icon-search"
-					url="http://localhost:9090/tcc/BuscaConteudo.xhtml" />
+					url="http://localhost:8080/tcc/BuscaConteudo.xhtml" />
 				<p:menuitem value="Buscar Conteudistas" icon="ui-icon-search"
-					url="http://localhost:9090/tcc/BuscaConteudista.xhtml" />
-				<p:menuitem value="Cadastrar Conteúdo" icon="ui-icon-plus"
-					url="http://localhost:9090/tcc/CadastroConteudo.xhtml" />
+					url="http://localhost:8080/tcc/BuscaConteudista.xhtml" />
+				<p:submenu label="Conteúdos" icon="ui-icon-pencil">
+					<p:menuitem value="Cadastrar Conteúdo" icon="ui-icon-plus"
+						url="http://localhost:8080/tcc/CadastroConteudo.xhtml" />
+					<p:menuitem value="Avaliação" 
+						url="http://localhost:8080/tcc/ShowConteudosDesenvolvidos.xhtml" />
+				</p:submenu>
 			</p:menubar>
 		</h:form>
 		<br />
 
 		<div
-			style="width: 100%; height: 350px; color: #C0C0C0; background-color: #FFFAFA; border: 1px solid; text-align: center; box-shadow: 0px 5px 10px #C0C0C0; justify-content: center; align-items: center;">
+			style="width: 100%-1px; height: 350px; color: #C0C0C0; background-color: #FFFAFA; border: 1px solid; text-align: center; box-shadow: 0px 5px 10px #C0C0C0; justify-content: center; align-items: center;">
 
 			<p:panelGrid styleClass="noGridBorder"
 				style="width: 100%; text-align: center; justify-content: center; align-items: center;">
@@ -69,7 +73,7 @@
 						</div>
 					</p:commandLink>
 					<br />
-					<p:outputLabel style="color:#000000;">Cadastrar conteudo</p:outputLabel>
+					<p:outputLabel style="color:#000000;">Cadastrar conteúdo</p:outputLabel>
 				</p:column>
 			</p:panelGrid>
 		</div>

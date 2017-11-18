@@ -29,11 +29,11 @@
 					
 					<p:outputLabel value="Instituição de ensino: " for="instituicao" />
 					<p:inputText id="instituicao"
-						value="#{cursoBean.curso.instituicao}" />
+						value="#{cursoBean.curso.instituicao}" style="width: 400px;" maxlength="70"/>
 					
-					<p:outputLabel value="Data de conclusão: " for="dataFim" />
+					<p:outputLabel value="Ano de conclusão: " for="dataFim" />
 					<p:calendar id="dataFim" value="#{cursoBean.curso.dataFim.time}"
-						pattern="dd-MM-yyyy" mask="true" />
+						pattern="yyyy" mask="true" />
 
 					<p:commandButton value="Gravar" action="#{cursoBean.gravar}" />
 					<p:commandButton value="Ir Homepage"

@@ -7,7 +7,9 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-		<p:outputPanel>Busca por Conteudo</p:outputPanel>
+		<div style="justify-content: center; align-items: center;">
+			<p:outputPanel>Conteúdos desenvolvidos</p:outputPanel>
+		</div>
 	</ui:define>
 	<ui:define name="conteudo">
 		<!-- MENU -->
@@ -40,65 +42,46 @@
 			</p:menubar>
 		</h:form>
 		<br />
-		<h:form id="form1">
-			<p:outputLabel value="Ementa: " for="palavraBuscada" />
-			<p:inputText id="palavraBuscada"
-				value="#{buscaConteudoBean.palavraBuscada}" />
-			<p:commandButton value="Buscar"
-				action="#{buscaConteudoBean.getConteudosComString}"
-				update="form2:tabelaConteudos" />
-		</h:form>
-		<h:form id="form2">
-			<p:dataTable id="tabelaConteudos"
-				value="#{buscaConteudoBean.conteudosComString}"
-				var="buscaEmConteudo" width="100%" columnClasses="centered"
-				styleClass="noGridBorder" emptyMessage="Nenhum Conteúdo achado."
-				style="font-size:14px;">
+		<h:form>
+		<div style="text-align: center; box-shadow: 5px 5px 10px #C0C0C0;">
+			<p:dataTable id="tabelaPerfil"
+				value="#{conteudoBean.allConteudos}" var="conteudo"
+				width="100%" styleClass="noGridBorder"
+				emptyMessage="Nenhum curso encontrado.">
+				<f:facet name="header">Conteudos</f:facet>
 				<p:column>
-					<f:facet name="header">Arquivo</f:facet>
-					<a href=""> <h:outputText
-							value="#{buscaEmConteudo.nomeArquivo}" /></a>
+					<f:facet name="header">Titulo</f:facet>
+					<h:outputText value="#{conteudo.titulo}" />
 				</p:column>
 				<p:column>
-					<f:facet name="header">Conteúdo</f:facet>
-					<h:dataTable value="#{buscaEmConteudo.h1}" var="h1">
-						<p:column>
-								#{h1}
-							</p:column>
-						<p:column>
-							#{buscaEmConteudo.getRelevanciaH1()}%
-							</p:column>
-					</h:dataTable>
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">Título</f:facet>
-					<h:dataTable value="#{buscaEmConteudo.h2}" var="h2">
-						<p:column>
-								#{h2} 
-							</p:column>
-						<p:column>
-							#{buscaEmConteudo.getRelevanciaH2()}%
-							</p:column>
-					</h:dataTable>
+					<f:facet name="header">Descrição</f:facet>
+					<h:outputText value="#{conteudo.descricao}" />
 				</p:column>
 				<p:column>
-					<f:facet name="header">subtítulo</f:facet>
-					<h:dataTable value="#{buscaEmConteudo.h3}" var="h3">
-						<p:column>
-								#{h3} 
-							</p:column>
-						<p:column>
-							#{buscaEmConteudo.getRelevanciaH3()}%
-							</p:column>
-					</h:dataTable>
+					<f:facet name="header">Avalição</f:facet>
+					<h:outputText value="#{conteudo.avaliacao}" />
 				</p:column>
-				<p:column width="50%">
-					<f:facet name="header">Diretório</f:facet>
-					<h:outputText value="#{buscaEmConteudo.diretorio}" />
+				<p:column>
+					<f:facet name="header">Avalição</f:facet>
+					<h:outputText value="#{conteudo.conteudista.nome}" />
+				</p:column>
+					<p:column>
+					<p:commandLink 
+						action="#{conteudoBean.carregar(conteudo)}" update="@form"><p:commandButton value="Editar"
+					/>
+					</p:commandLink>
+				</p:column>
+				<p:column>
+					<p:commandLink 
+						action="#{conteudoBean.remover(conteudo)}" update="@form"><p:commandButton value="Excluir"
+					/>
+					</p:commandLink>
 				</p:column>
 			</p:dataTable>
+		</div>
 		</h:form>
+		<br />
+
 	</ui:define>
 </ui:composition>
 </html>
