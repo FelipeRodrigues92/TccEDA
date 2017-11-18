@@ -34,6 +34,8 @@ public class Autorizador implements PhaseListener{
 			return;
 		}else if("/BuscaConteudista.xhtml".equals(nomePagina)) {
 			return;
+		}else if("/ShowCurriculo.xhtml".equals(nomePagina)) {
+			return;
 		}
 		
 		Login loginDeUsuario = (Login) context.getExternalContext().getSessionMap().get("usuarioLogado");

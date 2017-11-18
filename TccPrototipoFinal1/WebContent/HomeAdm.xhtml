@@ -10,6 +10,25 @@
 		<p:outputPanel>Home</p:outputPanel>
 	</ui:define>
 	<ui:define name="conteudo">
+		<!-- MENU -->
+		<h:form style="width: 100%">
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:menuitem value="Home" icon="ui-icon-home"
+					url="http://localhost:9090/tcc/HomeAdm.xhtml" />
+
+				<p:submenu label="Meus dados" icon="ui-icon-pencil">
+					<p:menuitem value="Perfil"
+						url="http://localhost:9090/tcc/ShowAdmDados.xhtml" />
+				</p:submenu>
+				<p:menuitem value="Busca indexada de conteudos"
+					icon="ui-icon-search"
+					url="http://localhost:9090/tcc/BuscaConteudo.xhtml" />
+				<p:menuitem value="Buscar Conteudistas" icon="ui-icon-search"
+					url="http://localhost:9090/tcc/BuscaConteudista.xhtml" />
+			</p:menubar>
+		</h:form>
 		<div>
 			<h:form id="conteudistaform">
 				<p:dataList value="#{gestorBean.perfil}" var="conteudista"
@@ -19,52 +38,36 @@
 			</p:dataList>
 			</h:form>
 		</div>
-		<!-- MENU -->
-		<h:form style="width: 101%">
-			<p:growl id="messages" />
-
-			<p:menubar>
-				<p:menuitem value="Home" icon="ui-icon-home"
-					url="http://localhost:9090/tcc/HomeAdm.xhtml" />
-
-				<p:submenu label="Gerenciar dados" icon="ui-icon-pencil">
-					<p:menuitem value="Perfil"
-						url="http://localhost:9090/tcc/GerenciarConteudista.xhtml" />
-				</p:submenu>
-				<p:menuitem value="Busca indexada de conteudos"
-					icon="ui-icon-search"
-					url="http://localhost:9090/tcc/BuscaConteudo.xhtml" />
-				<p:menuitem value="Buscar Conteudistas" icon="ui-icon-search"
-					url="http://localhost:9090/tcc/BuscaConteudista.xhtml" />
-			</p:menubar>
-		</h:form>
 		<br />
-		<p:dataTable id="tabelaConteudos" value="#{gestorBean.perfil}"
-			var="gestor" styleClass="noGridBorder" style="width: 101%">
-			<fieldset>
-				<legend>Seus dados</legend>
-				<p:column>
-					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{gestor.nome}" />
+		<div
+			style="width: 100%-1px; height: 350px; color: #C0C0C0; background-color: #FFFAFA; border: 1px solid; text-align: center; box-shadow: 0px 5px 10px #C0C0C0; justify-content: center; align-items: center;">
+
+			<p:panelGrid styleClass="noGridBorder"
+				style="width: 100%; text-align: center; justify-content: center; align-items: center;">
+				<p:column style="width:33%">
+					<p:commandLink action="#{rotasBean.goBuscaConteudo}">
+						<div
+							style="width: 200px; height: 200px; color: #C0C0C0; margin-top: 50px; background-color: #FFFFFF; border: 1px solid; border-radius: 5px; text-align: center; box-shadow: 5px 5px 10px #C0C0C0; margin-left: 100px;">
+							<img src="resources/arquivesearch.png" alt="form" align="middle"
+								style="margin-top: 50px;" />
+						</div>
+					</p:commandLink>
+					<br />
+					<p:outputLabel style="color:#000000;">Ementa em conteudos</p:outputLabel>
 				</p:column>
-				<p:column>
-					<f:facet name="header">CPF:</f:facet>
-					<h:outputText value="#{gestor.CPF}" />
+				<p:column style="width:33%">
+					<p:commandLink action="#{rotasBean.goBuscaConteudista}">
+						<div
+							style="width: 200px; height: 200px; color: #C0C0C0; margin-top: 50px; background-color: #FFFFFF; border: 1px solid; border-radius: 5px; text-align: center; box-shadow: 5px 5px 10px #C0C0C0; margin-left: 100px;">
+							<img src="resources/usersearch.png" alt="formacao" align="middle"
+								style="margin-top: 50px;" />
+						</div>
+					</p:commandLink>
+					<br />
+					<p:outputLabel style="color:#000000;">Busca Conteudista</p:outputLabel>
 				</p:column>
-				<p:column>
-					<f:facet name="header">Telefone:</f:facet>
-					<h:outputText value="#{gestor.telefone}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Email:</f:facet>
-					<h:outputText value="#{gestor.email}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">Sexo:</f:facet>
-					<h:outputText value="#{gestor.sexo}" />
-				</p:column>
-			</fieldset>
-		</p:dataTable>
+			</p:panelGrid>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

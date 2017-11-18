@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+		<div style="justify-content: center; align-items: center;">
+			<p:outputPanel>Home</p:outputPanel>
+		</div>
+	</ui:define>
+	<ui:define name="conteudo">
+		<!-- MENU -->
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:menuitem value="Home" icon="ui-icon-home"
+					url="http://localhost:9090/tcc/HomeAdm.xhtml"
+					rendered="#{usuarioId == 1}" />
+				<p:menuitem value="Home" icon="ui-icon-home"
+					url="http://localhost:9090/tcc/HomeSubAdm.xhtml"
+					rendered="#{usuarioId == 2}" />
+
+				<p:submenu label="Meus dados" icon="ui-icon-pencil">
+					<p:menuitem value="Perfil"
+						url="http://localhost:9090/tcc/ShowAdmDados.xhtml" />
+				</p:submenu>
+				<p:menuitem value="Busca indexada de conteudos"
+					icon="ui-icon-search"
+					url="http://localhost:9090/tcc/BuscaConteudo.xhtml" />
+				<p:menuitem value="Buscar Conteudistas" icon="ui-icon-search"
+					url="http://localhost:9090/tcc/BuscaConteudista.xhtml" />
+			</p:menubar>
+		</h:form>
+		<br />
+		<div style="text-align: center; box-shadow: 5px 5px 10px #C0C0C0;">
+			<p:dataTable id="tabelaPerfil"
+				value="#{buscaConteudistaBean.curriculo}" var="curriculo"
+				width="100%" styleClass="noGridBorder"
+				emptyMessage="Nenhum curso encontrado.">
+				<f:facet name="header">Currículo</f:facet>
+				<p:column>
+					<br />
+					<p:panelGrid>
+						<p:outputLabel value="Conteudista" />
+					</p:panelGrid>
+					<br />
+					<p:panelGrid columns="4"
+						columnClasses="ui-grid-col-1, ui-grid-col-4" layout="grid">
+
+						<h:outputText value="Name:" />
+						<h:outputText value="#{curriculo.conteudista.nome}" />
+
+						<h:outputText value="Telefone: " />
+						<h:outputText value="#{curriculo.conteudista.telefone}" />
+
+						<h:outputText value="CPF: " />
+						<h:outputText value="#{curriculo.conteudista.CPF}" />	
+
+						<h:outputText value="Email: " />
+						<h:outputText value="#{curriculo.conteudista.email} " />
+
+						<h:outputText value="Sexo: " />
+						<h:outputText value="#{curriculo.conteudista.sexo}" />
+
+						<h:outputText value="CEP: " />
+						<h:outputText value="#{curriculo.conteudista.endereco.cep}" />
+
+						<h:outputText value="UF: " />
+						<h:outputText value="#{curriculo.conteudista.endereco.UF}" />
+
+						<h:outputText value="Cidade: " />
+						<h:outputText value="#{curriculo.conteudista.endereco.cidade}" />
+
+						<h:outputText value="Bairro: " />
+						<h:outputText value="#{curriculo.conteudista.endereco.bairro}" />
+
+						<h:outputText value="Complemento: " />
+						<h:outputText
+							value="#{curriculo.conteudista.endereco.complemento}" />
+
+					</p:panelGrid>
+					<br />
+					<p:panelGrid>
+						<p:outputLabel value="Cursos" />
+					</p:panelGrid>
+					<br />
+					<p:panelGrid columns="1" layout="grid">
+						<h:dataTable id="tabelaCursos" value="#{curriculo.cursos}"
+							var="curso" width="80%" styleClass="noGridBorder">
+							<p:column>
+								 (<h:outputText value="#{curso.nivelCurso.tipo}" />) - <h:outputText
+									value="#{curso.bancoCurso.nome}" />
+							</p:column>
+						</h:dataTable>
+					</p:panelGrid>
+					<br />
+					<p:panelGrid>
+						<p:outputLabel value="Certificações" />
+					</p:panelGrid>
+					<br />
+					<p:panelGrid columns="1" layout="grid">
+						<h:dataTable id="tabelaCertificacoes"
+							value="#{curriculo.certificacoes}" var="certificacao"
+							width="100%" styleClass="noGridBorder">
+							<p:column>
+								Certificação: <h:outputText value="#{certificacao.nome}" />
+							</p:column>
+						</h:dataTable>
+					</p:panelGrid>
+				</p:column>
+			</p:dataTable>
+		</div>
+		<br />
+
+	</ui:define>
+</ui:composition>
+</html>

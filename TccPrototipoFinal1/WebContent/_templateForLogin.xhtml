@@ -6,17 +6,20 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	<style>
     .noGridBorder tr, .noGridBorder td{border: none!important}
+    .noBorder tr,
+.noBorder td { border: 0 !important; }
+
 </style>
 <h:head />
-<h:body>
-	<div id="cabecalho">
-		
+<h:body 	style="background-color: #f2f2f2;">
+	<div id="cabecalho" >
 		<h1>
 			<ui:insert name="titulo">
 			</ui:insert>
 		</h1>
 	</div>
-	<div id="conteudo">
+	<div id="conteudo"	style="left: 10%;
+  position: absolute;width: 80%;">
 		<ui:insert name="conteudo">
 		</ui:insert>
 	</div>

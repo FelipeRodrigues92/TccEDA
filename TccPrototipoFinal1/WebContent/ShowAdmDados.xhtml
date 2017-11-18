@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+		<div style="justify-content: center; align-items: center;">
+			<p:outputPanel>Home</p:outputPanel>
+		</div>
+	</ui:define>
+	<ui:define name="conteudo">
+		<div>
+			<h:form id="conteudistaform">
+				<p:dataList value="#{conteudistaBean.perfil}" var="conteudista"
+					type="definition" styleClass="noGridBorder">
+
+       			 Olá #{conteudista.nome}  
+			</p:dataList>
+			</h:form>
+		</div>
+		<!-- MENU -->
+		<h:form>
+			<p:growl id="messages" />
+			<p:menubar>
+				<p:menuitem value="Home" icon="ui-icon-home"
+					url="http://localhost:9090/tcc/HomeAdm.xhtml"
+					rendered="#{usuarioId == 1}" />
+				<p:menuitem value="Home" icon="ui-icon-home"
+					url="http://localhost:9090/tcc/HomeSubAdm.xhtml"
+					rendered="#{usuarioId == 2}" />
+
+				<p:submenu label="Meus dados" icon="ui-icon-pencil">
+					<p:menuitem value="Perfil"
+						url="http://localhost:9090/tcc/ShowAdmDados.xhtml" />
+				</p:submenu>
+				<p:menuitem value="Busca indexada de conteudos"
+					icon="ui-icon-search"
+					url="http://localhost:9090/tcc/BuscaConteudo.xhtml" />
+				<p:menuitem value="Buscar Conteudistas" icon="ui-icon-search"
+					url="http://localhost:9090/tcc/BuscaConteudista.xhtml" />
+			</p:menubar>
+		</h:form>
+		<br />
+		<div style="text-align: center; box-shadow: 5px 5px 10px #C0C0C0;">
+			<p:dataTable id="tabelaSubGestor" value="#{subGestorBean.perfil}"
+				var="subGestor" width="100%" styleClass="noGridBorder"
+				emptyMessage="Nenhum curso encontrado." rendered="#{usuarioId == 2}">
+				<f:facet name="header">Currículo</f:facet>
+				<p:column>
+					<br />
+					<p:panelGrid>
+						<h:outputText value="Name: " />
+						<h:outputText value="#{subGestor.nome}" />
+					</p:panelGrid>
+					<br />
+					<p:panelGrid columns="4"
+						columnClasses="ui-grid-col-1, ui-grid-col-4" layout="grid">
+
+
+						<h:outputText value="CPF: " />
+						<h:outputText value="#{subGestor.CPF}" />
+
+						<h:outputText value="Telefone: " />
+						<h:outputText value="#{subGestor.telefone}" />
+
+
+						<h:outputText value="Email: " />
+						<h:outputText value="#{subGestor.email} " />
+
+						<h:outputText value="Sexo: " />
+						<h:outputText value="#{subGestor.sexo}" />
+
+						<h:outputText value="Data de nascimento: " />
+						<h:outputText value="#{subGestor.dataNascimento.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy"
+								timeZone="America/Sao_Paulo" />
+						</h:outputText>
+
+						<h:outputText value="CEP: " />
+						<h:outputText value="#{subGestor.endereco.cep}" />
+
+						<h:outputText value="UF: " />
+						<h:outputText value="#{subGestor.endereco.UF}" />
+
+						<h:outputText value="Cidade: " />
+						<h:outputText value="#{subGestor.endereco.cidade}" />
+
+						<h:outputText value="Bairro: " />
+						<h:outputText value="#{subGestor.endereco.bairro}" />
+
+						<h:outputText value="Complemento: " />
+						<h:outputText value="#{subGestor.endereco.complemento}" />
+
+					</p:panelGrid>
+					<br />
+				</p:column>
+			</p:dataTable>
+		</div>
+		<br />
+		<div style="text-align: center; box-shadow: 5px 5px 10px #C0C0C0;">
+			<p:dataTable id="tabelaGestor" value="#{gestorBean.perfil}"
+				var="gestor" width="100%" styleClass="noGridBorder"
+				emptyMessage="Nenhum curso encontrado." rendered="#{usuarioId == 1}">
+				<f:facet name="header">Currículo</f:facet>
+				<p:column>
+					<br />
+					<p:panelGrid>
+						<h:outputText value="Name: " />
+						<h:outputText value="#{gestor.nome}" />
+					</p:panelGrid>
+					<br />
+					<p:panelGrid columns="4"
+						columnClasses="ui-grid-col-1, ui-grid-col-4" layout="grid">
+
+
+						<h:outputText value="CPF: " />
+						<h:outputText value="#{gestor.CPF}" />
+
+						<h:outputText value="Telefone: " />
+						<h:outputText value="#{gestor.telefone}" />
+
+
+						<h:outputText value="Email: " />
+						<h:outputText value="#{gestor.email} " />
+
+						<h:outputText value="Sexo: " />
+						<h:outputText value="#{gestor.sexo}" />
+
+						<h:outputText value="Data de nascimento: " />
+						<h:outputText value="#{gestor.dataNascimento.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy"
+								timeZone="America/Sao_Paulo" />
+						</h:outputText>
+
+						<h:outputText value="CEP: " />
+						<h:outputText value="#{gestor.endereco.cep}" />
+
+						<h:outputText value="UF: " />
+						<h:outputText value="#{gestor.endereco.UF}" />
+
+						<h:outputText value="Cidade: " />
+						<h:outputText value="#{gestor.endereco.cidade}" />
+
+						<h:outputText value="Bairro: " />
+						<h:outputText value="#{gestor.endereco.bairro}" />
+
+						<h:outputText value="Complemento: " />
+						<h:outputText value="#{gestor.endereco.complemento}" />
+
+					</p:panelGrid>
+					<br />
+				</p:column>
+			</p:dataTable>
+		</div>
+		<br/>
+	</ui:define>
+</ui:composition>
+</html>

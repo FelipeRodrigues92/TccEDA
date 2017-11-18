@@ -22,9 +22,9 @@
 					url="http://localhost:9090/tcc/HomeSubAdm.xhtml"
 					rendered="#{usuarioId == 2}" />
 
-				<p:submenu label="Gerenciar dados" icon="ui-icon-pencil">
+				<p:submenu label="Meus dados" icon="ui-icon-pencil">
 					<p:menuitem value="Perfil"
-						url="http://localhost:9090/tcc/GerenciarConteudista.xhtml" />
+						url="http://localhost:9090/tcc/ShowAdmDados.xhtml" />
 				</p:submenu>
 				<p:menuitem value="Busca indexada de conteudos"
 					icon="ui-icon-search"
@@ -48,42 +48,50 @@
 				value="#{buscaConteudistaBean.conteudistas}" var="curriculo"
 				width="100%" columnClasses="centered" styleClass="noGridBorder"
 				emptyMessage="Não foi encontrado nenhum conteudista.">
-				<p:column>
-					<f:facet name="header"></f:facet>
+					<p:column width="70%">
+						<f:facet name="header"></f:facet>
 
-					<h:outputText value="#{curriculo.conteudista.nome}" /> - <h:outputText
-						value="#{curriculo.conteudista.CPF}" />
-
-					<h:dataTable id="tabelaCursos" value="#{curriculo.cursos}"
-						var="curso" width="100%" styleClass="noGridBorder">
-						<p:column>
+						<h:outputText value="#{curriculo.conteudista.nome}" /> - <h:outputText
+							value="#{curriculo.conteudista.CPF}" />
+						<h:dataTable id="tabelaCursos" value="#{curriculo.cursos}"
+							var="curso" width="80%" styleClass="noGridBorder">
+							<p:column >
 								 (<h:outputText value="#{curso.nivelCurso.tipo}" />) - <h:outputText
-								value="#{curso.bancoCurso.nome}" />
-						</p:column>
-						<p:column>
-							<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
-								<h:column>	
+									value="#{curso.bancoCurso.nome}" />
+							</p:column>
+							<p:column >
+								<h:dataTable value="#{curso.conteudosAptos}" var="conteudo">
+									<h:column>	
 									Conteúdo apto:	#{conteudo.titulo}
 									</h:column>
-							</h:dataTable>
-						</p:column>
-					</h:dataTable>
+								</h:dataTable>
+						
+							</p:column>
+							
+						</h:dataTable>
 
-					<h:dataTable id="tabelaCertificacoes"
-						value="#{curriculo.certificacoes}" var="certificacao" width="100%"
-						styleClass="noGridBorder">
-						<p:column>
+						<h:dataTable id="tabelaCertificacoes"
+							value="#{curriculo.certificacoes}" var="certificacao"
+							width="100%" styleClass="noGridBorder">
+							<p:column>
 								Certificação: <h:outputText value="#{certificacao.nome}" />
-						</p:column>
-						<p:column>
-							<h:outputText value="Nenhum dados achado."
-								rendered="#{certificacao == ' '}" />
-						</p:column>
-					</h:dataTable>
-				</p:column>
-				<p:column>
+							</p:column>
+							<p:column>
+								<h:outputText value="Nenhum dados achado."
+									rendered="#{certificacao == ' '}" />
+							</p:column>
+						</h:dataTable> 
+					</p:column>
+					<p:column>
 					Pontuação : <h:outputText value="#{curriculo.getPontuacao()}" />
-				</p:column>
+					</p:column>
+					<p:column>
+						<p:commandLink 
+							action="#{buscaConteudistaBean.verCurriculoPor(curriculo)}"
+							update="@form"><p:commandButton value="Currículo"
+					/>
+						</p:commandLink>
+					</p:column>
 			</p:dataTable>
 		</h:form>
 	</ui:define>

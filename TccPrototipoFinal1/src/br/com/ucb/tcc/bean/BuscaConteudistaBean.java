@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
@@ -18,11 +21,34 @@ import br.com.ucb.tcc.modelo.ConteudoApto;
 import br.com.ucb.tcc.modelo.Curriculo;
 import br.com.ucb.tcc.modelo.Curso;
 import br.com.ucb.tcc.modelo.Desdobramento;
+import br.com.ucb.tcc.modelo.Endereco;
 import javassist.expr.NewArray;
 
 @ManagedBean
+@SessionScoped
 public class BuscaConteudistaBean {
 	private String nomeConteudo = "";
+	
+	private Curriculo curriculo;
+	
+	private Endereco endereco;
+	
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Curriculo getCurriculo() {
+		return curriculo;
+	}
+
+	public void setCurriculo(Curriculo curriculo) {
+		this.curriculo = curriculo;
+	}
 
 	public String getNomeConteudo() {
 		return nomeConteudo;
@@ -38,8 +64,6 @@ public class BuscaConteudistaBean {
 			return null;
 		}
 
-		// List<ConteudoApto> conteudosAptos = new
-		// ConteudoAptoDAO().getConteudoPorDesdobramento(desdobramento);
 		List<ConteudoApto> conteudosAptos = new ConteudoAptoDAO().getConteudoCom(nomeConteudo);
 		List<ConteudoApto> conteudosAptosPorDesdobramento = new ConteudoAptoDAO().getConteudoCom(nomeConteudo);
 		List<String> desdobramentos = new ArrayList<String>();
@@ -60,7 +84,6 @@ public class BuscaConteudistaBean {
 
 		}
 		for (String descricao : desdobramentos) {
-			System.out.println(descricao);
 			conteudosAptosPorDesdobramento = new ConteudoAptoDAO().getConteudoPorDesdobramento(descricao);
 			for (ConteudoApto conteudoApto : conteudosAptosPorDesdobramento) {
 				if (!conteudosId.contains(conteudoApto.getId())) {
@@ -73,11 +96,9 @@ public class BuscaConteudistaBean {
 		List<Curriculo> curriculosCertificacao = new ArrayList<Curriculo>();
 		List<Curriculo> allCurriculos = new ArrayList<Curriculo>();
 		List<Integer> curriculosId = new ArrayList<Integer>();
-		// curriculosCursos.add(new ConteudoAptoDAO().getCurriculoCursoConteudo(4));
+
 
 		for (Integer conteudoId : conteudosId) {
-			System.out.println(conteudoId +"id");
-			// System.out.println(conteudoApto.getId() + ": " + conteudoApto.getTitulo());
 			Curriculo curricloCurso = new ConteudoAptoDAO().getCurriculoCursoConteudo(conteudoId);
 			Curriculo curricloCertificacao = new ConteudoAptoDAO()
 					.getCurriculoCertificacaoConteudo(conteudoId);
@@ -103,13 +124,16 @@ public class BuscaConteudistaBean {
 				curriculosId.add(curriculo.getId());
 			}
 		}
-		for (Integer integer : curriculosId) {
-			// System.out.println("Printando os id: "+curriculosId);
-		}
 
 		java.util.Collections.sort(allCurriculos);
 
 		return allCurriculos;
 
 	}
+	public String verCurriculoPor(Curriculo curriculo){
+		this.curriculo = new DAO<Curriculo>(Curriculo.class).buscaPorId(curriculo.getId());
+		
+		return RotasBean.goCurriculoConteudista();
+	}
+	
 }

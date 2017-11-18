@@ -45,5 +45,11 @@ public class RotasBean {
 	public static String goCadastroConteudo() {
 		return "CadastroConteudo?faces-redirect=true";
 	}
+	public static String goCurriculoConteudista() {
+		return "ShowCurriculo?faces-redirect=true";
+	}
+	public static String goADMDados() {
+		return "ShowAdmDados?faces-redirect=true";
+	}
 }
 

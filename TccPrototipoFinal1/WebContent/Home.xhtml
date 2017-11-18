@@ -14,7 +14,7 @@
 	<ui:define name="conteudo">
 
 		<div>
-			<h:form id="conteudistaform" style="width: 101%;">
+			<h:form id="conteudistaform" style="width: 100%;">
 				<p:dataList value="#{conteudistaBean.perfil}" var="conteudista"
 					type="definition" styleClass="noGridBorder" style="width: 100%;">
 
@@ -22,7 +22,7 @@
 			</p:dataList>
 			</h:form>
 		</div>
-		<h:form>
+		<h:form style="width: 100%;">
 			<p:growl id="messages" />
 			<p:menubar>
 				<p:menuitem value="Home" icon="ui-icon-home"
@@ -32,13 +32,13 @@
 					<p:menuitem value="Alterar Dados"
 						url="http://localhost:9090/tcc/GerenciarConteudista.xhtml" />
 				</p:submenu>
-				<p:submenu label="Formação" icon="ui-icon-pencil">
+				<p:submenu label="Formação" icon="ui-icon-pencil" rendered="#{conteudistaBean.conteudista.CPF != null}">
 					<p:menuitem value="Novo curso"
 						url="http://localhost:9090/tcc/CadastroCurso.xhtml" />
 					<p:menuitem value="Meus cursos"
 						url="http://localhost:9090/tcc/ShowCursos.xhtml" />
 				</p:submenu>
-				<p:submenu label="Certificação" icon="ui-icon-pencil">
+				<p:submenu label="Certificação" icon="ui-icon-pencil" rendered="#{conteudistaBean.conteudista.CPF != null}">
 					<p:menuitem value="Nova Certificação"
 						url="http://localhost:9090/tcc/CadastroCertificacao.xhtml" />
 					<p:menuitem value="Minhas certificações"
@@ -55,7 +55,7 @@
 		<br />
 		<br />
 		<div
-			style="width: 101%; height: 350px; color: #C0C0C0; background-color: #FFFAFA; border: 1px solid; text-align: center; box-shadow: 0px 5px 10px #C0C0C0; justify-content: center; align-items: center;">
+			style="width: 100%-1px; height: 350px; color: #C0C0C0; background-color: #FFFAFA; border: 1px solid; text-align: center; box-shadow: 0px 5px 10px #C0C0C0; justify-content: center; align-items: center;">
 
 			<p:panelGrid styleClass="noGridBorder">
 				<p:column>
@@ -105,6 +105,7 @@
 				</p:column>
 			</p:panelGrid>
 		</div>
+		<br/>
 		<h:form>
 			<p:commandLink action="#{rotasBean.goTodosDados}" update="@form">
 				<p:commandButton value="Ver curriculo" />
