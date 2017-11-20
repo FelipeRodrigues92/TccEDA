@@ -18,10 +18,7 @@
 					<p:inputText id="titulo" value="#{conteudoBean.conteudo.titulo}" />
 					<p:outputLabel value="Descrição: " for="descricao" />
 					<p:inputText id="descricao" value="#{conteudoBean.conteudo.descricao}" />
-					<h:outputLabel value="Nota: " for="avaliacao" />
-					<h:inputText id="conteudista" value="#{conteudoBean.conteudo.avaliacao}" >
-					<f:passThroughAttribute name="type" value="number"></f:passThroughAttribute>
-					</h:inputText>
+				
 					
 					<h:outputLabel value="Conteudista:" for="conteudista" />
 					<p:selectOneMenu value="#{conteudoBean.conteudistaId}">

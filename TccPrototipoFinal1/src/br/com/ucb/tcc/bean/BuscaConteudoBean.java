@@ -19,12 +19,21 @@ import br.com.ucb.tcc.modelo.Conteudo;
 @ManagedBean
 @ViewScoped
 public class BuscaConteudoBean {
+	
+	private boolean tipoBusca;
+
 	private String palavraBuscada;
 
+	
+	public boolean isTipoBusca() {
+		return tipoBusca;
+	}
+	public void setTipoBusca(boolean tipoBusca) {
+		this.tipoBusca = tipoBusca;
+	}
 	public String getPalavraBuscada() {
 		return palavraBuscada;
 	}
-
 	public void setPalavraBuscada(String palavraBuscada) {
 		this.palavraBuscada = palavraBuscada;
 	}

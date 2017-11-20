@@ -33,19 +33,25 @@
 					<p:outputLabel value="Desdobramento: " for="desdobramento5" />
 					<p:inputText id="desdobramento5"
 						value="#{conteudoAptoBean.desdobramento5.descricao}" />
-								<p:outputLabel value="Curso referente:" for="curso" />			
+				</p:panelGrid>
+				<p:panelGrid columns="1" styleClass="noGridBorder">
+					<p:outputLabel value="Itens que atestam conhecimento sobre o assunto:" for="curso" />
+				</p:panelGrid>
+				<p:panelGrid columns="2" styleClass="noGridBorder" layout="grid">					
 					<p:selectManyCheckbox id="curso"
 						value="#{conteudoAptoBean.cursosId}" layout="grid" columns="3">
 						<f:selectItems value="#{conteudoAptoBean.cursos}" var="curso"
 							itemLabel="#{curso.bancoCurso.nome}" itemValue="#{curso.id}" />
 					</p:selectManyCheckbox>
 					
-						<p:outputLabel value="Certificações referentes:" for="certificacoes" />			
+						<p:outputLabel value=" " for="certificacoes" />			
 					<p:selectManyCheckbox id="certificacoes"
 						value="#{conteudoAptoBean.certificacoesId}" layout="grid" columns="3">
 						<f:selectItems value="#{conteudoAptoBean.certificacoes}" var="certificacao"
 							itemLabel="#{certificacao.nome}" itemValue="#{certificacao.id}" />
 					</p:selectManyCheckbox>
+				</p:panelGrid>
+				<p:panelGrid columns="2" styleClass="noGridBorder">
 					<p:commandButton value="Gravar"
 						action="#{conteudoAptoBean.gravar}" />
 					<p:commandButton value="Ir Homepage"

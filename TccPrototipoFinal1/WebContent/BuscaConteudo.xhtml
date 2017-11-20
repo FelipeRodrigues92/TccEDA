@@ -34,19 +34,21 @@
 				<p:submenu label="Conteúdos" icon="ui-icon-pencil">
 					<p:menuitem value="Cadastrar Conteúdo" icon="ui-icon-plus"
 						url="http://localhost:8080/tcc/CadastroConteudo.xhtml" />
-					<p:menuitem value="Avaliação" 
+					<p:menuitem value="Avaliação"
 						url="http://localhost:8080/tcc/ShowConteudosDesenvolvidos.xhtml" />
 				</p:submenu>
 			</p:menubar>
 		</h:form>
 		<br />
 		<h:form id="form1">
-			<p:outputLabel value="Ementa: " for="palavraBuscada" />
-			<p:inputText id="palavraBuscada"
-				value="#{buscaConteudoBean.palavraBuscada}" />
-			<p:commandButton value="Buscar"
-				action="#{buscaConteudoBean.getConteudosComString}"
-				update="form2:tabelaConteudos" />
+			<h:panelGrid columns="7" style="margin-bottom:10px" cellpadding="5">
+				<p:outputLabel value="Ementa: " for="palavraBuscada" />
+				<p:inputText id="palavraBuscada"
+					value="#{buscaConteudoBean.palavraBuscada}" />
+				<p:commandButton id="PorDesdobramento" value="Buscar"
+					action="#{buscaConteudoBean.getConteudosComString}"
+					update="form2:tabelaConteudos"  />
+			</h:panelGrid>
 		</h:form>
 		<h:form id="form2">
 			<p:dataTable id="tabelaConteudos"

@@ -27,13 +27,33 @@ import javassist.expr.NewArray;
 @ManagedBean
 @SessionScoped
 public class BuscaConteudistaBean {
+	
+	private boolean tipoBusca;
+	
 	private String nomeConteudo = "";
 	
 	private Curriculo curriculo;
 	
 	private Endereco endereco;
 	
+	private List<Curriculo> curriculos;
 	
+	public List<Curriculo> getCurriculos() {
+		return curriculos;
+	}
+
+	public void setCurriculos(List<Curriculo> curriculos) {
+		this.curriculos = curriculos;
+	}
+
+	public boolean isTipoBusca() {
+		return tipoBusca;
+	}
+
+	public void setTipoBusca(boolean tipoBusca) {
+		this.tipoBusca = tipoBusca;
+	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -58,10 +78,11 @@ public class BuscaConteudistaBean {
 		this.nomeConteudo = nomeConteudo;
 	}
 
-	public List<Curriculo> getConteudistas() {
+	public void getConteudistas() {
+		System.out.println("normal");
 		String nomeConteudo = getNomeConteudo();
-		if (nomeConteudo.isEmpty()) {
-			return null;
+		if (nomeConteudo.isEmpty() || nomeConteudo == " ") {
+			this.curriculos = null;
 		}
 
 		List<ConteudoApto> conteudosAptos = new ConteudoAptoDAO().getConteudoCom(nomeConteudo);
@@ -127,13 +148,68 @@ public class BuscaConteudistaBean {
 
 		java.util.Collections.sort(allCurriculos);
 
-		return allCurriculos;
+		this.curriculos = allCurriculos;
 
 	}
+	
 	public String verCurriculoPor(Curriculo curriculo){
 		this.curriculo = new DAO<Curriculo>(Curriculo.class).buscaPorId(curriculo.getId());
 		
 		return RotasBean.goCurriculoConteudista();
 	}
-	
+
+	public void getConteudistasSimples() {
+		System.out.println("simples");
+		String nomeConteudo = getNomeConteudo();
+		if (nomeConteudo.isEmpty() || nomeConteudo == " ") {
+			this.curriculos = null;
+		}
+
+		List<ConteudoApto> conteudosAptos = new ConteudoAptoDAO().getConteudoCom(nomeConteudo);
+		List<Integer> conteudosId = new ArrayList<Integer>();
+
+		for (ConteudoApto conteudoApto : conteudosAptos) {
+			if (!conteudosId.contains(conteudoApto.getId())) {
+				conteudosId.add(conteudoApto.getId());
+			}
+		}
+		
+		List<Curriculo> curriculosCursos = new ArrayList<Curriculo>();
+		List<Curriculo> curriculosCertificacao = new ArrayList<Curriculo>();
+		List<Curriculo> allCurriculos = new ArrayList<Curriculo>();
+		List<Integer> curriculosId = new ArrayList<Integer>();
+
+
+		for (Integer conteudoId : conteudosId) {
+			Curriculo curricloCurso = new ConteudoAptoDAO().getCurriculoCursoConteudo(conteudoId);
+			Curriculo curricloCertificacao = new ConteudoAptoDAO()
+					.getCurriculoCertificacaoConteudo(conteudoId);
+			if (curricloCurso != null) {
+				curriculosCursos.add(curricloCurso);
+			}
+			if (curricloCertificacao != null) {
+				curriculosCertificacao.add(curricloCertificacao);
+			}
+		}
+
+		allCurriculos = curriculosCertificacao;
+
+		for (Curriculo curriculo : curriculosCertificacao) {
+			curriculosId.add(curriculo.getId());
+		}
+
+		for (Curriculo curriculo : curriculosCursos) {
+			if (curriculosId.contains(curriculo.getId())) {
+			} else {
+				// System.out.println(curriculo.getId());
+				allCurriculos.add(curriculo);
+				curriculosId.add(curriculo.getId());
+			}
+		}
+
+		java.util.Collections.sort(allCurriculos);
+
+		this.curriculos = allCurriculos;
+
+	}
 }
